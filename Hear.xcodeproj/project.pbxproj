@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3731FB1F1BB5A04200294F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB1E1BB5A04200294F70 /* AppDelegate.swift */; };
+		3731FB211BB5A04200294F70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB201BB5A04200294F70 /* ViewController.swift */; };
+		3731FB241BB5A04200294F70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB221BB5A04200294F70 /* Main.storyboard */; };
+		3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB251BB5A04200294F70 /* Assets.xcassets */; };
+		3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3731FB1B1BB5A04200294F70 /* Hear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3731FB1E1BB5A04200294F70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3731FB201BB5A04200294F70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3731FB231BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3731FB251BB5A04200294F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3731FB281BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3731FB2A1BB5A04200294F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3731FB181BB5A04200294F70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3731FB121BB5A04200294F70 = {
+			isa = PBXGroup;
+			children = (
+				3731FB1D1BB5A04200294F70 /* Hear */,
+				3731FB1C1BB5A04200294F70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3731FB1C1BB5A04200294F70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3731FB1B1BB5A04200294F70 /* Hear.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3731FB1D1BB5A04200294F70 /* Hear */ = {
+			isa = PBXGroup;
+			children = (
+				3731FB1E1BB5A04200294F70 /* AppDelegate.swift */,
+				3731FB201BB5A04200294F70 /* ViewController.swift */,
+				3731FB221BB5A04200294F70 /* Main.storyboard */,
+				3731FB251BB5A04200294F70 /* Assets.xcassets */,
+				3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */,
+				3731FB2A1BB5A04200294F70 /* Info.plist */,
+			);
+			path = Hear;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3731FB1A1BB5A04200294F70 /* Hear */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3731FB2D1BB5A04200294F70 /* Build configuration list for PBXNativeTarget "Hear" */;
+			buildPhases = (
+				3731FB171BB5A04200294F70 /* Sources */,
+				3731FB181BB5A04200294F70 /* Frameworks */,
+				3731FB191BB5A04200294F70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hear;
+			productName = Hear;
+			productReference = 3731FB1B1BB5A04200294F70 /* Hear.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3731FB131BB5A04200294F70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Hear;
+				TargetAttributes = {
+					3731FB1A1BB5A04200294F70 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 3731FB161BB5A04200294F70 /* Build configuration list for PBXProject "Hear" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3731FB121BB5A04200294F70;
+			productRefGroup = 3731FB1C1BB5A04200294F70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3731FB1A1BB5A04200294F70 /* Hear */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3731FB191BB5A04200294F70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */,
+				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
+				3731FB241BB5A04200294F70 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3731FB171BB5A04200294F70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3731FB211BB5A04200294F70 /* ViewController.swift in Sources */,
+				3731FB1F1BB5A04200294F70 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3731FB221BB5A04200294F70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3731FB231BB5A04200294F70 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3731FB281BB5A04200294F70 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3731FB2B1BB5A04200294F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3731FB2C1BB5A04200294F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3731FB2E1BB5A04200294F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hear/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3731FB2F1BB5A04200294F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hear/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3731FB161BB5A04200294F70 /* Build configuration list for PBXProject "Hear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3731FB2B1BB5A04200294F70 /* Debug */,
+				3731FB2C1BB5A04200294F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3731FB2D1BB5A04200294F70 /* Build configuration list for PBXNativeTarget "Hear" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3731FB2E1BB5A04200294F70 /* Debug */,
+				3731FB2F1BB5A04200294F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3731FB131BB5A04200294F70 /* Project object */;
+}
