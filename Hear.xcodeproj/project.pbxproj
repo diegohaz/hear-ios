@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3731FB1F1BB5A04200294F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB1E1BB5A04200294F70 /* AppDelegate.swift */; };
 		3731FB211BB5A04200294F70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB201BB5A04200294F70 /* ViewController.swift */; };
-		3731FB241BB5A04200294F70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB221BB5A04200294F70 /* Main.storyboard */; };
 		3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB251BB5A04200294F70 /* Assets.xcassets */; };
 		3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +17,6 @@
 		3731FB1B1BB5A04200294F70 /* Hear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3731FB1E1BB5A04200294F70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3731FB201BB5A04200294F70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3731FB231BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3731FB251BB5A04200294F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3731FB281BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3731FB2A1BB5A04200294F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 			children = (
 				3731FB1E1BB5A04200294F70 /* AppDelegate.swift */,
 				3731FB201BB5A04200294F70 /* ViewController.swift */,
-				3731FB221BB5A04200294F70 /* Main.storyboard */,
 				3731FB251BB5A04200294F70 /* Assets.xcassets */,
 				3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */,
 				3731FB2A1BB5A04200294F70 /* Info.plist */,
@@ -123,7 +120,6 @@
 			files = (
 				3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
-				3731FB241BB5A04200294F70 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,14 +138,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3731FB221BB5A04200294F70 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3731FB231BB5A04200294F70 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -247,6 +235,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hear/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -258,6 +247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hear/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -283,6 +273,7 @@
 				3731FB2F1BB5A04200294F70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
