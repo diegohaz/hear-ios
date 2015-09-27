@@ -16,8 +16,21 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hear-button" translatesAutoresizingMaskIntoConstraints="NO" id="JIa-jZ-0EL">
+                                <rect key="frame" x="268" y="528" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="Qay-yP-6Xb"/>
+                                    <constraint firstAttribute="height" constant="64" id="m4O-3S-F8G"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JIa-jZ-0EL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="5V2-Kk-eZu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="JIa-jZ-0EL" secondAttribute="bottom" constant="8" id="JyA-So-VAE"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -25,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hear-button" width="64" height="64"/>
+    </resources>
 </document>
