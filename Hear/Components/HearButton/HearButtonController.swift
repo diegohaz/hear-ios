@@ -8,6 +8,6 @@
 
 import UIKit
 
-class HearButtonController: UIComponentController {
-
+class HearButtonController: NSObject {
+    var view: HearButtonView?
 }
