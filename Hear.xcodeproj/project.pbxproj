@@ -20,6 +20,10 @@
 		B915F8D01BB9A6920057CFD1 /* DAOSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915F8CF1BB9A6920057CFD1 /* DAOSong.swift */; };
 		B915F8D21BB9A6A40057CFD1 /* DAOStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915F8D11BB9A6A40057CFD1 /* DAOStory.swift */; };
 		B915F8D41BB9A6B30057CFD1 /* DAOGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915F8D31BB9A6B30057CFD1 /* DAOGenre.swift */; };
+		B9CE59781BB9A84B00934EDD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE59771BB9A84B00934EDD /* User.swift */; };
+		B9CE597A1BB9A85B00934EDD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE59791BB9A85B00934EDD /* Song.swift */; };
+		B9CE597C1BB9A86B00934EDD /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE597B1BB9A86B00934EDD /* Story.swift */; };
+		B9CE597E1BB9A87C00934EDD /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE597D1BB9A87C00934EDD /* Genre.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		B915F8CF1BB9A6920057CFD1 /* DAOSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOSong.swift; sourceTree = "<group>"; };
 		B915F8D11BB9A6A40057CFD1 /* DAOStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOStory.swift; sourceTree = "<group>"; };
 		B915F8D31BB9A6B30057CFD1 /* DAOGenre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOGenre.swift; sourceTree = "<group>"; };
+		B9CE59771BB9A84B00934EDD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B9CE59791BB9A85B00934EDD /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		B9CE597B1BB9A86B00934EDD /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		B9CE597D1BB9A87C00934EDD /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +152,13 @@
 		B915F8CC1BB9A6180057CFD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B9CE59771BB9A84B00934EDD /* User.swift */,
 				B915F8CD1BB9A6780057CFD1 /* DAOUser.swift */,
+				B9CE59791BB9A85B00934EDD /* Song.swift */,
 				B915F8CF1BB9A6920057CFD1 /* DAOSong.swift */,
+				B9CE597B1BB9A86B00934EDD /* Story.swift */,
 				B915F8D11BB9A6A40057CFD1 /* DAOStory.swift */,
+				B9CE597D1BB9A87C00934EDD /* Genre.swift */,
 				B915F8D31BB9A6B30057CFD1 /* DAOGenre.swift */,
 			);
 			name = Model;
@@ -222,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9CE597A1BB9A85B00934EDD /* Song.swift in Sources */,
 				3731FB481BB5A79E00294F70 /* UIComponentView.swift in Sources */,
 				3731FB4A1BB5AA1400294F70 /* UIComponentController.swift in Sources */,
 				B915F8D41BB9A6B30057CFD1 /* DAOGenre.swift in Sources */,
@@ -229,9 +242,12 @@
 				B915F8D01BB9A6920057CFD1 /* DAOSong.swift in Sources */,
 				3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */,
 				3731FB371BB5A2C700294F70 /* ViewController.swift in Sources */,
+				B9CE597C1BB9A86B00934EDD /* Story.swift in Sources */,
 				3731FB421BB5A71F00294F70 /* AppDelegate.swift in Sources */,
 				B915F8CE1BB9A6780057CFD1 /* DAOUser.swift in Sources */,
 				B915F8D21BB9A6A40057CFD1 /* DAOStory.swift in Sources */,
+				B9CE59781BB9A84B00934EDD /* User.swift in Sources */,
+				B9CE597E1BB9A87C00934EDD /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
