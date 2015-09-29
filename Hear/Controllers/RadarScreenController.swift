@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RadarScreenController.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/25/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RadarScreenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

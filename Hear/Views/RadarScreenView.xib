@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,19 +11,152 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="HearButtonView" customModule="Hear" customModuleProvider="target">
-                    <rect key="frame" x="268" y="527" width="65" height="65"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YgJ-tI-6s5">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-Db-PyG">
+                            <rect key="frame" x="8" y="0.0" width="96" height="640"/>
+                            <subviews>
+                                <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kli-1H-le6" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cvR-Lr-U12" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="456" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Onb-rZ-l48" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="304" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMt-lz-t6F" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="152" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="96" id="vGp-6y-Uf0"/>
+                                <constraint firstAttribute="height" constant="640" id="zWf-ii-AMl"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQh-xJ-ZPE">
+                            <rect key="frame" x="252" y="64" width="96" height="640"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFa-Hf-qfE" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view alpha="0.10000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vtZ-B2-wJQ" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="456" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUe-X8-hfa" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="304" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Q4-gO-UrT" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="152" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="96" id="R1a-HM-ihQ"/>
+                                <constraint firstAttribute="height" constant="640" id="e1T-dR-y8P"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL4-O0-wnv">
+                            <rect key="frame" x="356" y="0.0" width="96" height="640"/>
+                            <subviews>
+                                <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDl-5g-Pqd" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wq7-mu-T6d" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="456" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSb-PN-GFu" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="304" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0o0-7r-nkA" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="152" width="96" height="144"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="96" id="hDy-uM-YHw"/>
+                                <constraint firstAttribute="height" constant="640" id="tPx-S4-QCJ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="hVX-eP-FzO"/>
-                        <constraint firstAttribute="width" constant="65" id="qPm-kY-UhW"/>
+                        <constraint firstItem="RQh-xJ-ZPE" firstAttribute="centerX" secondItem="YgJ-tI-6s5" secondAttribute="centerX" id="4Ng-Mk-flA"/>
+                        <constraint firstItem="bL4-O0-wnv" firstAttribute="top" secondItem="YgJ-tI-6s5" secondAttribute="top" id="JUi-Zv-tMX"/>
+                        <constraint firstItem="bL4-O0-wnv" firstAttribute="leading" secondItem="RQh-xJ-ZPE" secondAttribute="trailing" priority="750" constant="8" id="KJy-AN-adB"/>
+                        <constraint firstItem="9Bd-Db-PyG" firstAttribute="leading" secondItem="YgJ-tI-6s5" secondAttribute="leading" constant="8" id="TmX-3M-kKy"/>
+                        <constraint firstItem="RQh-xJ-ZPE" firstAttribute="leading" secondItem="9Bd-Db-PyG" secondAttribute="trailing" priority="750" constant="8" id="Y2W-Ab-Hrg"/>
+                        <constraint firstAttribute="trailing" secondItem="bL4-O0-wnv" secondAttribute="trailing" constant="8" id="ZJy-zv-xTX"/>
+                        <constraint firstItem="RQh-xJ-ZPE" firstAttribute="top" secondItem="YgJ-tI-6s5" secondAttribute="top" constant="64" id="gjo-HU-Kaw"/>
+                        <constraint firstAttribute="bottom" secondItem="RQh-xJ-ZPE" secondAttribute="bottom" constant="-131" id="mrL-Up-wr0"/>
+                        <constraint firstItem="9Bd-Db-PyG" firstAttribute="top" secondItem="YgJ-tI-6s5" secondAttribute="top" id="piB-h6-Gm9"/>
+                        <constraint firstAttribute="trailing" secondItem="bL4-O0-wnv" secondAttribute="trailing" constant="8" id="rlB-R5-xHr"/>
+                    </constraints>
+                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ZJy-zv-xTX"/>
+                        </mask>
+                    </variation>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="HearButtonView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="268" y="528" width="64" height="64"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="hVX-eP-FzO"/>
+                        <constraint firstAttribute="width" constant="64" id="qPm-kY-UhW"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYY-AG-6a3" customClass="CurrentSongButtonView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="12" y="532" width="56" height="56"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="LZz-F6-hd1"/>
+                        <constraint firstAttribute="width" constant="56" id="uxp-nF-3oG"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg">
+                    <rect key="frame" x="272.5" y="24" width="55" height="32"/>
+                    <color key="backgroundColor" red="0.83137254901960778" green="0.078431372549019607" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="Bpr-tS-Drc"/>
+                    </constraints>
+                    <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                    <state key="normal" title="23m">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="zmy-O3-y2C" secondAttribute="bottom" constant="8" id="67I-pX-YFW"/>
+                <constraint firstItem="YgJ-tI-6s5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6cB-oo-tzB"/>
+                <constraint firstAttribute="trailing" secondItem="YgJ-tI-6s5" secondAttribute="trailing" id="Nya-0a-wyS"/>
+                <constraint firstItem="2r4-vz-pDg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qiw-5v-52O"/>
+                <constraint firstItem="PYY-AG-6a3" firstAttribute="centerY" secondItem="zmy-O3-y2C" secondAttribute="centerY" id="Ss7-en-RRO"/>
+                <constraint firstItem="PYY-AG-6a3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="YTp-dU-Lif"/>
                 <constraint firstItem="zmy-O3-y2C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ax3-Gy-oIJ"/>
+                <constraint firstAttribute="bottom" secondItem="YgJ-tI-6s5" secondAttribute="bottom" id="fHc-nL-VUM"/>
+                <constraint firstItem="2r4-vz-pDg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="kGd-7T-dyt"/>
+                <constraint firstItem="YgJ-tI-6s5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yAn-Vv-ksO"/>
             </constraints>
         </view>
     </objects>

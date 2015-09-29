@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongRound" customModule="Hear" customModuleProvider="target">
+            <connections>
+                <outlet property="playbackGuide" destination="No8-C8-KBJ" id="tdy-cZ-0V5"/>
+                <outlet property="songImageView" destination="X1j-w9-Xpn" id="3EQ-t3-EyA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="93N-Az-Jyf">
+            <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="No8-C8-KBJ" userLabel="Playback Guide">
+                    <rect key="frame" x="2" y="2" width="92" height="92"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X1j-w9-Xpn">
+                    <rect key="frame" x="4" y="4" width="88" height="88"/>
+                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="No8-C8-KBJ" firstAttribute="leading" secondItem="93N-Az-Jyf" secondAttribute="leading" constant="2" id="Kf4-gy-j4q"/>
+                <constraint firstAttribute="bottom" secondItem="No8-C8-KBJ" secondAttribute="bottom" constant="2" id="Lsy-qa-iLR"/>
+                <constraint firstItem="No8-C8-KBJ" firstAttribute="top" secondItem="93N-Az-Jyf" secondAttribute="top" constant="2" id="MEJ-cB-9hf"/>
+                <constraint firstAttribute="bottom" secondItem="X1j-w9-Xpn" secondAttribute="bottom" constant="4" id="PID-Qx-kpG"/>
+                <constraint firstAttribute="trailing" secondItem="No8-C8-KBJ" secondAttribute="trailing" constant="2" id="anm-kY-bG7"/>
+                <constraint firstItem="X1j-w9-Xpn" firstAttribute="leading" secondItem="93N-Az-Jyf" secondAttribute="leading" constant="4" id="gDX-8J-h15"/>
+                <constraint firstItem="X1j-w9-Xpn" firstAttribute="top" secondItem="93N-Az-Jyf" secondAttribute="top" constant="4" id="hND-ah-8Wd"/>
+                <constraint firstAttribute="trailing" secondItem="X1j-w9-Xpn" secondAttribute="trailing" constant="4" id="qoc-3c-ffn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="257" y="312"/>
+        </view>
+    </objects>
+</document>

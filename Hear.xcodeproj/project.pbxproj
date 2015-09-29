@@ -7,29 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3714E6E61BB946DB0032ECEE /* SongRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3714E6E51BB946DB0032ECEE /* SongRound.swift */; settings = {ASSET_TAGS = (); }; };
+		3714E6E81BB947020032ECEE /* SongRound.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3714E6E71BB947020032ECEE /* SongRound.xib */; settings = {ASSET_TAGS = (); }; };
 		3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB251BB5A04200294F70 /* Assets.xcassets */; };
 		3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
-		3731FB371BB5A2C700294F70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB361BB5A2C700294F70 /* ViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB371BB5A2C700294F70 /* RadarScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB361BB5A2C700294F70 /* RadarScreenController.swift */; settings = {ASSET_TAGS = (); }; };
 		3731FB3B1BB5A67C00294F70 /* HearButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB3A1BB5A67C00294F70 /* HearButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB3E1BB5A6B500294F70 /* HearButtonController.swift */; settings = {ASSET_TAGS = (); }; };
-		3731FB421BB5A71F00294F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB411BB5A71F00294F70 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		3731FB481BB5A79E00294F70 /* UIComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB471BB5A79E00294F70 /* UIComponentView.swift */; settings = {ASSET_TAGS = (); }; };
-		3731FB4A1BB5AA1400294F70 /* UIComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB491BB5AA1400294F70 /* UIComponentController.swift */; settings = {ASSET_TAGS = (); }; };
 		3731FB501BB5EF4900294F70 /* RadarScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB4F1BB5EF4900294F70 /* RadarScreenView.xib */; settings = {ASSET_TAGS = (); }; };
+		3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB511BB7DE6E00294F70 /* SongButtonController.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB521BB7DE6E00294F70 /* SongButtonView.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB551BB89B2300294F70 /* SongButtonView.xib */; settings = {ASSET_TAGS = (); }; };
+		3731FB5A1BB8A1C200294F70 /* UIComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB581BB8A1C200294F70 /* UIComponentController.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB5B1BB8A1C200294F70 /* UIComponentUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB591BB8A1C200294F70 /* UIComponentUtils.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB5E1BB8A22700294F70 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		3731FB611BB8C08E00294F70 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB601BB8C08E00294F70 /* UIColor.swift */; settings = {ASSET_TAGS = (); }; };
+		374C9F221BB950620010A362 /* CurrentSongButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C9F1F1BB950620010A362 /* CurrentSongButtonController.swift */; settings = {ASSET_TAGS = (); }; };
+		374C9F231BB950620010A362 /* CurrentSongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374C9F201BB950620010A362 /* CurrentSongButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3714E6E51BB946DB0032ECEE /* SongRound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRound.swift; sourceTree = "<group>"; };
+		3714E6E71BB947020032ECEE /* SongRound.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongRound.xib; sourceTree = "<group>"; };
 		3731FB1B1BB5A04200294F70 /* Hear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3731FB251BB5A04200294F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3731FB281BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3731FB2A1BB5A04200294F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3731FB361BB5A2C700294F70 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3731FB361BB5A2C700294F70 /* RadarScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarScreenController.swift; sourceTree = "<group>"; };
 		3731FB3A1BB5A67C00294F70 /* HearButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HearButtonView.swift; sourceTree = "<group>"; };
 		3731FB3E1BB5A6B500294F70 /* HearButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HearButtonController.swift; sourceTree = "<group>"; };
-		3731FB411BB5A71F00294F70 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3731FB471BB5A79E00294F70 /* UIComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIComponentView.swift; sourceTree = "<group>"; };
-		3731FB491BB5AA1400294F70 /* UIComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIComponentController.swift; sourceTree = "<group>"; };
 		3731FB4F1BB5EF4900294F70 /* RadarScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadarScreenView.xib; sourceTree = "<group>"; };
+		3731FB511BB7DE6E00294F70 /* SongButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongButtonController.swift; sourceTree = "<group>"; };
+		3731FB521BB7DE6E00294F70 /* SongButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
+		3731FB551BB89B2300294F70 /* SongButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongButtonView.xib; sourceTree = "<group>"; };
+		3731FB581BB8A1C200294F70 /* UIComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIComponentController.swift; sourceTree = "<group>"; };
+		3731FB591BB8A1C200294F70 /* UIComponentUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIComponentUtils.swift; sourceTree = "<group>"; };
+		3731FB5E1BB8A22700294F70 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3731FB601BB8C08E00294F70 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		374C9F1F1BB950620010A362 /* CurrentSongButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSongButtonController.swift; sourceTree = "<group>"; };
+		374C9F201BB950620010A362 /* CurrentSongButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSongButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3714E6E41BB946BE0032ECEE /* SongRound */ = {
+			isa = PBXGroup;
+			children = (
+				3714E6E51BB946DB0032ECEE /* SongRound.swift */,
+				3714E6E71BB947020032ECEE /* SongRound.xib */,
+			);
+			path = SongRound;
+			sourceTree = "<group>";
+		};
 		3731FB121BB5A04200294F70 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +96,7 @@
 				3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */,
 				3731FB251BB5A04200294F70 /* Assets.xcassets */,
 				3731FB2A1BB5A04200294F70 /* Info.plist */,
+				3731FB5E1BB8A22700294F70 /* AppDelegate.swift */,
 			);
 			path = Hear;
 			sourceTree = "<group>";
@@ -86,7 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				3731FB381BB5A65900294F70 /* HearButton */,
+				3714E6E41BB946BE0032ECEE /* SongRound */,
 				3731FB391BB5A65900294F70 /* SongButton */,
+				374C9F1E1BB950620010A362 /* CurrentSongButton */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -94,7 +122,7 @@
 		3731FB331BB5A27100294F70 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3731FB361BB5A2C700294F70 /* ViewController.swift */,
+				3731FB361BB5A2C700294F70 /* RadarScreenController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +154,9 @@
 		3731FB391BB5A65900294F70 /* SongButton */ = {
 			isa = PBXGroup;
 			children = (
+				3731FB511BB7DE6E00294F70 /* SongButtonController.swift */,
+				3731FB521BB7DE6E00294F70 /* SongButtonView.swift */,
+				3731FB551BB89B2300294F70 /* SongButtonView.xib */,
 			);
 			path = SongButton;
 			sourceTree = "<group>";
@@ -133,11 +164,28 @@
 		3731FB401BB5A70B00294F70 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				3731FB411BB5A71F00294F70 /* AppDelegate.swift */,
-				3731FB471BB5A79E00294F70 /* UIComponentView.swift */,
-				3731FB491BB5AA1400294F70 /* UIComponentController.swift */,
+				3731FB571BB8A1C200294F70 /* UIComponent */,
+				3731FB601BB8C08E00294F70 /* UIColor.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		3731FB571BB8A1C200294F70 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3731FB591BB8A1C200294F70 /* UIComponentUtils.swift */,
+				3731FB581BB8A1C200294F70 /* UIComponentController.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		374C9F1E1BB950620010A362 /* CurrentSongButton */ = {
+			isa = PBXGroup;
+			children = (
+				374C9F1F1BB950620010A362 /* CurrentSongButtonController.swift */,
+				374C9F201BB950620010A362 /* CurrentSongButtonView.swift */,
+			);
+			path = CurrentSongButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +219,7 @@
 				TargetAttributes = {
 					3731FB1A1BB5A04200294F70 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 427LPJP8S9;
 					};
 				};
 			};
@@ -198,8 +247,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3731FB501BB5EF4900294F70 /* RadarScreenView.xib in Resources */,
+				3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */,
 				3731FB291BB5A04200294F70 /* LaunchScreen.storyboard in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
+				3714E6E81BB947020032ECEE /* SongRound.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,12 +261,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3731FB481BB5A79E00294F70 /* UIComponentView.swift in Sources */,
-				3731FB4A1BB5AA1400294F70 /* UIComponentController.swift in Sources */,
+				3731FB5B1BB8A1C200294F70 /* UIComponentUtils.swift in Sources */,
+				3731FB5A1BB8A1C200294F70 /* UIComponentController.swift in Sources */,
+				3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */,
+				3714E6E61BB946DB0032ECEE /* SongRound.swift in Sources */,
 				3731FB3B1BB5A67C00294F70 /* HearButtonView.swift in Sources */,
+				3731FB611BB8C08E00294F70 /* UIColor.swift in Sources */,
+				374C9F221BB950620010A362 /* CurrentSongButtonController.swift in Sources */,
+				374C9F231BB950620010A362 /* CurrentSongButtonView.swift in Sources */,
 				3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */,
-				3731FB371BB5A2C700294F70 /* ViewController.swift in Sources */,
-				3731FB421BB5A71F00294F70 /* AppDelegate.swift in Sources */,
+				3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */,
+				3731FB371BB5A2C700294F70 /* RadarScreenController.swift in Sources */,
+				3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,11 +375,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hear/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -330,11 +391,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Hear/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hear.Hear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
