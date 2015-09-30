@@ -31,6 +31,16 @@ import UIKit
         controller = SongButtonController(view: self)
     }
     
+    func bounce() {
+        UIView.animateWithDuration(0.15, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.songRoundView.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }) { (finished) -> Void in
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.songRoundView.transform = CGAffineTransformMakeScale(1, 1)
+                })
+        }
+    }
+    
     private func loadNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
         let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)

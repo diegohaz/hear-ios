@@ -15,5 +15,10 @@ class SongButtonController: NSObject {
         super.init()
         
         self.view = view
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
+    }
+    
+    func viewDidTouch() {
+        view.bounce()
     }
 }

@@ -15,10 +15,10 @@ class CurrentSongButtonController: NSObject {
         super.init()
         
         self.view = view
-        self.view.addTarget(self, action: "viewDidTouch", forControlEvents: .TouchUpInside)
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
     }
     
     func viewDidTouch() {
-        print("HearButton has been pressed")
+        view.bounce()
     }
 }

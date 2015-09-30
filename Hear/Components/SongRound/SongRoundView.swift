@@ -32,7 +32,6 @@ import UIKit
         userInteractionEnabled = false
         loadNib()
         controller = SongRoundController(view: self)
-        
     }
     
     private func loadNib() {
