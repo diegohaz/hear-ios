@@ -12,7 +12,9 @@ import UIKit
     
     var controller: SongButtonController!
     @IBOutlet weak var newStoriesIndicator: UIView!
-    @IBOutlet weak var songRound: SongRound!
+    @IBOutlet weak var songRoundView: SongRoundView!
+    @IBOutlet weak var songTitleLabel: UILabel!
+    @IBOutlet weak var songArtistLabel: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,13 +26,18 @@ import UIKit
         setup()
     }
 
-    func setup() {
-        let view = UIComponentUtils.loadXib(self)
+    private func setup() {
+        loadNib()
+        controller = SongButtonController(view: self)
+    }
+    
+    private func loadNib() {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        
         addSubview(view)
-        
-        controller = SongButtonController(view: self)
     }
 }

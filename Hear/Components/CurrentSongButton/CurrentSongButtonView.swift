@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable class CurrentSongButtonView: UIButton {
     
     var controller: CurrentSongButtonController!
-    var songRound: SongRound!
+    var songRoundView: SongRoundView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,9 +25,9 @@ import UIKit
 
     func setup() {
         controller = CurrentSongButtonController(view: self)
-        songRound = SongRound(frame: bounds)
-        songRound.backgroundColor = UIColor.clearColor()
-        addSubview(songRound)
+        songRoundView = SongRoundView(frame: bounds)
+        songRoundView.backgroundColor = UIColor.clearColor()
+        addSubview(songRoundView)
     }
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {

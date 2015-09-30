@@ -8,9 +8,12 @@
 
 import UIKit
 
-class SongButtonController: UIComponentController<SongButtonView> {
+class SongButtonController: NSObject {
+    var view: SongButtonView!
     
-    required init(view: SongButtonView) {
-        super.init(view: view)
+    init(view: SongButtonView) {
+        super.init()
+        
+        self.view = view
     }
 }

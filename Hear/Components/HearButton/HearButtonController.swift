@@ -8,15 +8,17 @@
 
 import UIKit
 
-class HearButtonController: UIComponentController<HearButtonView> {
+class HearButtonController: NSObject {
+    var view: HearButtonView!
     
-    required init(view: HearButtonView) {
-        super.init(view: view)
+    init(view: HearButtonView) {
+        super.init()
         
-        view.addTarget(self, action: "viewDidTouch:", forControlEvents: .TouchUpInside)
+        self.view = view
+        self.view.addTarget(self, action: "viewDidTouch", forControlEvents: .TouchUpInside)
     }
     
-    func viewDidTouch(sender: HearButtonView) {
+    func viewDidTouch() {
         print("HearButton has been pressed")
     }
 }

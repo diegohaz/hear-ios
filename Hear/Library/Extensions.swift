@@ -1,5 +1,5 @@
 //
-//  UIColor.swift
+//  Extensions.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/27/15.

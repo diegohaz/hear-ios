@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongRound" customModule="Hear" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongRoundView" customModule="Hear" customModuleProvider="target">
             <connections>
                 <outlet property="playbackGuide" destination="No8-C8-KBJ" id="tdy-cZ-0V5"/>
                 <outlet property="songImageView" destination="X1j-w9-Xpn" id="3EQ-t3-EyA"/>

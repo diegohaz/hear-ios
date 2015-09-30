@@ -9,6 +9,7 @@
 import UIKit
 
 @IBDesignable class HearButtonView: UIButton {
+    @IBInspectable var pulsing: Bool = false
     
     var controller: HearButtonController!
     
@@ -22,8 +23,30 @@ import UIKit
         setup()
     }
     
-    func setup() {
+    private func setup() {
         controller = HearButtonController(view: self)
+    }
+    
+    override func awakeFromNib() {
+        if pulsing {
+            pulse()
+        }
+    }
+    
+    func pulse(delay: Double = 0) {
+        pulsing = true
+        
+        UIView.animateWithDuration(0.15, delay: delay, options: .AllowUserInteraction, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.15, 1.15)
+            }, completion: { (finished) -> Void in
+                UIView.animateWithDuration(0.15, delay: 0, options: .AllowUserInteraction, animations: { () -> Void in
+                    self.transform = CGAffineTransformMakeScale(1, 1)
+                }, completion: { (finished) -> Void in
+                        if self.pulsing {
+                            self.pulse(delay == 0 ? 0.5 : 0)
+                        }
+                })
+            })
     }
     
     override func drawRect(rect: CGRect) {
@@ -49,6 +72,7 @@ import UIKit
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
+        pulsing = false
         
         UIView.animateWithDuration(0.1, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(1.15, 1.15)

@@ -8,12 +8,14 @@
 
 import UIKit
 
-class CurrentSongButtonController: UIComponentController<CurrentSongButtonView> {
+class CurrentSongButtonController: NSObject {
+    var view: CurrentSongButtonView!
     
-    required init(view: CurrentSongButtonView) {
-        super.init(view: view)
+    init(view: CurrentSongButtonView) {
+        super.init()
         
-        view.addTarget(self, action: "viewDidTouch", forControlEvents: .TouchUpInside)
+        self.view = view
+        self.view.addTarget(self, action: "viewDidTouch", forControlEvents: .TouchUpInside)
     }
     
     func viewDidTouch() {
