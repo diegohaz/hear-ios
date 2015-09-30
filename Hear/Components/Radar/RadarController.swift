@@ -28,22 +28,25 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         let paths = view.indexPathsForVisibleItems()
         
         for path in paths {
-            hideCell(view.cellForItemAtIndexPath(path)!)
+            hideCell(view.cellForItemAtIndexPath(path) as! RadarCell)
         }
     }
     
-    func hideCell(cell: UICollectionViewCell) {
+    func hideCell(cell: RadarCell) {
         let cellMaxY = cell.frame.maxY
         let cellMinY = cell.frame.minY
         let limitTop = view.contentOffset.y + 64
         let limitBottom = view.contentOffset.y + view.bounds.height - 64
         
         if cellMaxY > limitBottom {
-            cell.contentView.alpha = 0.75 - (cellMaxY - limitBottom)/cell.bounds.height
+            cell.contentView.alpha = 0.5 - (cellMaxY - limitBottom)/cell.bounds.height
+            cell.songButtonView.songRoundView.transform = CGAffineTransformMakeScale(cell.contentView.alpha + 0.5, cell.contentView.alpha + 0.5)
         } else if cellMinY < limitTop {
-            cell.contentView.alpha = 0.75 - (limitTop - cellMinY)/cell.bounds.height
+            cell.contentView.alpha = 0.5 - (limitTop - cellMinY)/cell.bounds.height
+            cell.songButtonView.songRoundView.transform = CGAffineTransformMakeScale(cell.contentView.alpha + 0.5, cell.contentView.alpha + 0.5)
         } else {
             cell.contentView.alpha = 1
+            cell.songButtonView.songRoundView.transform = CGAffineTransformMakeScale(1, 1)
         }
     }
     
