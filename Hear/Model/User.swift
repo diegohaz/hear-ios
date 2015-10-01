@@ -10,8 +10,8 @@ import UIKit
 
 class User: NSObject {
     
-    var object: PFObject
-    var name: String!
+    //var object: PFObject
+    var name: String
     var pictureUrl: NSURL
-    var service: StreamingServiceProtocol
+    //var service: StreamingServiceProtocol
 }

@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
 class Story: NSObject {
     
-    var object: PFObject!
+    //var object: PFObject!
     var text: String = ""
     var author: User
     var song: Song
-    var location: CLLocation!
+    var location: CLLocation
     var anonymous: Bool
-    var likes: Int!
+    var likes: Int = 0
 }

@@ -30,9 +30,6 @@
 		376C07E51BBA83F100AD1DB1 /* DAOStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07DD1BBA83F100AD1DB1 /* DAOStory.swift */; };
 		376C07E61BBA83F100AD1DB1 /* DAOUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07DE1BBA83F100AD1DB1 /* DAOUser.swift */; };
 		376C07E71BBA83F100AD1DB1 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07DF1BBA83F100AD1DB1 /* Genre.swift */; };
-		376C07E81BBA83F100AD1DB1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07E01BBA83F100AD1DB1 /* Song.swift */; };
-		376C07E91BBA83F100AD1DB1 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07E11BBA83F100AD1DB1 /* Story.swift */; };
-		376C07EA1BBA83F100AD1DB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07E21BBA83F100AD1DB1 /* User.swift */; };
 		376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
 		376C07ED1BBBAD0700AD1DB1 /* SongRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07EC1BBBAD0700AD1DB1 /* SongRoundController.swift */; };
 		37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A430D51BBBD54900E9F108 /* RadarLayout.swift */; };
@@ -127,8 +124,8 @@
 				3731FB311BB5A27100294F70 /* API */,
 				3731FB321BB5A27100294F70 /* Components */,
 				376C07DA1BBA83F100AD1DB1 /* Model */,
-				3731FB331BB5A27100294F70 /* Controllers */,
-				3731FB351BB5A27100294F70 /* Views */,
+				3731FB331BB5A27100294F70 /* Controller */,
+				3731FB351BB5A27100294F70 /* View */,
 				3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */,
 				3731FB251BB5A04200294F70 /* Assets.xcassets */,
 				3731FB2A1BB5A04200294F70 /* Info.plist */,
@@ -156,20 +153,20 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		3731FB331BB5A27100294F70 /* Controllers */ = {
+		3731FB331BB5A27100294F70 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				3731FB361BB5A2C700294F70 /* RadarScreenController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		3731FB351BB5A27100294F70 /* Views */ = {
+		3731FB351BB5A27100294F70 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				3731FB4F1BB5EF4900294F70 /* RadarScreenView.xib */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		3731FB381BB5A65900294F70 /* HearButton */ = {
@@ -221,8 +218,7 @@
 				376C07DE1BBA83F100AD1DB1 /* DAOUser.swift */,
 				376C07E21BBA83F100AD1DB1 /* User.swift */,
 			);
-			name = Model;
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376C07E81BBA83F100AD1DB1 /* Song.swift in Sources */,
 				376C07E71BBA83F100AD1DB1 /* Genre.swift in Sources */,
 				3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */,
 				37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */,
@@ -306,7 +301,6 @@
 				376C07ED1BBBAD0700AD1DB1 /* SongRoundController.swift in Sources */,
 				3731FB3B1BB5A67C00294F70 /* HearButtonView.swift in Sources */,
 				3731FB611BB8C08E00294F70 /* Extensions.swift in Sources */,
-				376C07EA1BBA83F100AD1DB1 /* User.swift in Sources */,
 				374C9F221BB950620010A362 /* CurrentSongButtonController.swift in Sources */,
 				374C9F231BB950620010A362 /* CurrentSongButtonView.swift in Sources */,
 				3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */,
@@ -320,7 +314,6 @@
 				376C07E41BBA83F100AD1DB1 /* DAOSong.swift in Sources */,
 				376851A31BBBE23300093511 /* RadarCell.swift in Sources */,
 				376C07E31BBA83F100AD1DB1 /* DAOGenre.swift in Sources */,
-				376C07E91BBA83F100AD1DB1 /* Story.swift in Sources */,
 				376C07E51BBA83F100AD1DB1 /* DAOStory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
