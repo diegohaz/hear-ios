@@ -6,4 +6,12 @@
 //  Copyright (c) 2015 Hear. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class User: NSObject {
+    
+    var object: PFObject
+    var name: String!
+    var pictureUrl: NSURL
+    var service: StreamingServiceProtocol
+}

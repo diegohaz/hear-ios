@@ -6,4 +6,11 @@
 //  Copyright (c) 2015 Hear. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class Genre : NSObject{
+    
+   var name: String?
+    
+}
+
