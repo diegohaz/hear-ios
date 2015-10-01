@@ -22,7 +22,7 @@ class SongButtonController: NSObject {
     
     func viewDidTouch() {
         view.bounce()
-        let alertSound = NSURL(string: "http://a1945.phobos.apple.com/us/r1000/110/Music/61/c9/28/mzm.cjqyuuye.aac.p.m4a")!
+        let alertSound = NSURL(string: "http://a1326.phobos.apple.com/us/r1000/042/Music4/v4/81/3c/58/813c58c0-8692-8587-0bd9-e966e917e9be/mzaf_3230721061449444105.plus.aac.p.m4a")!
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(NSURLRequest(URL: alertSound)) { (data, response, error) -> Void in
             try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

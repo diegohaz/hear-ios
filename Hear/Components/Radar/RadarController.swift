@@ -40,7 +40,8 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! RadarCell
-        cell.songButtonView.songTitleLabel.text = "Música legal \(indexPath.item)"
+        cell.songButtonView.songTitleLabel.text = "Another Brick In The Wall \(indexPath.item + 1)"
+        cell.songButtonView.songArtistLabel.text = "Pink Floyd"
         
         cell.fade(collectionView)
         
