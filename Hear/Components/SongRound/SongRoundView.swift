@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable class SongRoundView: UIView {
     @IBOutlet weak var playbackGuide: UIView!
     @IBOutlet weak var songImageView: UIImageView!
+    @IBOutlet weak var loadingView: UIView!
     @IBInspectable var timePercent: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
@@ -32,6 +33,7 @@ import UIKit
         userInteractionEnabled = false
         loadNib()
         controller = SongRoundController(view: self)
+        loadingView.layer.cornerRadius = loadingView.bounds.width/2
     }
     
     private func loadNib() {

@@ -19,7 +19,9 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     private func setup() {
-        view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell")
+        for i in 0...24 {
+            view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell\(i)")
+        }
         view.delegate = self
         view.dataSource = self
     }
@@ -39,8 +41,8 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! RadarCell
-        cell.songButtonView.songTitleLabel.text = "Another Brick In The Wall \(indexPath.item + 1)"
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell\(indexPath.item)", forIndexPath: indexPath) as! RadarCell
+        cell.songButtonView.songTitleLabel.text = "Música \(indexPath.item + 1)"
         cell.songButtonView.songArtistLabel.text = "Pink Floyd"
         
         cell.fade(collectionView)

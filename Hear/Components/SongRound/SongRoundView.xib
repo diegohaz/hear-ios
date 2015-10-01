@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongRoundView" customModule="Hear" customModuleProvider="target">
             <connections>
+                <outlet property="loadingView" destination="Ye5-13-F2D" id="YTN-LY-vFt"/>
                 <outlet property="playbackGuide" destination="No8-C8-KBJ" id="tdy-cZ-0V5"/>
                 <outlet property="songImageView" destination="X1j-w9-Xpn" id="3EQ-t3-EyA"/>
             </connections>
@@ -24,16 +25,33 @@
                     <rect key="frame" x="4" y="4" width="88" height="88"/>
                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
+                <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ye5-13-F2D" userLabel="Loading View">
+                    <rect key="frame" x="4" y="4" width="88" height="88"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Agl-SN-YEY">
+                            <rect key="frame" x="34" y="34" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Agl-SN-YEY" firstAttribute="centerY" secondItem="Ye5-13-F2D" secondAttribute="centerY" id="2LV-C5-Ume"/>
+                        <constraint firstItem="Agl-SN-YEY" firstAttribute="centerX" secondItem="Ye5-13-F2D" secondAttribute="centerX" id="ph1-B0-Cn3"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Ye5-13-F2D" firstAttribute="centerX" secondItem="X1j-w9-Xpn" secondAttribute="centerX" id="EcE-mY-xvp"/>
                 <constraint firstItem="No8-C8-KBJ" firstAttribute="leading" secondItem="93N-Az-Jyf" secondAttribute="leading" constant="2" id="Kf4-gy-j4q"/>
+                <constraint firstItem="Ye5-13-F2D" firstAttribute="height" secondItem="X1j-w9-Xpn" secondAttribute="height" id="KvK-Rb-Ooo"/>
                 <constraint firstAttribute="bottom" secondItem="No8-C8-KBJ" secondAttribute="bottom" constant="2" id="Lsy-qa-iLR"/>
                 <constraint firstItem="No8-C8-KBJ" firstAttribute="top" secondItem="93N-Az-Jyf" secondAttribute="top" constant="2" id="MEJ-cB-9hf"/>
                 <constraint firstAttribute="bottom" secondItem="X1j-w9-Xpn" secondAttribute="bottom" constant="4" id="PID-Qx-kpG"/>
                 <constraint firstAttribute="trailing" secondItem="No8-C8-KBJ" secondAttribute="trailing" constant="2" id="anm-kY-bG7"/>
                 <constraint firstItem="X1j-w9-Xpn" firstAttribute="leading" secondItem="93N-Az-Jyf" secondAttribute="leading" constant="4" id="gDX-8J-h15"/>
                 <constraint firstItem="X1j-w9-Xpn" firstAttribute="top" secondItem="93N-Az-Jyf" secondAttribute="top" constant="4" id="hND-ah-8Wd"/>
+                <constraint firstItem="Ye5-13-F2D" firstAttribute="width" secondItem="X1j-w9-Xpn" secondAttribute="width" id="hew-Yo-bZb"/>
+                <constraint firstItem="Ye5-13-F2D" firstAttribute="centerY" secondItem="X1j-w9-Xpn" secondAttribute="centerY" id="muT-5M-M8a"/>
                 <constraint firstAttribute="trailing" secondItem="X1j-w9-Xpn" secondAttribute="trailing" constant="4" id="qoc-3c-ffn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

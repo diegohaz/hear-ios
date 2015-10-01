@@ -11,7 +11,7 @@ import CoreLocation
 
 class Song: NSObject {
     
-    //var object : PFObject
+    //var object: PFObject
     var title: String
     var artist: String
     var coverImageUrl: NSURL

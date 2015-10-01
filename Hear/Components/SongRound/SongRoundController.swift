@@ -15,7 +15,7 @@ class SongRoundController: NSObject {
         super.init()
         
         self.view = view
-        self.loadImage()
+        loadImage()
     }
     
     func loadImage() {
