@@ -33,6 +33,8 @@
 		376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
 		376C07ED1BBBAD0700AD1DB1 /* SongRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07EC1BBBAD0700AD1DB1 /* SongRoundController.swift */; };
 		37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A430D51BBBD54900E9F108 /* RadarLayout.swift */; };
+		B92BC71E1BC41BCC00121E3E /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92BC71C1BC41BCC00121E3E /* StoriesViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B92BC71F1BC41BCC00121E3E /* StoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92BC71D1BC41BCC00121E3E /* StoriesViewController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		376C07E21BBA83F100AD1DB1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		376C07EC1BBBAD0700AD1DB1 /* SongRoundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRoundController.swift; sourceTree = "<group>"; };
 		37A430D51BBBD54900E9F108 /* RadarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarLayout.swift; sourceTree = "<group>"; };
+		B92BC71C1BC41BCC00121E3E /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		B92BC71D1BC41BCC00121E3E /* StoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoriesViewController.xib; path = Controller/StoriesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				3731FB331BB5A27100294F70 /* Controller */,
 				3731FB351BB5A27100294F70 /* View */,
 				3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */,
+				B92BC71D1BC41BCC00121E3E /* StoriesViewController.xib */,
 				3731FB251BB5A04200294F70 /* Assets.xcassets */,
 				3731FB2A1BB5A04200294F70 /* Info.plist */,
 				3731FB5E1BB8A22700294F70 /* AppDelegate.swift */,
@@ -157,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				3731FB361BB5A2C700294F70 /* RadarScreenController.swift */,
+				B92BC71C1BC41BCC00121E3E /* StoriesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 		3731FB131BB5A04200294F70 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Hear;
 				TargetAttributes = {
@@ -283,6 +290,7 @@
 				3731FB501BB5EF4900294F70 /* RadarScreenView.xib in Resources */,
 				3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
+				B92BC71F1BC41BCC00121E3E /* StoriesViewController.xib in Resources */,
 				3714E6E81BB947020032ECEE /* SongRoundView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +320,7 @@
 				376C07E61BBA83F100AD1DB1 /* DAOUser.swift in Sources */,
 				371491671BBBC5B2007C28AD /* RadarView.swift in Sources */,
 				376C07E41BBA83F100AD1DB1 /* DAOSong.swift in Sources */,
+				B92BC71E1BC41BCC00121E3E /* StoriesViewController.swift in Sources */,
 				376851A31BBBE23300093511 /* RadarCell.swift in Sources */,
 				376C07E31BBA83F100AD1DB1 /* DAOGenre.swift in Sources */,
 				376C07E51BBA83F100AD1DB1 /* DAOStory.swift in Sources */,
