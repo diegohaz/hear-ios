@@ -1,5 +1,5 @@
 //
-//  StoriesViewController.swift
+//  StoriesScreenController.swift
 //  Hear
 //
 //  Created by Juliana Zilberberg on 10/6/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoriesViewController: UIViewController {
+class StoriesScreenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

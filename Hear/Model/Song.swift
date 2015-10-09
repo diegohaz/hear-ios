@@ -7,18 +7,21 @@
 //
 
 import UIKit
-import CoreLocation
 
-class Song: NSObject {
-    
-    //var object: PFObject
+class Song {
+    var id: Int
     var title: String
     var artist: String
-    var coverImageUrl: NSURL
-    var lenght: Int
-    var location: CLLocation
-    var stories: [Story]
-    var genres: [Genre]
-    var url: NSURL
+    var cover: NSURL
+    var preview: NSURL
+    var distance: Float?
     
+    init(id: Int, title: String, artist: String, cover: NSURL, preview: NSURL, distance: Float?) {
+        self.id = id
+        self.title = title
+        self.artist = artist
+        self.cover = cover
+        self.preview = preview
+        self.distance = distance
+    }
 }

@@ -28,14 +28,6 @@
                         <constraint firstAttribute="width" constant="64" id="qPm-kY-UhW"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYY-AG-6a3" customClass="CurrentSongButtonView" customModule="Hear" customModuleProvider="target">
-                    <rect key="frame" x="12" y="532" width="56" height="56"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="56" id="LZz-F6-hd1"/>
-                        <constraint firstAttribute="width" constant="56" id="uxp-nF-3oG"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg">
                     <rect key="frame" x="272.5" y="24" width="55" height="32"/>
                     <color key="backgroundColor" red="0.83137254901960778" green="0.078431372549019607" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,8 +51,6 @@
                 <constraint firstItem="HHe-2F-Jvy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="794-My-S2B"/>
                 <constraint firstItem="HHe-2F-Jvy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H4d-5c-MtC"/>
                 <constraint firstItem="2r4-vz-pDg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qiw-5v-52O"/>
-                <constraint firstItem="PYY-AG-6a3" firstAttribute="centerY" secondItem="zmy-O3-y2C" secondAttribute="centerY" id="Ss7-en-RRO"/>
-                <constraint firstItem="PYY-AG-6a3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="YTp-dU-Lif"/>
                 <constraint firstItem="zmy-O3-y2C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ax3-Gy-oIJ"/>
                 <constraint firstItem="2r4-vz-pDg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="kGd-7T-dyt"/>
                 <constraint firstAttribute="bottom" secondItem="HHe-2F-Jvy" secondAttribute="bottom" id="ltA-DW-QrW"/>
