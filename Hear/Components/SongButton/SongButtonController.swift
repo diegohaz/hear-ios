@@ -12,7 +12,12 @@ import AVFoundation
 class SongButtonController: NSObject {
     var view: SongButtonView!
     var audioPlayer = AudioManager.sharedInstance
-    var alertSound: NSURL!
+    var songPreview: NSURL! {
+        didSet {
+            loadSong(nil)
+        }
+    }
+    
     var data: NSData?
     
     init(view: SongButtonView) {
@@ -24,18 +29,35 @@ class SongButtonController: NSObject {
     
     func viewDidTouch() {
         view.bounce()
-        view.loadingView.hidden = false
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(NSURLRequest(URL: alertSound)) { (data, response, error) -> Void in
+        if data != nil {
+            self.audioPlayer.load(data!)
+            self.audioPlayer.play()
+            
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
+        } else {
+            view.loadingView.hidden = false
+            
+            loadSong({ () -> Void in
+                self.audioPlayer.load(self.data!)
+                self.audioPlayer.play()
+                self.view.loadingView.hidden = true
+            })
+        }
+    }
+    
+    func loadSong(callback: (() -> Void)?) {
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPMaximumConnectionsPerHost = 1
+        configuration.requestCachePolicy = .ReturnCacheDataElseLoad
+        let session = NSURLSession(configuration: configuration)
+        let task = session.dataTaskWithRequest(NSURLRequest(URL: songPreview)) { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 try! AVAudioSession.sharedInstance().setActive(true)
                 self.data = data
-                self.audioPlayer.load(data!)
-                self.audioPlayer.play()
-                
-                NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
-                self.view.loadingView.hidden = true
+                callback?()
+                print(self.view.songTitleLabel.text)
             })
         }
         

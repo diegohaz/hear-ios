@@ -26,6 +26,7 @@
 		37DC9EB51BC6FC4A00F7DC99 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DC9EB41BC6FC4A00F7DC99 /* API.swift */; settings = {ASSET_TAGS = (); }; };
 		37DC9EB61BC6FCBA00F7DC99 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07E01BBA83F100AD1DB1 /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DC9EBC1BC7D14600F7DC99 /* AudioManager.swift */; settings = {ASSET_TAGS = (); }; };
+		37DC9EC01BC80DB200F7DC99 /* DistanceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DC9EBF1BC80DB200F7DC99 /* DistanceButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		B92BC71E1BC41BCC00121E3E /* StoriesScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92BC71C1BC41BCC00121E3E /* StoriesScreenController.swift */; settings = {ASSET_TAGS = (); }; };
 		B92BC71F1BC41BCC00121E3E /* StoriesScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92BC71D1BC41BCC00121E3E /* StoriesScreenView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		37A430D51BBBD54900E9F108 /* RadarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarLayout.swift; sourceTree = "<group>"; };
 		37DC9EB41BC6FC4A00F7DC99 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		37DC9EBC1BC7D14600F7DC99 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		37DC9EBF1BC80DB200F7DC99 /* DistanceButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceButtonView.swift; sourceTree = "<group>"; };
 		B92BC71C1BC41BCC00121E3E /* StoriesScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesScreenController.swift; sourceTree = "<group>"; };
 		B92BC71D1BC41BCC00121E3E /* StoriesScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoriesScreenView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3731FB381BB5A65900294F70 /* HearButton */,
+				37DC9EBE1BC80D7D00F7DC99 /* DistanceButton */,
 				3731FB391BB5A65900294F70 /* SongButton */,
 				371491631BBBC577007C28AD /* Radar */,
 			);
@@ -182,6 +185,14 @@
 				376C07E01BBA83F100AD1DB1 /* Song.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		37DC9EBE1BC80D7D00F7DC99 /* DistanceButton */ = {
+			isa = PBXGroup;
+			children = (
+				37DC9EBF1BC80DB200F7DC99 /* DistanceButtonView.swift */,
+			);
+			path = DistanceButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */,
 				3751ADC91BBBD15C00B6B82C /* Functions.swift in Sources */,
 				37DC9EB51BC6FC4A00F7DC99 /* API.swift in Sources */,
+				37DC9EC01BC80DB200F7DC99 /* DistanceButtonView.swift in Sources */,
 				371491671BBBC5B2007C28AD /* RadarView.swift in Sources */,
 				B92BC71E1BC41BCC00121E3E /* StoriesScreenController.swift in Sources */,
 				376851A31BBBE23300093511 /* RadarCell.swift in Sources */,

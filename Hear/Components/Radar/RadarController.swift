@@ -57,7 +57,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         cell.songButtonView.songTitleLabel.text = song.title
         cell.songButtonView.songArtistLabel.text = song.artist
         cell.songButtonView.songImageView.image = UIImage(data: NSData(contentsOfURL: song.cover)!)
-        cell.songButtonView.controller.alertSound = song.preview
+        cell.songButtonView.controller.songPreview = song.preview
         
         cell.fade(collectionView)
         
