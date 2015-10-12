@@ -9,7 +9,7 @@
 import UIKit
 
 class HearButtonController: NSObject {
-    var view: HearButtonView!
+    weak var view: HearButtonView!
     
     init(view: HearButtonView) {
         super.init()
@@ -19,7 +19,6 @@ class HearButtonController: NSObject {
     }
     
     func viewDidTouch() {
-        print("HearButton has been pressed")
         view.bounce()
     }
 }

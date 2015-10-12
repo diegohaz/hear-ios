@@ -8,17 +8,28 @@
 
 import UIKit
 import AVFoundation
+import Bolts
 
 class SongButtonController: NSObject {
-    var view: SongButtonView!
-    var audioPlayer = AudioManager.sharedInstance
-    var songPreview: NSURL! {
+    weak var view: SongButtonView!
+    var index = 0
+    var audio = AudioManager.sharedInstance
+    var song: Song? {
         didSet {
-            loadSong(nil)
+            view.songTitleLabel?.text = song?.title
+            view.songArtistLabel.text = song?.artist
+            
+            BFTask(delay: 0).continueWithBlock { (task) -> AnyObject! in
+                return self.song!.loadCover()
+            }.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+                self.view.songImageView.image = UIImage(data: task.result as! NSData)
+                
+                return task
+            })
+            
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
         }
     }
-    
-    var data: NSData?
     
     init(view: SongButtonView) {
         super.init()
@@ -29,45 +40,33 @@ class SongButtonController: NSObject {
     
     func viewDidTouch() {
         view.bounce()
-        
-        if data != nil {
-            self.audioPlayer.load(data!)
-            self.audioPlayer.play()
-            
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
+        toggle()
+    }
+    
+    func toggle() {
+        if audio.current(song!) == true && audio.player?.playing == true {
+            audio.pause()
+        } else if audio.current(song!) {
+            audio.play()
         } else {
-            view.loadingView.hidden = false
+            if song?.previewData == nil {
+                view.loadingView.hidden = false
+            }
             
-            loadSong({ () -> Void in
-                self.audioPlayer.load(self.data!)
-                self.audioPlayer.play()
+            BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
+                return self.audio.play(self.song!)
+            }).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 self.view.loadingView.hidden = true
+                
+                return task
             })
         }
     }
     
-    func loadSong(callback: (() -> Void)?) {
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPMaximumConnectionsPerHost = 1
-        configuration.requestCachePolicy = .ReturnCacheDataElseLoad
-        let session = NSURLSession(configuration: configuration)
-        let task = session.dataTaskWithRequest(NSURLRequest(URL: songPreview)) { (data, response, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try! AVAudioSession.sharedInstance().setActive(true)
-                self.data = data
-                callback?()
-                print(self.view.songTitleLabel.text)
-            })
-        }
-        
-        task.resume()
-    }
-
     func updateTime() {
-        if audioPlayer.player.data == self.data {
-            view.timePercent = CGFloat(audioPlayer.player.currentTime / audioPlayer.player.duration)
-        } else {
+        if audio.current(song!) && audio.player != nil {
+            view.timePercent = CGFloat(audio.player!.currentTime / audio.player!.duration)
+        } else if view.timePercent != 0 {
             view.timePercent = 0
         }
     }

@@ -34,13 +34,13 @@ class RadarCell: UICollectionViewCell {
         
         if maxY > limitBottom {
             contentView.alpha = 0.5 - (maxY - limitBottom)/bounds.height
-            songButtonView.transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
+            transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
         } else if minY < limitTop {
             contentView.alpha = 0.5 - (limitTop - minY)/bounds.height
-            songButtonView.transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
+            transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
         } else {
             contentView.alpha = 1
-            songButtonView.transform = CGAffineTransformMakeScale(1, 1)
+            transform = CGAffineTransformMakeScale(1, 1)
         }
     }
 }

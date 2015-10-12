@@ -7,21 +7,93 @@
 //
 
 import UIKit
+import Bolts
 
 class Song {
+    static var songs = [Int: Song]()
+    
     var id: Int
     var title: String
     var artist: String
-    var cover: NSURL
-    var preview: NSURL
-    var distance: Float?
     
-    init(id: Int, title: String, artist: String, cover: NSURL, preview: NSURL, distance: Float?) {
+    private var coverUrl: NSURL
+    private var coverData: NSData?
+    private var coverTask: BFTask?
+    
+    var previewUrl: NSURL
+    var previewData: NSData?
+    var previewTask: BFTask?
+    
+    private init(id: Int, title: String, artist: String, cover: String, preview: String) {
         self.id = id
         self.title = title
         self.artist = artist
-        self.cover = cover
-        self.preview = preview
-        self.distance = distance
+        self.previewUrl = NSURL(string: preview)!
+        
+        let largeSize = Int(UIScreen.mainScreen().bounds.width)
+        let smallSize = Int(UIScreen.mainScreen().bounds.width/3)
+    
+        let reachability = Reachability.reachabilityForInternetConnection()
+        
+        if reachability?.isReachableViaWiFi() == true {
+            coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(largeSize)x\(largeSize)"))!
+            loadCover()
+            
+            if Song.songs.count > 0 {
+                let previousSong = Array(Song.songs.values)[Song.songs.count - 1]
+                
+                // fix
+                loadPreview(after: previousSong.previewTask!)
+            } else {
+                loadPreview()
+            }
+        } else {
+            coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(smallSize)x\(smallSize)"))!
+            loadCover()
+        }
+    }
+    
+    static func create(id id: Int, title: String, artist: String, cover: String, preview: String) -> Song {
+        if songs.indexForKey(id) != nil {
+            return songs[id]!
+        }
+        
+        songs[id] = Song(id: id, title: title, artist: artist, cover: cover, preview: preview)
+        
+        return songs[id]!
+    }
+    
+    func loadCover() -> BFTask {
+        if coverData != nil {
+            return BFTask(result: coverData)
+        } else if coverTask != nil {
+            return coverTask!
+        } else {
+            print("Loading cover for \(title)")
+            coverTask = BFTask(delay: 0).continueWithSuccessBlock({ (task) -> AnyObject! in
+                self.coverData = NSData(contentsOfURL: self.coverUrl)
+                print("Retrieving cover for \(self.title)")
+                
+                return self.coverData
+            })
+            
+            return coverTask!
+        }
+    }
+    
+    func loadPreview(after task: BFTask = BFTask(delay: 0)) -> BFTask {
+        if previewData != nil {
+            return BFTask(result: previewData)
+        } else {
+            print("Loading preview for \(title)")
+            previewTask = task.continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+                self.previewData = NSData(contentsOfURL: self.previewUrl)
+                print("Retrieving preview for \(self.title)")
+                
+                return self.previewData
+            })
+            
+            return previewTask!
+        }
     }
 }

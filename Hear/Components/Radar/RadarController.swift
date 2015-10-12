@@ -8,10 +8,16 @@
 
 import UIKit
 import CoreLocation
+import Bolts
 
 class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var view: RadarView!
+    weak var view: RadarView!
     var songs = [Song]()
+    var nextPage = 0
+    var minDistance: CGFloat = 0
+    var maxDistance: CGFloat = 0
+    var playing: Int?
+    var refreshControl: UIRefreshControl?
     
     init(view: RadarView) {
         super.init()
@@ -19,21 +25,42 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         self.view = view
         self.view.alwaysBounceVertical = true
         
-        let location = CLLocation(latitude: -43, longitude: -22)
+        let location = CLLocation(latitude: -22.677611, longitude: -43.2313626)
         
-        API.listSongs(location) { (songs, error) -> Void in
-            self.songs = songs
+        NSNotificationCenter.defaultCenter().postNotificationName("startLoading", object: nil)
+        ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            self.songs = task.result["songs"] as! [Song]
+            self.nextPage = task.result["nextPage"] as! Int
+            self.minDistance = task.result["minDistance"] as! CGFloat
+            self.maxDistance = task.result["maxDistance"] as! CGFloat
             self.setup()
             self.view.reloadData()
-        }
+            NSNotificationCenter.defaultCenter().postNotificationName("stopLoading", object: nil)
+            
+            return task
+        })
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.hearPrimaryColor()
+        refreshControl!.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        NSNotificationCenter.defaultCenter().postNotificationName("dada", object: refreshControl!)
+    }
+    
+    func refresh() {
+        
     }
     
     private func setup() {
-        for i in 0 ... songs.count - 1 {
+        for i in 0..<songs.count {
             view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell\(i)")
         }
+        
+        AudioManager.sharedInstance.songs = songs
+        
         view.delegate = self
         view.dataSource = self
+        
+        setDistance(view)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -44,6 +71,20 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
                 cell.fade(view)
             }
         }
+        
+        setDistance(scrollView)
+    }
+    
+    func setDistance(scrollView: UIScrollView) {
+        let distanceDiff = maxDistance - minDistance
+        let scrollPercent = scrollView.contentOffset.y / (scrollView.contentSize.height - scrollView.bounds.height)
+        var meters = minDistance + distanceDiff * scrollPercent
+        
+        meters = meters < minDistance ? minDistance : (meters > maxDistance ? maxDistance : meters)
+        
+        let distance = meters > 1000 ? "\(Int(meters/1000))km" : "\(Int(meters))m"
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("changeDistance", object: distance)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,13 +93,12 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell\(indexPath.item)", forIndexPath: indexPath) as! RadarCell
-        let song = songs[indexPath.item]
         
-        cell.songButtonView.songTitleLabel.text = song.title
-        cell.songButtonView.songArtistLabel.text = song.artist
-        cell.songButtonView.songImageView.image = UIImage(data: NSData(contentsOfURL: song.cover)!)
-        cell.songButtonView.controller.songPreview = song.preview
+        guard cell.songButtonView.controller.song == nil else {
+            return cell
+        }
         
+        cell.songButtonView.controller.song = songs[indexPath.item]
         cell.fade(collectionView)
         
         return cell

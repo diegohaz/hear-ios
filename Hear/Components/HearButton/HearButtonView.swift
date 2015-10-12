@@ -25,16 +25,6 @@ import UIKit
         controller = HearButtonController(view: self)
     }
     
-    func bounce() {
-        UIView.animateWithDuration(0.15, delay: 0, options: [.CurveEaseInOut, .AllowUserInteraction], animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
-            }) { (finished) -> Void in
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
-                    self.transform = CGAffineTransformMakeScale(1, 1)
-                })
-        }
-    }
-    
     override func drawRect(rect: CGRect) {
         let disk = UIBezierPath(ovalInRect: rect)
         UIColor.hearPrimaryColor().setFill()

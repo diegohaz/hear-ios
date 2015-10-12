@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Bolts
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +17,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize Parse.
+        Parse.setApplicationId("YoKGeRRzGizxpkXM6V11kfaV6iX3KXt7QSJeNeXR",
+            clientKey: "YO570TcN3GNXNtKbpk6cesIJ53S7V1l3Tdd11pFz")
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = HomeScreenController();
+        self.window?.rootViewController = HomeScreenController.sharedInstance;
         self.window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if event?.type == UIEventType.RemoteControl {
+            if event!.subtype == UIEventSubtype.RemoteControlPlay {
+                print("received remote play")
+                AudioManager.sharedInstance.play()
+            } else if event?.subtype == UIEventSubtype.RemoteControlPause {
+                print("received remote pause")
+                AudioManager.sharedInstance.pause()
+            } else if event?.subtype == UIEventSubtype.RemoteControlTogglePlayPause {
+                print("received toggle")
+                AudioManager.sharedInstance.toggle()
+            } else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
+                AudioManager.sharedInstance.playNext()
+            } else if event?.subtype == UIEventSubtype.RemoteControlPreviousTrack {
+                AudioManager.sharedInstance.playPrevious()
+            }
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

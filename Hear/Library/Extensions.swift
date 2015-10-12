@@ -19,3 +19,25 @@ extension UIColor {
     }
     
 }
+
+extension UIView {
+    func loadNib() {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        
+        view.frame = bounds
+        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        addSubview(view)
+    }
+    
+    func bounce() {
+        UIView.animateWithDuration(0.15, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }) { (finished) -> Void in
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.transform = CGAffineTransformMakeScale(1, 1)
+                })
+        }
+    }
+}
