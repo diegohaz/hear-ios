@@ -75,7 +75,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             })
         }
         
-        return song.loadPreview().continueWithSuccessBlock({ (task) -> AnyObject! in
+        return song.loadPreview(true).continueWithSuccessBlock({ (task) -> AnyObject! in
             self.player = try? AVAudioPlayer(data: task.result as! NSData)
             self.player?.delegate = self
             self.play()

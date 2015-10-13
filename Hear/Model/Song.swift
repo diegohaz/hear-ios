@@ -88,9 +88,11 @@ class Song {
         }
     }
     
-    func loadPreview(after task: BFTask = BFTask(delay: 0)) -> BFTask {
+    func loadPreview(ignoreTask: Bool = false, after task: BFTask = BFTask(delay: 0)) -> BFTask {
         if previewData != nil {
             return BFTask(result: previewData)
+        } else if previewTask != nil && !ignoreTask {
+            return previewTask!
         } else {
             print("Loading preview for \(title)")
             previewTask = task.continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
