@@ -27,6 +27,11 @@ class RadarCell: UICollectionViewCell {
         contentView.addSubview(songButtonView)
     }
     
+    override func prepareForReuse() {
+        songButtonView.loadingView.hidden = true
+        songButtonView.timePercent = 0
+    }
+    
     func fade(view: UIScrollView) {
         let maxY = frame.maxY
         let minY = frame.minY
@@ -39,7 +44,7 @@ class RadarCell: UICollectionViewCell {
         } else if minY < limitTop {
             contentView.alpha = 0.5 - (limitTop - minY)/bounds.height
             transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
-        } else {
+        } else if contentView.alpha < 1 {
             contentView.alpha = 1
             transform = CGAffineTransformMakeScale(1, 1)
         }

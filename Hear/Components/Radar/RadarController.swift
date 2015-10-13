@@ -16,7 +16,6 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     var nextPage = 0
     var minDistance: CGFloat = 0
     var maxDistance: CGFloat = 0
-    var reloadCount: Int = 0
     
     init(view: RadarView) {
         super.init()
@@ -25,6 +24,18 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         self.view.alwaysBounceVertical = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: "location", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: "play", object: nil)
+    }
+    
+    func currentSongChanged(notification: NSNotification) {
+        let index = notification.object as! Int
+        let layout = view.collectionViewLayout as! RadarLayout
+        var frame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))!.frame
+        
+        frame.origin.y -= layout.sectionInset.top
+        frame.size.height += layout.sectionInset.top + layout.sectionInset.bottom
+        
+        view.scrollRectToVisible(frame, animated: true)
     }
     
     func locationChanged(notification: NSNotification) {
@@ -36,7 +47,6 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
             self.nextPage = task.result["nextPage"] as! Int
             self.minDistance = task.result["minDistance"] as! CGFloat
             self.maxDistance = task.result["maxDistance"] as! CGFloat
-            self.reloadCount++
             self.setup()
             self.view.reloadData()
             NSNotificationCenter.defaultCenter().postNotificationName("stopLoading", object: nil)
@@ -52,9 +62,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     private func setup() {
-        for i in 0..<songs.count {
-            view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell\(i)")
-        }
+        view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell")
         
         AudioManager.sharedInstance.songs = songs
         
@@ -93,13 +101,8 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell\(indexPath.item)", forIndexPath: indexPath) as! RadarCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! RadarCell
         
-        if cell.reloadCount == reloadCount {
-            return cell
-        }
-        
-        cell.reloadCount = reloadCount
         cell.songButtonView.controller.song = songs[indexPath.item]
         cell.fade(collectionView)
         

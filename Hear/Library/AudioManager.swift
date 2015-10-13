@@ -78,9 +78,9 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         return song.loadPreview(true).continueWithSuccessBlock({ (task) -> AnyObject! in
             self.player = try? AVAudioPlayer(data: task.result as! NSData)
             self.player?.delegate = self
-            self.play()
             self.currentIndex = index
             self.currentSong = song
+            self.play()
             
             let reachability = Reachability.reachabilityForInternetConnection()
             
@@ -102,6 +102,8 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     
     func play() {
         player?.play()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("play", object: currentIndex)
         
         do {
             try AVAudioSession.sharedInstance().setActive(true)

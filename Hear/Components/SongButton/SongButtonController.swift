@@ -62,9 +62,9 @@ class SongButtonController: NSObject {
     
     func updateTime() {
         if audio.current(song!) && audio.player != nil {
-            view.timePercent = CGFloat(audio.player!.currentTime / audio.player!.duration)
-        } else if view.timePercent != 0 {
-            view.timePercent = 0
+            view?.timePercent = CGFloat(audio.player!.currentTime / audio.player!.duration)
+        } else if view?.timePercent != 0 {
+            view?.timePercent = 0
         }
     }
 }
