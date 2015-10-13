@@ -12,7 +12,6 @@ import Bolts
 
 class SongButtonController: NSObject {
     weak var view: SongButtonView!
-    var index = 0
     var audio = AudioManager.sharedInstance
     var song: Song? {
         didSet {

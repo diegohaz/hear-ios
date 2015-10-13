@@ -10,6 +10,7 @@ import UIKit
 
 class RadarCell: UICollectionViewCell {
     var songButtonView: SongButtonView!
+    var reloadCount = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)

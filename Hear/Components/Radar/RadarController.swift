@@ -16,8 +16,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     var nextPage = 0
     var minDistance: CGFloat = 0
     var maxDistance: CGFloat = 0
-    var playing: Int?
-    var refreshControl: UIRefreshControl?
+    var reloadCount: Int = 0
     
     init(view: RadarView) {
         super.init()
@@ -26,15 +25,6 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         self.view.alwaysBounceVertical = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: "location", object: nil)
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.tintColor = UIColor.hearPrimaryColor()
-        refreshControl!.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        NSNotificationCenter.defaultCenter().postNotificationName("dada", object: refreshControl!)
-    }
-    
-    func refresh() {
-        
     }
     
     func locationChanged(notification: NSNotification) {
@@ -46,6 +36,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
             self.nextPage = task.result["nextPage"] as! Int
             self.minDistance = task.result["minDistance"] as! CGFloat
             self.maxDistance = task.result["maxDistance"] as! CGFloat
+            self.reloadCount++
             self.setup()
             self.view.reloadData()
             NSNotificationCenter.defaultCenter().postNotificationName("stopLoading", object: nil)
@@ -104,10 +95,11 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell\(indexPath.item)", forIndexPath: indexPath) as! RadarCell
         
-        guard cell.songButtonView.controller.song == nil else {
+        if cell.reloadCount == reloadCount {
             return cell
         }
         
+        cell.reloadCount = reloadCount
         cell.songButtonView.controller.song = songs[indexPath.item]
         cell.fade(collectionView)
         
