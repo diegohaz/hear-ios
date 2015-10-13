@@ -19,9 +19,7 @@ class SongButtonController: NSObject {
             view.songTitleLabel?.text = song?.title
             view.songArtistLabel.text = song?.artist
             
-            BFTask(delay: 0).continueWithBlock { (task) -> AnyObject! in
-                return self.song!.loadCover()
-            }.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            song?.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 self.view.songImageView.image = UIImage(data: task.result as! NSData)
                 
                 return task

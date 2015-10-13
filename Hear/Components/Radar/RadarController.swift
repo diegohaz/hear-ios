@@ -25,7 +25,20 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         self.view = view
         self.view.alwaysBounceVertical = true
         
-        let location = CLLocation(latitude: -22.677611, longitude: -43.2313626)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: "location", object: nil)
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.hearPrimaryColor()
+        refreshControl!.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        NSNotificationCenter.defaultCenter().postNotificationName("dada", object: refreshControl!)
+    }
+    
+    func refresh() {
+        
+    }
+    
+    func locationChanged(notification: NSNotification) {
+        let location = notification.object as! CLLocation
         
         NSNotificationCenter.defaultCenter().postNotificationName("startLoading", object: nil)
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
@@ -37,17 +50,14 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
             self.view.reloadData()
             NSNotificationCenter.defaultCenter().postNotificationName("stopLoading", object: nil)
             
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                for song in self.songs {
+                    song.load()
+                }
+            })
+            
             return task
         })
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.tintColor = UIColor.hearPrimaryColor()
-        refreshControl!.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        NSNotificationCenter.defaultCenter().postNotificationName("dada", object: refreshControl!)
-    }
-    
-    func refresh() {
-        
     }
     
     private func setup() {

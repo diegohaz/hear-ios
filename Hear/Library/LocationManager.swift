@@ -11,7 +11,9 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = LocationManager()
+    
     let locationManager = CLLocationManager()
+    var location: CLLocation?
     
     override init() {
         super.init()
@@ -19,9 +21,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        location = locations.last
         
+        print(location)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("location", object: location)
     }
 }

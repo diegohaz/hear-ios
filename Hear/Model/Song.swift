@@ -10,13 +10,14 @@ import UIKit
 import Bolts
 
 class Song {
-    static var songs = [Int: Song]()
+    static private var songs = [Int: Song]()
+    static private var lastSongAdded: Song?
     
     var id: Int
     var title: String
     var artist: String
     
-    private var coverUrl: NSURL
+    private var coverUrl: NSURL?
     private var coverData: NSData?
     private var coverTask: BFTask?
     
@@ -32,24 +33,12 @@ class Song {
         
         let largeSize = Int(UIScreen.mainScreen().bounds.width)
         let smallSize = Int(UIScreen.mainScreen().bounds.width/3)
-    
         let reachability = Reachability.reachabilityForInternetConnection()
         
         if reachability?.isReachableViaWiFi() == true {
             coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(largeSize)x\(largeSize)"))!
-            loadCover()
-            
-            if Song.songs.count > 0 {
-                let previousSong = Array(Song.songs.values)[Song.songs.count - 1]
-                
-                // fix
-                loadPreview(after: previousSong.previewTask!)
-            } else {
-                loadPreview()
-            }
         } else {
             coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(smallSize)x\(smallSize)"))!
-            loadCover()
         }
     }
     
@@ -63,6 +52,24 @@ class Song {
         return songs[id]!
     }
     
+    func load() {
+        let reachability = Reachability.reachabilityForInternetConnection()
+        
+        if reachability?.isReachableViaWiFi() == true {
+            loadCover()
+            
+            if let lastSongAdded = Song.lastSongAdded {
+                loadPreview(after: lastSongAdded.previewTask!)
+            } else {
+                loadPreview()
+            }
+        } else {
+            loadCover()
+        }
+        
+        Song.lastSongAdded = self
+    }
+    
     func loadCover() -> BFTask {
         if coverData != nil {
             return BFTask(result: coverData)
@@ -70,8 +77,8 @@ class Song {
             return coverTask!
         } else {
             print("Loading cover for \(title)")
-            coverTask = BFTask(delay: 0).continueWithSuccessBlock({ (task) -> AnyObject! in
-                self.coverData = NSData(contentsOfURL: self.coverUrl)
+            coverTask = BFTask(delay: 0).continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+                self.coverData = NSData(contentsOfURL: self.coverUrl!)
                 print("Retrieving cover for \(self.title)")
                 
                 return self.coverData
