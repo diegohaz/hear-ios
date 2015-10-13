@@ -32,13 +32,12 @@ class Song {
         self.previewUrl = NSURL(string: preview)!
         
         let largeSize = Int(UIScreen.mainScreen().bounds.width)
-        let smallSize = Int(UIScreen.mainScreen().bounds.width/3)
         let reachability = Reachability.reachabilityForInternetConnection()
         
         if reachability?.isReachableViaWiFi() == true {
             coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(largeSize)x\(largeSize)"))!
         } else {
-            coverUrl = NSURL(string: cover.stringByReplacingOccurrencesOfString("100x100", withString: "\(smallSize)x\(smallSize)"))!
+            coverUrl = NSURL(string: cover)!
         }
     }
     

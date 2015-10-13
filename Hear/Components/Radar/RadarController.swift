@@ -105,6 +105,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         
         cell.songButtonView.controller.song = songs[indexPath.item]
         cell.fade(collectionView)
+        cell.songButtonView.controller.updateTime()
         
         return cell
     }
