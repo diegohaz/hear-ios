@@ -15,10 +15,15 @@ class SongButtonController: NSObject {
     var audio = AudioManager.sharedInstance
     var song: Song? {
         didSet {
+            let song = self.song
             view.songTitleLabel?.text = song?.title
             view.songArtistLabel.text = song?.artist
             
             song?.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+                guard song?.id == self.song?.id else {
+                    return task
+                }
+                
                 self.view.songImageView.image = UIImage(data: task.result as! NSData)
                 
                 return task
