@@ -28,7 +28,6 @@ class RadarCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        songButtonView.songImageView.image = nil
         songButtonView.loadingView.hidden = true
         songButtonView.timePercent = 0
     }
@@ -40,13 +39,11 @@ class RadarCell: UICollectionViewCell {
         let limitBottom = view.contentOffset.y + view.bounds.height - 64
         
         if maxY > limitBottom {
-            let scale = 1 - (maxY - limitBottom)/bounds.height
-            contentView.alpha = pow(scale, 6)
-            transform = CGAffineTransformMakeScale(scale, scale)
+            contentView.alpha = 0.5 - (maxY - limitBottom)/bounds.height
+            transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
         } else if minY < limitTop {
-            let scale = 1 - (limitTop - minY)/bounds.height
-            contentView.alpha = pow(scale, 6)
-            transform = CGAffineTransformMakeScale(scale, scale)
+            contentView.alpha = 0.5 - (limitTop - minY)/bounds.height
+            transform = CGAffineTransformMakeScale(contentView.alpha + 0.5, contentView.alpha + 0.5)
         } else if contentView.alpha < 1 {
             contentView.alpha = 1
             transform = CGAffineTransformMakeScale(1, 1)
