@@ -21,7 +21,7 @@ class ParseAPI {
             
             for result in task.result as! [PFObject] {
                 let song = Song.create(
-                    id: result["id"] as! Int,
+                    id: result["id"] as! String,
                     title: result["title"] as! String,
                     artist: result["artist"] as! String,
                     cover: result["cover"] as! String,
@@ -51,7 +51,7 @@ class ParseAPI {
             
             for result in results["songs"] as! [NSDictionary] {
                 let song = Song.create(
-                    id: Int(result["id"] as! String)!,
+                    id: result["id"] as! String,
                     title: result["title"] as! String,
                     artist: result["artist"] as! String,
                     cover: result["cover"] as! String,

@@ -10,10 +10,10 @@ import UIKit
 import Bolts
 
 class Song {
-    static private var songs = [Int: Song]()
+    static private var songs = [String: Song]()
     static private var lastSongAdded: Song?
     
-    var id: Int
+    var id: String
     var title: String
     var artist: String
     
@@ -25,7 +25,7 @@ class Song {
     var previewData: NSData?
     var previewTask: BFTask?
     
-    private init(id: Int, title: String, artist: String, cover: String, preview: String) {
+    private init(id: String, title: String, artist: String, cover: String, preview: String) {
         self.id = id
         self.title = title
         self.artist = artist
@@ -41,7 +41,7 @@ class Song {
         }
     }
     
-    static func create(id id: Int, title: String, artist: String, cover: String, preview: String) -> Song {
+    static func create(id id: String, title: String, artist: String, cover: String, preview: String) -> Song {
         if songs.indexForKey(id) != nil {
             return songs[id]!
         }

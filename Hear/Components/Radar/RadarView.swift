@@ -26,5 +26,19 @@ import UIKit
         controller = RadarController(view: self)
         
         backgroundColor = UIColor.whiteColor()
+        
+//        let view = UIView()
+//        view.frame = CGRectMake(bounds.width/2, 0, 5, 5)
+//        view.backgroundColor = UIColor.hearPrimaryColor()
+//        view.layer.cornerRadius = 2.5
+//        
+//        UIView.animateWithDuration(2, delay: 0.5, options: .Repeat, animations: { () -> Void in
+//            view.transform = CGAffineTransformMakeScale(100, 100)
+//            view.alpha = 0
+//        }) { (finished) -> Void in
+//            print("aa")
+//        }
+//        
+//        addSubview(view)
     }
 }

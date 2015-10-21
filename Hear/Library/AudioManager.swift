@@ -55,6 +55,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         
         let song = songs[index]
         
+        // Lock screen
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
             song.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 guard let image = UIImage(data: task.result as! NSData) else {
