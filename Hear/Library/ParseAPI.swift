@@ -17,21 +17,7 @@ class ParseAPI {
         let task = PFCloud.callFunctionInBackground("searchSong", withParameters: ["string": string])
         
         return task.continueWithSuccessBlock { (task) -> AnyObject! in
-            var songs = [Song]()
-            
-            for result in task.result as! [PFObject] {
-                let song = Song.create(
-                    id: result["id"] as! String,
-                    title: result["title"] as! String,
-                    artist: result["artist"] as! String,
-                    cover: result["cover"] as! String,
-                    preview: result["preview"] as! String
-                )
-                
-                songs.append(song)
-            }
-            
-            return songs
+            return translate(songs: task.result)
         }
     }
     
@@ -46,20 +32,8 @@ class ParseAPI {
         let task = PFCloud.callFunctionInBackground("listSongs", withParameters: parameters)
         
         return task.continueWithSuccessBlock { (task) -> AnyObject! in
-            var songs = [Song]()
             let results = task.result as! NSDictionary
-            
-            for result in results["songs"] as! [NSDictionary] {
-                let song = Song.create(
-                    id: result["id"] as! String,
-                    title: result["title"] as! String,
-                    artist: result["artist"] as! String,
-                    cover: result["cover"] as! String,
-                    preview: result["preview"] as! String
-                )
-                
-                songs.append(song)
-            }
+            let songs = translate(songs: results["songs"]!)
             
             return [
                 "nextPage": results["nextPage"] as! Int,
@@ -68,6 +42,29 @@ class ParseAPI {
                 "songs": songs
             ]
         }
+    }
+    
+    private static func translate(song object: AnyObject) -> Song {
+        let object = object as! NSDictionary
+        
+        return Song.create(
+            id: object["id"] as! String,
+            title: object["title"] as! String,
+            artist: object["artist"] as! String,
+            cover: object["cover"] as! String,
+            preview: object["preview"] as! String,
+            url: object["serviceUrl"] as! String
+        )
+    }
+    
+    private static func translate(songs objects: AnyObject) -> [Song] {
+        var songs = [Song]()
+        
+        for song in objects as! [NSDictionary] {
+            songs.append(translate(song: song))
+        }
+        
+        return songs
     }
     
 }

@@ -16,6 +16,7 @@ class Song {
     var id: String
     var title: String
     var artist: String
+    var url: NSURL
     
     private var coverUrl: NSURL?
     private var coverData: NSData?
@@ -25,11 +26,12 @@ class Song {
     var previewData: NSData?
     var previewTask: BFTask?
     
-    private init(id: String, title: String, artist: String, cover: String, preview: String) {
+    private init(id: String, title: String, artist: String, cover: String, preview: String, url: String) {
         self.id = id
         self.title = title
         self.artist = artist
         self.previewUrl = NSURL(string: preview)!
+        self.url = NSURL(string: url)!
         
         let largeSize = Int(UIScreen.mainScreen().bounds.width)
         let reachability = Reachability.reachabilityForInternetConnection()
@@ -41,12 +43,12 @@ class Song {
         }
     }
     
-    static func create(id id: String, title: String, artist: String, cover: String, preview: String) -> Song {
+    static func create(id id: String, title: String, artist: String, cover: String, preview: String, url: String) -> Song {
         if songs.indexForKey(id) != nil {
             return songs[id]!
         }
         
-        songs[id] = Song(id: id, title: title, artist: artist, cover: cover, preview: preview)
+        songs[id] = Song(id: id, title: title, artist: artist, cover: cover, preview: preview, url: url)
         
         return songs[id]!
     }
