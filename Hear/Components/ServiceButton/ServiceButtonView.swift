@@ -25,11 +25,5 @@ import UIKit
         controller = ServiceButtonController(view: self)
         hidden = true
     }
-    
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let hitTestEdgeInsets = UIEdgeInsetsMake(-24, -24, -24, -24)
-        let hitFrame = UIEdgeInsetsInsetRect(bounds, hitTestEdgeInsets)
-        return CGRectContainsPoint(hitFrame, point)
-    }
 
 }
