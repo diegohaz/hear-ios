@@ -10,8 +10,8 @@ import UIKit
 
 class ServiceButtonController: NSObject {
     weak var view: ServiceButtonView!
-    
-    var url: NSURL?
+
+    private var url: NSURL?
     
     init(view: ServiceButtonView) {
         super.init()
@@ -19,8 +19,7 @@ class ServiceButtonController: NSObject {
         self.view = view
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged", name: "play", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioFinished", name: "audioFinished", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged", name: AudioManagerPlayNotification, object: nil)
     }
     
     func viewDidTouch() {
@@ -31,15 +30,14 @@ class ServiceButtonController: NSObject {
         }
     }
     
-    func audioFinished() {
-        view.hidden = true
-        url = nil
+    func audioDidFinish() {
+        view.hide()
     }
     
     func currentSongChanged() {
-        view.hidden = false
-        view.appear()
-        
-        url = AudioManager.sharedInstance.getCurrentSong()?.url
+        view.hide { () -> Void in
+            self.view.appear()
+            self.url = AudioManager.sharedInstance.getCurrentSong()?.url
+        }
     }
 }

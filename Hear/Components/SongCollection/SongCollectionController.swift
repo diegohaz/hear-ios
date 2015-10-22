@@ -23,8 +23,8 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         self.view = view
         self.view.alwaysBounceVertical = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: "location", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: "play", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: LocationManagerNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerPlayNotification, object: nil)
     }
     
     func currentSongChanged(notification: NSNotification) {
@@ -41,7 +41,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     func locationChanged(notification: NSNotification) {
         let location = notification.object as! CLLocation
         
-        NSNotificationCenter.defaultCenter().postNotificationName("startLoading", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
     
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songs = task.result["songs"] as! [Song]
@@ -50,7 +50,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             self.maxDistance = task.result["maxDistance"] as! CGFloat
             self.setup()
             self.view.reloadData()
-            NSNotificationCenter.defaultCenter().postNotificationName("stopLoading", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                 for song in self.songs {
@@ -94,7 +94,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         let distance = meters > 1000 ? "\(Int(meters/1000))km" : "\(Int(meters))m"
         
-        NSNotificationCenter.defaultCenter().postNotificationName("changeDistance", object: distance)
+        NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: distance)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

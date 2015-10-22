@@ -11,6 +11,9 @@ import AVFoundation
 import MediaPlayer
 import Bolts
 
+public let AudioManagerPlayNotification = "AudioManagerPlayNotification"
+public let AudioManagerFinishNotification = "AudioManagerFinishNotification"
+
 class AudioManager: NSObject, AVAudioPlayerDelegate {
     static let sharedInstance = AudioManager()
     
@@ -109,7 +112,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         player?.play()
         
         BFExecutor.mainThreadExecutor().execute { () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("play", object: self.currentIndex)
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerPlayNotification, object: self.currentIndex)
         }
         
         do {
@@ -160,7 +163,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        NSNotificationCenter.defaultCenter().postNotificationName("audioFinished", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: nil)
         
         playNext()
     }

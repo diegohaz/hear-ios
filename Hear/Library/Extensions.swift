@@ -42,14 +42,28 @@ extension UIView {
     }
     
     func appear() {
+        hidden = false
         self.transform = CGAffineTransformMakeScale(0, 0)
         
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
-            }) { (finished) -> Void in
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
-                    self.transform = CGAffineTransformMakeScale(1, 1)
-                })
+        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        }) { (finished) -> Void in
+            UIView.animateWithDuration(0.05, animations: { () -> Void in
+                self.transform = CGAffineTransformMakeScale(1, 1)
+            })
+        }
+    }
+    
+    func hide(then callback: (() -> Void)? = nil) {
+        UIView.animateWithDuration(0.05, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        }) { (finished) -> Void in
+            UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+                self.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            }, completion: { (finished) -> Void in
+                self.hidden = true
+                callback?()
+            })
         }
     }
 }

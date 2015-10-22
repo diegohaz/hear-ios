@@ -8,6 +8,9 @@
 
 import UIKit
 
+public let LoadingNotification = "LocadingNotification"
+public let TitleNotification = "TitleNotification"
+
 @IBDesignable class TitleButtonView: UIButton {
     var activityIndicatorView: UIActivityIndicatorView!
     var loading: Bool = false {
@@ -16,6 +19,7 @@ import UIKit
                 setTitle("   ", forState: .Normal)
                 activityIndicatorView.startAnimating()
             } else {
+                setTitle(title, forState: .Normal)
                 activityIndicatorView.stopAnimating()
             }
         }
@@ -23,8 +27,10 @@ import UIKit
     
     var title: String = "" {
         didSet {
-            setTitle(title, forState: .Normal)
-            sizeToFit()
+            if !loading {
+                setTitle(title, forState: .Normal)
+                sizeToFit()
+            }
         }
     }
     
@@ -54,23 +60,16 @@ import UIKit
         
         loading = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeDistance:", name: "changeDistance", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startLoading:", name: "startLoading", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopLoading:", name: "stopLoading", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "titleChanged:", name: TitleNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadingStatusChanged:", name: LoadingNotification, object: nil)
         
     }
     
-    func changeDistance(notification: NSNotification) {
+    func titleChanged(notification: NSNotification) {
         title = notification.object as! String
     }
     
-    func startLoading(notification: NSNotification) {
-        loading = true
-        title = "   "
-    }
-    
-    func stopLoading(notification: NSNotification) {
-        loading = false
-        title = title + ""
+    func loadingStatusChanged(notification: NSNotification) {
+        loading = notification.object as! Bool
     }
 }

@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+public let LocationManagerNotification = "LocationManagerNotifcation"
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedInstance = LocationManager()
     
@@ -37,6 +39,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
         print(location)
         
-        NSNotificationCenter.defaultCenter().postNotificationName("location", object: location)
+        NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerNotification, object: location)
     }
 }
