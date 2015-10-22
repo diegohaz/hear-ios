@@ -32,7 +32,19 @@ extension UIView {
     }
     
     func bounce() {
-        UIView.animateWithDuration(0.15, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.15, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }) { (finished) -> Void in
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.transform = CGAffineTransformMakeScale(1, 1)
+                })
+        }
+    }
+    
+    func appear() {
+        self.transform = CGAffineTransformMakeScale(0, 0)
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(1.2, 1.2)
             }) { (finished) -> Void in
                 UIView.animateWithDuration(0.1, animations: { () -> Void in

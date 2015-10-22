@@ -34,11 +34,21 @@
                         <constraint firstAttribute="height" constant="40" id="Bpr-tS-Drc"/>
                     </constraints>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-9j-QA3" customClass="ServiceButtonView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="482" y="540" width="110" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="7hC-nL-T4v"/>
+                        <constraint firstAttribute="height" constant="40" id="dd7-Rq-ncv"/>
+                    </constraints>
+                    <state key="normal" image="AppleMusicBadge"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="7Xd-9j-QA3" firstAttribute="centerY" secondItem="zmy-O3-y2C" secondAttribute="centerY" id="09J-7v-5et"/>
                 <constraint firstAttribute="bottom" secondItem="zmy-O3-y2C" secondAttribute="bottom" constant="8" id="67I-pX-YFW"/>
                 <constraint firstItem="HHe-2F-Jvy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="794-My-S2B"/>
+                <constraint firstAttribute="trailing" secondItem="7Xd-9j-QA3" secondAttribute="trailing" constant="8" id="Cng-WS-BpW"/>
                 <constraint firstItem="HHe-2F-Jvy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H4d-5c-MtC"/>
                 <constraint firstItem="2r4-vz-pDg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qiw-5v-52O"/>
                 <constraint firstItem="zmy-O3-y2C" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ax3-Gy-oIJ"/>
@@ -48,4 +58,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="AppleMusicBadge" width="110" height="40"/>
+    </resources>
 </document>

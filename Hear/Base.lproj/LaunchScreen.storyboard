@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hear-button" translatesAutoresizingMaskIntoConstraints="NO" id="JIa-jZ-0EL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HearButton" translatesAutoresizingMaskIntoConstraints="NO" id="JIa-jZ-0EL">
                                 <rect key="frame" x="268" y="528" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="Qay-yP-6Xb"/>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="hear-button" width="64" height="64"/>
+        <image name="HearButton" width="64" height="64"/>
     </resources>
 </document>

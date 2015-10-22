@@ -93,6 +93,10 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         })
     }
     
+    func getCurrentSong() -> Song? {
+        return currentSong
+    }
+    
     func current(song: Song) -> Bool {
         if let currentSong = currentSong {
             return currentSong.id == song.id
@@ -154,6 +158,8 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        NSNotificationCenter.defaultCenter().postNotificationName("audioFinished", object: nil)
+        
         playNext()
     }
 }

@@ -66,7 +66,7 @@ import UIKit
     
     func startLoading(notification: NSNotification) {
         loading = true
-        title = ""
+        title = "   "
     }
     
     func stopLoading(notification: NSNotification) {

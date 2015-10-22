@@ -55,9 +55,7 @@ class SongButtonController: NSObject {
                 view.loadingView.hidden = false
             }
             
-            BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
-                return self.audio.play(self.song!)
-            }).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            audio.play(self.song!).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 self.view.loadingView.hidden = true
                 
                 return task

@@ -20,7 +20,5 @@ class InputButtonController: NSObject {
     
     func viewDidTouch() {
         view.bounce()
-        
-HomeScreenController.sharedInstance.presentViewController(SearchSongController(), animated: true, completion: nil)
     }
 }
