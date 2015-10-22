@@ -42,6 +42,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         let location = notification.object as! CLLocation
         
         NSNotificationCenter.defaultCenter().postNotificationName("startLoading", object: nil)
+    
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songs = task.result["songs"] as! [Song]
             self.nextPage = task.result["nextPage"] as! Int
