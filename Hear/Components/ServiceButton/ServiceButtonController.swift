@@ -32,13 +32,11 @@ class ServiceButtonController: NSObject {
     }
     
     func audioDidFinish() {
-        view.hide()
+        view.hidden = true
     }
     
     func currentSongChanged() {
-        view.hide { () -> Void in
-            self.view.appear()
-            self.url = AudioManager.sharedInstance.getCurrentSong()?.url
-        }
+        self.view.appear()
+        self.url = AudioManager.sharedInstance.getCurrentSong()?.url
     }
 }
