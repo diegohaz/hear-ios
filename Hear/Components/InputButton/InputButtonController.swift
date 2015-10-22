@@ -1,5 +1,5 @@
 //
-//  HearButtonController.swift
+//  InputButtonController.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/25/15.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class HearButtonController: NSObject {
-    weak var view: HearButtonView!
+class InputButtonController: NSObject {
+    weak var view: InputButtonView!
     
-    init(view: HearButtonView) {
+    init(view: InputButtonView) {
         super.init()
         
         self.view = view

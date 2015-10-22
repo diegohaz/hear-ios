@@ -20,7 +20,7 @@
                         <inset key="sectionInset" minX="8" minY="72" maxX="8" maxY="80"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="HearButtonView" customModule="Hear" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="InputButtonView" customModule="Hear" customModuleProvider="target">
                     <rect key="frame" x="268" y="528" width="64" height="64"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>

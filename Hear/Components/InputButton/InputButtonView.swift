@@ -1,5 +1,5 @@
 //
-//  HearButtonView.swift
+//  InputButtonView.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/25/15.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-@IBDesignable class HearButtonView: UIButton {
-    var controller: HearButtonController!
+@IBDesignable class InputButtonView: UIButton {
+    var controller: InputButtonController!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +22,7 @@ import UIKit
     }
     
     private func setup() {
-        controller = HearButtonController(view: self)
+        controller = InputButtonController(view: self)
     }
     
     override func drawRect(rect: CGRect) {

@@ -10,8 +10,6 @@
 		371491651BBBC589007C28AD /* RadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371491641BBBC589007C28AD /* RadarController.swift */; };
 		371491671BBBC5B2007C28AD /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371491661BBBC5B2007C28AD /* RadarView.swift */; };
 		3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB251BB5A04200294F70 /* Assets.xcassets */; };
-		3731FB3B1BB5A67C00294F70 /* HearButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB3A1BB5A67C00294F70 /* HearButtonView.swift */; };
-		3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB3E1BB5A6B500294F70 /* HearButtonController.swift */; };
 		3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB511BB7DE6E00294F70 /* SongButtonController.swift */; };
 		3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB521BB7DE6E00294F70 /* SongButtonView.swift */; };
 		3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB551BB89B2300294F70 /* SongButtonView.xib */; };
@@ -44,6 +42,8 @@
 		37DC9EB61BC6FCBA00F7DC99 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C07E01BBA83F100AD1DB1 /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DC9EBC1BC7D14600F7DC99 /* AudioManager.swift */; settings = {ASSET_TAGS = (); }; };
 		37ED40A81BD88B9A00CF8C5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40A71BD88B9A00CF8C5E /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		B98DB15C1BD6AD3600308F7C /* SearchSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */; settings = {ASSET_TAGS = (); }; };
 		B98DB1601BD6AE1F00308F7C /* SearchSongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -55,8 +55,6 @@
 		3731FB251BB5A04200294F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3731FB281BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3731FB2A1BB5A04200294F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3731FB3A1BB5A67C00294F70 /* HearButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HearButtonView.swift; sourceTree = "<group>"; };
-		3731FB3E1BB5A6B500294F70 /* HearButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HearButtonController.swift; sourceTree = "<group>"; };
 		3731FB511BB7DE6E00294F70 /* SongButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongButtonController.swift; sourceTree = "<group>"; };
 		3731FB521BB7DE6E00294F70 /* SongButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongButtonView.swift; sourceTree = "<group>"; };
 		3731FB551BB89B2300294F70 /* SongButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongButtonView.xib; sourceTree = "<group>"; };
@@ -88,6 +86,8 @@
 		37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		37DC9EBC1BC7D14600F7DC99 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		37ED40A71BD88B9A00CF8C5E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButtonController.swift; sourceTree = "<group>"; };
+		37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButtonView.swift; sourceTree = "<group>"; };
 		B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongController.swift; sourceTree = "<group>"; };
 		B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSongView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,21 +163,12 @@
 		3731FB321BB5A27100294F70 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				3731FB381BB5A65900294F70 /* HearButton */,
+				37ED40A91BD892CA00CF8C5E /* InputButton */,
 				37A6E11A1BCB3EE0000C75C1 /* TitleButton */,
 				3731FB391BB5A65900294F70 /* SongButton */,
 				371491631BBBC577007C28AD /* Radar */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		3731FB381BB5A65900294F70 /* HearButton */ = {
-			isa = PBXGroup;
-			children = (
-				3731FB3E1BB5A6B500294F70 /* HearButtonController.swift */,
-				3731FB3A1BB5A67C00294F70 /* HearButtonView.swift */,
-			);
-			path = HearButton;
 			sourceTree = "<group>";
 		};
 		3731FB391BB5A65900294F70 /* SongButton */ = {
@@ -229,6 +220,15 @@
 				B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		37ED40A91BD892CA00CF8C5E /* InputButton */ = {
+			isa = PBXGroup;
+			children = (
+				37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */,
+				37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */,
+			);
+			path = InputButton;
 			sourceTree = "<group>";
 		};
 		849F2F3F135A96E2F8B08A52 /* Frameworks */ = {
@@ -284,7 +284,7 @@
 				TargetAttributes = {
 					3731FB1A1BB5A04200294F70 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = P7XPUAZMB8;
+						DevelopmentTeam = 427LPJP8S9;
 					};
 				};
 			};
@@ -329,11 +329,10 @@
 				3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */,
 				37A6E1251BCB9088000C75C1 /* LocationManager.swift in Sources */,
 				37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */,
-				3731FB3B1BB5A67C00294F70 /* HearButtonView.swift in Sources */,
+				37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */,
 				3731FB611BB8C08E00294F70 /* Extensions.swift in Sources */,
 				37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */,
 				B98DB15C1BD6AD3600308F7C /* SearchSongController.swift in Sources */,
-				3731FB3F1BB5A6B500294F70 /* HearButtonController.swift in Sources */,
 				37ED40A81BD88B9A00CF8C5E /* User.swift in Sources */,
 				3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */,
 				37DC9EB61BC6FCBA00F7DC99 /* Song.swift in Sources */,
@@ -342,6 +341,7 @@
 				371491651BBBC589007C28AD /* RadarController.swift in Sources */,
 				37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */,
 				3751ADC91BBBD15C00B6B82C /* Functions.swift in Sources */,
+				37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */,
 				37A6E1271BCBA0F8000C75C1 /* Reachability.swift in Sources */,
 				371491671BBBC5B2007C28AD /* RadarView.swift in Sources */,
 				37A6E11E1BCB8696000C75C1 /* ParseAPI.swift in Sources */,
