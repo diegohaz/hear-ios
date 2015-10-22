@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadarLayout: UICollectionViewFlowLayout {
+class SongCollectionLayout: UICollectionViewFlowLayout {
 
     let itemSpacing: CGFloat = 8
     var layoutInfo: [NSIndexPath:UICollectionViewLayoutAttributes] = [NSIndexPath:UICollectionViewLayoutAttributes]()

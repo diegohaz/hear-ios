@@ -10,14 +10,14 @@ import UIKit
 import CoreLocation
 import Bolts
 
-class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    weak var view: RadarView!
+class SongCollectionController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    weak var view: SongCollectionView!
     var songs = [Song]()
     var nextPage = 0
     var minDistance: CGFloat = 0
     var maxDistance: CGFloat = 0
     
-    init(view: RadarView) {
+    init(view: SongCollectionView) {
         super.init()
         
         self.view = view
@@ -29,7 +29,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     
     func currentSongChanged(notification: NSNotification) {
         let index = notification.object as! Int
-        let layout = view.collectionViewLayout as! RadarLayout
+        let layout = view.collectionViewLayout as! SongCollectionLayout
         var frame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))!.frame
         
         frame.origin.y -= layout.sectionInset.top
@@ -62,7 +62,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     private func setup() {
-        view.registerClass(RadarCell.self, forCellWithReuseIdentifier: "Cell")
+        view.registerClass(SongCollectionCell.self, forCellWithReuseIdentifier: "Cell")
         
         AudioManager.sharedInstance.songs = songs
         
@@ -76,7 +76,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
         let paths = view.indexPathsForVisibleItems()
         
         for path in paths {
-            if let cell = view.cellForItemAtIndexPath(path) as? RadarCell {
+            if let cell = view.cellForItemAtIndexPath(path) as? SongCollectionCell {
                 cell.fade(view)
             }
         }
@@ -101,7 +101,7 @@ class RadarController: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! RadarCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! SongCollectionCell
         
         cell.songButtonView.controller.song = songs[indexPath.item]
         cell.fade(collectionView)

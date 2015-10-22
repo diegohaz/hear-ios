@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadarCell: UICollectionViewCell {
+class SongCollectionCell: UICollectionViewCell {
     var songButtonView: SongButtonView!
     var reloadCount = 0
     

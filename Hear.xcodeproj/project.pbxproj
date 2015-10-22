@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		371491651BBBC589007C28AD /* RadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371491641BBBC589007C28AD /* RadarController.swift */; };
-		371491671BBBC5B2007C28AD /* RadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371491661BBBC5B2007C28AD /* RadarView.swift */; };
 		3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB251BB5A04200294F70 /* Assets.xcassets */; };
 		3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB511BB7DE6E00294F70 /* SongButtonController.swift */; };
 		3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB521BB7DE6E00294F70 /* SongButtonView.swift */; };
@@ -16,7 +14,6 @@
 		3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB5E1BB8A22700294F70 /* AppDelegate.swift */; };
 		3731FB611BB8C08E00294F70 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731FB601BB8C08E00294F70 /* Extensions.swift */; };
 		3751ADC91BBBD15C00B6B82C /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751ADC81BBBD15C00B6B82C /* Functions.swift */; };
-		376851A31BBBE23300093511 /* RadarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376851A21BBBE23300093511 /* RadarCell.swift */; };
 		3769986E1BCB0E7300AEB2E0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769986C1BCB0E7300AEB2E0 /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
 		3769986F1BCB0E7300AEB2E0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769986D1BCB0E7300AEB2E0 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 		376998711BCB0E8D00AEB2E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998701BCB0E8D00AEB2E0 /* AudioToolbox.framework */; };
@@ -30,7 +27,6 @@
 		376998811BCB0ED600AEB2E0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998801BCB0ED600AEB2E0 /* libz.tbd */; };
 		376998831BCB0EDD00AEB2E0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */; };
 		376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
-		37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A430D51BBBD54900E9F108 /* RadarLayout.swift */; };
 		37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		37A6E11E1BCB8696000C75C1 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -44,13 +40,15 @@
 		37ED40A81BD88B9A00CF8C5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40A71BD88B9A00CF8C5E /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */; settings = {ASSET_TAGS = (); }; };
 		37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40B31BD894A000CF8C5E /* SongCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AF1BD894A000CF8C5E /* SongCollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40B41BD894A000CF8C5E /* SongCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40B01BD894A000CF8C5E /* SongCollectionController.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40B51BD894A000CF8C5E /* SongCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40B11BD894A000CF8C5E /* SongCollectionLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		37ED40B61BD894A000CF8C5E /* SongCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40B21BD894A000CF8C5E /* SongCollectionView.swift */; settings = {ASSET_TAGS = (); }; };
 		B98DB15C1BD6AD3600308F7C /* SearchSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */; settings = {ASSET_TAGS = (); }; };
 		B98DB1601BD6AE1F00308F7C /* SearchSongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		371491641BBBC589007C28AD /* RadarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarController.swift; sourceTree = "<group>"; };
-		371491661BBBC5B2007C28AD /* RadarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarView.swift; sourceTree = "<group>"; };
 		3731FB1B1BB5A04200294F70 /* Hear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3731FB251BB5A04200294F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3731FB281BB5A04200294F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 		3731FB5E1BB8A22700294F70 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3731FB601BB8C08E00294F70 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3751ADC81BBBD15C00B6B82C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		376851A21BBBE23300093511 /* RadarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarCell.swift; sourceTree = "<group>"; };
 		3769986C1BCB0E7300AEB2E0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		3769986D1BCB0E7300AEB2E0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
 		376998701BCB0E8D00AEB2E0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -75,7 +72,6 @@
 		376998801BCB0ED600AEB2E0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		376C07E01BBA83F100AD1DB1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
-		37A430D51BBBD54900E9F108 /* RadarLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarLayout.swift; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
@@ -88,6 +84,10 @@
 		37ED40A71BD88B9A00CF8C5E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButtonController.swift; sourceTree = "<group>"; };
 		37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButtonView.swift; sourceTree = "<group>"; };
+		37ED40AF1BD894A000CF8C5E /* SongCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCollectionCell.swift; sourceTree = "<group>"; };
+		37ED40B01BD894A000CF8C5E /* SongCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCollectionController.swift; sourceTree = "<group>"; };
+		37ED40B11BD894A000CF8C5E /* SongCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCollectionLayout.swift; sourceTree = "<group>"; };
+		37ED40B21BD894A000CF8C5E /* SongCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCollectionView.swift; sourceTree = "<group>"; };
 		B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongController.swift; sourceTree = "<group>"; };
 		B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSongView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,17 +117,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		371491631BBBC577007C28AD /* Radar */ = {
-			isa = PBXGroup;
-			children = (
-				371491641BBBC589007C28AD /* RadarController.swift */,
-				37A430D51BBBD54900E9F108 /* RadarLayout.swift */,
-				376851A21BBBE23300093511 /* RadarCell.swift */,
-				371491661BBBC5B2007C28AD /* RadarView.swift */,
-			);
-			path = Radar;
-			sourceTree = "<group>";
-		};
 		3731FB121BB5A04200294F70 = {
 			isa = PBXGroup;
 			children = (
@@ -166,7 +155,7 @@
 				37ED40A91BD892CA00CF8C5E /* InputButton */,
 				37A6E11A1BCB3EE0000C75C1 /* TitleButton */,
 				3731FB391BB5A65900294F70 /* SongButton */,
-				371491631BBBC577007C28AD /* Radar */,
+				37ED40AE1BD894A000CF8C5E /* SongCollection */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -229,6 +218,17 @@
 				37ED40AB1BD892CA00CF8C5E /* InputButtonView.swift */,
 			);
 			path = InputButton;
+			sourceTree = "<group>";
+		};
+		37ED40AE1BD894A000CF8C5E /* SongCollection */ = {
+			isa = PBXGroup;
+			children = (
+				37ED40B01BD894A000CF8C5E /* SongCollectionController.swift */,
+				37ED40B21BD894A000CF8C5E /* SongCollectionView.swift */,
+				37ED40B11BD894A000CF8C5E /* SongCollectionLayout.swift */,
+				37ED40AF1BD894A000CF8C5E /* SongCollectionCell.swift */,
+			);
+			path = SongCollection;
 			sourceTree = "<group>";
 		};
 		849F2F3F135A96E2F8B08A52 /* Frameworks */ = {
@@ -328,24 +328,24 @@
 			files = (
 				3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */,
 				37A6E1251BCB9088000C75C1 /* LocationManager.swift in Sources */,
-				37A430D61BBBD54900E9F108 /* RadarLayout.swift in Sources */,
+				37ED40B51BD894A000CF8C5E /* SongCollectionLayout.swift in Sources */,
 				37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */,
 				3731FB611BB8C08E00294F70 /* Extensions.swift in Sources */,
 				37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */,
+				37ED40B61BD894A000CF8C5E /* SongCollectionView.swift in Sources */,
 				B98DB15C1BD6AD3600308F7C /* SearchSongController.swift in Sources */,
 				37ED40A81BD88B9A00CF8C5E /* User.swift in Sources */,
+				37ED40B41BD894A000CF8C5E /* SongCollectionController.swift in Sources */,
 				3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */,
 				37DC9EB61BC6FCBA00F7DC99 /* Song.swift in Sources */,
 				3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */,
 				37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */,
-				371491651BBBC589007C28AD /* RadarController.swift in Sources */,
 				37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */,
+				37ED40B31BD894A000CF8C5E /* SongCollectionCell.swift in Sources */,
 				3751ADC91BBBD15C00B6B82C /* Functions.swift in Sources */,
 				37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */,
 				37A6E1271BCBA0F8000C75C1 /* Reachability.swift in Sources */,
-				371491671BBBC5B2007C28AD /* RadarView.swift in Sources */,
 				37A6E11E1BCB8696000C75C1 /* ParseAPI.swift in Sources */,
-				376851A31BBBE23300093511 /* RadarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
