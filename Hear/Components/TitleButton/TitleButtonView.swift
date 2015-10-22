@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable class TitleButtonView: UIButton {
     var activityIndicatorView: UIActivityIndicatorView!
-    var refreshControl: UIRefreshControl?
     var loading: Bool = false {
         didSet {
             if loading {
@@ -58,13 +57,7 @@ import UIKit
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeDistance:", name: "changeDistance", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startLoading:", name: "startLoading", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopLoading:", name: "stopLoading", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "dada:", name: "dada", object: nil)
         
-    }
-    
-    func dada(notification: NSNotification) {
-        refreshControl = notification.object as? UIRefreshControl
-        addSubview(refreshControl!)
     }
     
     func changeDistance(notification: NSNotification) {
@@ -73,6 +66,7 @@ import UIKit
     
     func startLoading(notification: NSNotification) {
         loading = true
+        title = ""
     }
     
     func stopLoading(notification: NSNotification) {
