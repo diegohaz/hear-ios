@@ -47,7 +47,6 @@
 		37ED40B91BD8A35400CF8C5E /* ServiceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40B81BD8A35400CF8C5E /* ServiceButtonView.swift */; settings = {ASSET_TAGS = (); }; };
 		37ED40BB1BD8A3B700CF8C5E /* ServiceButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40BA1BD8A3B700CF8C5E /* ServiceButtonController.swift */; settings = {ASSET_TAGS = (); }; };
 		B98DB15C1BD6AD3600308F7C /* SearchSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */; settings = {ASSET_TAGS = (); }; };
-		B98DB1601BD6AE1F00308F7C /* SearchSongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +92,6 @@
 		37ED40B81BD8A35400CF8C5E /* ServiceButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceButtonView.swift; sourceTree = "<group>"; };
 		37ED40BA1BD8A3B700CF8C5E /* ServiceButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceButtonController.swift; sourceTree = "<group>"; };
 		B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongController.swift; sourceTree = "<group>"; };
-		B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSongView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +209,6 @@
 				37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */,
 				37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */,
 				B98DB15B1BD6AD3600308F7C /* SearchSongController.swift */,
-				B98DB15F1BD6AE1F00308F7C /* SearchSongView.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -329,7 +326,6 @@
 				376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */,
 				3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
-				B98DB1601BD6AE1F00308F7C /* SearchSongView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

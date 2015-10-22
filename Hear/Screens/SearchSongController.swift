@@ -20,26 +20,16 @@ class SearchSongController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       let view = tableCell.registerNib(UINib(nibName: "SearchSongView.xib", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MyCell");
-//        view = UINib(nibName: "SearchSongView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
-//        searchBar.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+      tableCell.registerNib(UINib(nibName: "MyCell.xib", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MyCell");
+
     }
-    
-    
-//    func searchDidReturn() {
-//    ParseAPI.searchSong("texto").continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-//            self.songs = task.result as! [Song]
-//        
-//            return task
-//        })
-//    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier("MyCell", forIndexPath: indexPath)
         
         cell.textLabel?.text = songs[indexPath.row].title
         
@@ -51,11 +41,25 @@ class SearchSongController: UIViewController, UITableViewDataSource, UITableView
         
         searchBar.resignFirstResponder()
         ParseAPI.searchSong("texto").continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-            self.songs = task.result as! [Song]
+            
+            self.songs = task.result ["title"] as! [Song]
+            
+            self.songs = task.result ["artist"] as! [Song]
+            
+            self.songs = task.result ["songs"] as! [Song]
+            
             
             return task
         })
         
+        
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.tableCell.reloadData()
+                self.searchBar.resignFirstResponder()
+                
+            }
+        }
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar){
@@ -65,7 +69,7 @@ class SearchSongController: UIViewController, UITableViewDataSource, UITableView
         
         
     }
-}
+
 
 
 
