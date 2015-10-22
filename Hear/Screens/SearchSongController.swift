@@ -20,7 +20,7 @@ class SearchSongController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view = tableview.registerNib(UINib(nibName: "SearchSongView.xib", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MyCell");
+       let view = tableCell.registerNib(UINib(nibName: "SearchSongView.xib", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MyCell");
 //        view = UINib(nibName: "SearchSongView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
 //        searchBar.registerClass(UITableViewCell.self, forCellReuseIdentifier: "myCell")
     }
