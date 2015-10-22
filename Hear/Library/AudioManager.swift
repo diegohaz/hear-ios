@@ -108,7 +108,9 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     func play() {
         player?.play()
         
-        NSNotificationCenter.defaultCenter().postNotificationName("play", object: currentIndex)
+        BFExecutor.mainThreadExecutor().execute { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("play", object: self.currentIndex)
+        }
         
         do {
             try AVAudioSession.sharedInstance().setActive(true)
