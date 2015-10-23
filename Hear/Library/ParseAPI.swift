@@ -37,8 +37,6 @@ class ParseAPI {
             
             return [
                 "nextPage": results["nextPage"] as! Int,
-                "minDistance": results["minDistance"] as! CGFloat,
-                "maxDistance": results["maxDistance"] as! CGFloat,
                 "songs": songs
             ]
         }
@@ -53,7 +51,8 @@ class ParseAPI {
             artist: object["artist"] as! String,
             cover: object["cover"] as! String,
             preview: object["preview"] as! String,
-            url: object["serviceUrl"] as! String
+            url: object["serviceUrl"] as! String,
+            distance: object["distance"] as? CGFloat
         )
     }
     

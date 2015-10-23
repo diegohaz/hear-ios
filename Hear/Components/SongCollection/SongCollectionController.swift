@@ -14,8 +14,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     weak var view: SongCollectionView!
     var songs = [Song]()
     var nextPage = 0
-    var minDistance: CGFloat = 0
-    var maxDistance: CGFloat = 0
     
     init(view: SongCollectionView) {
         super.init()
@@ -46,8 +44,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songs = task.result["songs"] as! [Song]
             self.nextPage = task.result["nextPage"] as! Int
-            self.minDistance = task.result["minDistance"] as! CGFloat
-            self.maxDistance = task.result["maxDistance"] as! CGFloat
             self.setup()
             self.view.reloadData()
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
@@ -86,12 +82,54 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     func setDistance(scrollView: UIScrollView) {
-        let distanceDiff = maxDistance - minDistance
-        let scrollPercent = scrollView.contentOffset.y / (scrollView.contentSize.height - scrollView.bounds.height)
-        var meters = minDistance + distanceDiff * scrollPercent
+        var meters: CGFloat = 0
         
-        meters = meters < minDistance ? minDistance : (meters > maxDistance ? maxDistance : meters)
+        if scrollView.contentOffset.y < 0 {
+            meters = self.songs[0].distance!
+        } else {
+            var songs = self.songs
+            
+            // Remove songs from right column
+            for var i = 2; i < songs.count; i += 2 {
+                songs.removeAtIndex(i)
+            }
+            
+            let layout = view.collectionViewLayout as! SongCollectionLayout
+            let scrollY = scrollView.contentOffset.y + layout.sectionInset.top
+            var currentItem = 0
+            var nextItem = 0
+            
+            for i in 0 ..< songs.count {
+                nextItem += i > 0 && (i + 1) % 2 == 0 ? 2 : 1
+                
+                if nextItem >= self.songs.count {
+                    meters = songs[i].distance!
+                    break
+                }
+                
+                let currentDistance = songs[i].distance!
+                let currentFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: currentItem, inSection: 0))!.frame
+                let currentFrameY = currentFrame.origin.y
+                
+                let nextDistance = i + 1 < songs.count ? songs[i + 1].distance! : currentDistance
+                let nextFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: nextItem, inSection: 0))?.frame
+                let nextFrameY = nextFrame?.origin.y ?? currentFrameY + 100
+                
+                if scrollY >= currentFrameY && scrollY < nextFrameY {
+                    let distanceDiff = nextDistance - currentDistance
+                    let scrollPercent = (scrollY - currentFrameY) / (nextFrameY - currentFrameY)
+                    print(scrollPercent)
+                    
+                    meters = currentDistance + distanceDiff * scrollPercent
+                    
+                    break
+                }
+                
+                currentItem = nextItem
+            }
+        }
         
+        //let distance = "\(Int(meters))m"
         let distance = meters > 1000 ? "\(Int(meters/1000))km" : "\(Int(meters))m"
         
         NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: distance)
