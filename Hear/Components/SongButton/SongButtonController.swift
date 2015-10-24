@@ -16,20 +16,22 @@ class SongButtonController: NSObject {
     var song: Song? {
         didSet {
             let song = self.song
-            view.songTitleLabel?.text = song?.title
-            view.songArtistLabel.text = song?.artist
             
             song?.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 guard song?.id == self.song?.id else {
                     return task
                 }
                 
-                self.view.songImageView.image = UIImage(data: task.result as! NSData)
+                self.view.songImageView.image = song?.coverImageRounded
                 
                 return task
             })
             
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
+            audioDidToggle()
+            
+            let timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
+            
+            NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         }
     }
     
@@ -38,11 +40,33 @@ class SongButtonController: NSObject {
         
         self.view = view
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidToggle", name: AudioManagerPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidToggle", name: AudioManagerPauseNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish:", name: AudioManagerFinishNotification, object: nil)
     }
     
     func viewDidTouch() {
         view.bounce()
         toggle()
+    }
+    
+    func audioDidToggle() {
+        if song != nil && audio.current(song!) == true && audio.player?.playing == true {
+            view.play()
+        } else if song != nil && audio.current(song!) == true {
+            view.pause()
+        } else if view.pauseView.transform.a > 0.1 {
+            view.pause()
+        }
+    }
+    
+    func audioDidFinish(notification: NSNotification) {
+        let index = notification.object as! Int
+        
+        if song != nil && audio.songs[index].id == song!.id {
+            view.pause()
+        }
     }
     
     func toggle() {
@@ -52,13 +76,13 @@ class SongButtonController: NSObject {
             audio.play()
         } else {
             if song?.previewData == nil {
-                view.loadingView.hidden = false
+                view.load()
             }
             
             BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
                 return self.audio.play(self.song!)
             }).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                self.view.loadingView.hidden = true
+                //self.view.loadingView.hidden = true
                 
                 return task
             })

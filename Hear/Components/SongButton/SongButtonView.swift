@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bolts
 
 @IBDesignable class SongButtonView: UIButton {
     
@@ -14,10 +15,12 @@ import UIKit
     @IBOutlet weak var newStoriesIndicator: UIView!
     @IBOutlet weak var songRoundView: UIView!
     @IBOutlet weak var songImageView: UIImageView!
-    @IBOutlet weak var songTitleLabel: UILabel!
-    @IBOutlet weak var songArtistLabel: UILabel!
     @IBOutlet weak var playbackGuide: UIView!
-    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var pauseView: UIImageView!
+    @IBOutlet weak var springIndicator: SpringIndicator!
+    
+    private weak var currentCover: UIView!
+    
     @IBInspectable var timePercent: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
@@ -37,19 +40,70 @@ import UIKit
     private func setup() {
         loadNib()
         controller = SongButtonController(view: self)
+        
+        currentCover = songImageView
+        pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+        springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+    }
+    
+    func load() {
+        if self.currentCover == self.springIndicator {
+            return
+        }
+        
+        UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.currentCover.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            }) { (finished) -> Void in
+                self.springIndicator.startAnimation()
+                self.currentCover = self.springIndicator
+                
+                UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+                    self.springIndicator.transform = CGAffineTransformMakeScale(1, 1)
+                    }, completion: nil)
+        }
+    }
+    
+    func play() {
+        if self.currentCover == self.pauseView {
+            return
+        }
+        
+        UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.currentCover.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            }) { (b) -> Void in
+                self.springIndicator.stopAnimation(false)
+                self.currentCover = self.pauseView
+                
+                UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+                    self.pauseView.transform = CGAffineTransformMakeScale(1, 1)
+                    }, completion: nil)
+        }
+    }
+    
+    func pause() {
+        if self.currentCover == self.songImageView {
+            return
+        }
+        
+        UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.currentCover.transform = CGAffineTransformMakeScale(0, 0)
+            }) { (b) -> Void in
+                self.springIndicator.stopAnimation(false)
+                self.currentCover = self.songImageView
+                
+                UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+                    self.songImageView.transform = CGAffineTransformMakeScale(1, 1)
+                    }, completion: nil)
+        }
     }
     
     override func drawRect(rect: CGRect) {
-        loadingView.layer.cornerRadius = loadingView.bounds.width/2
-        songImageView.layer.cornerRadius = songImageView.frame.size.width/2
-        songImageView.clipsToBounds = true
+        songImageView.layer.cornerRadius = songImageView.bounds.width/2
         
-        var circleFrame = playbackGuide.frame
-        circleFrame.origin.y += 1
-        
+        let circleFrame = playbackGuide.frame
         let circle = UIBezierPath(ovalInRect: circleFrame)
         UIColor(white: 0, alpha: 0.1).setStroke()
-        circle.lineWidth = 2
+        circle.lineWidth = circleFrame.size.width * 0.04
         circle.stroke()
         
         let centerX = circleFrame.origin.x + playbackGuide.bounds.width/2
@@ -63,7 +117,9 @@ import UIKit
         )
         UIColor.hearSecondaryColor().setStroke()
         playback.lineCapStyle = CGLineCap.Round
-        playback.lineWidth = 2
+        playback.lineWidth = circle.lineWidth
         playback.stroke()
+        
+        springIndicator.lineWidth = circle.lineWidth
     }
 }

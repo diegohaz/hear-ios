@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="zdc-az-wy4" customClass="SongCollectionCell" customModule="Hear" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="96" height="136"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="96" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alr-WA-NXi" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Alr-WA-NXi" secondAttribute="height" multiplier="1:1" id="p3b-eD-K9L"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome da música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="mUi-wS-6jv">
+                        <rect key="frame" x="0.0" y="100" width="96" height="13.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome da música" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-bp-YIX">
+                        <rect key="frame" x="0.0" y="113.5" width="96" height="13.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mUi-wS-6jv" secondAttribute="trailing" id="2rq-dJ-uWv"/>
+                <constraint firstAttribute="trailing" secondItem="Alr-WA-NXi" secondAttribute="trailing" id="BR8-IB-3OZ"/>
+                <constraint firstAttribute="trailing" secondItem="4K5-bp-YIX" secondAttribute="trailing" id="HDu-aT-e8m"/>
+                <constraint firstItem="4K5-bp-YIX" firstAttribute="leading" secondItem="zdc-az-wy4" secondAttribute="leading" id="MPR-L7-IT8"/>
+                <constraint firstItem="Alr-WA-NXi" firstAttribute="top" secondItem="zdc-az-wy4" secondAttribute="top" id="O3m-a1-kH3"/>
+                <constraint firstItem="mUi-wS-6jv" firstAttribute="leading" secondItem="zdc-az-wy4" secondAttribute="leading" id="X8a-Ng-e5A"/>
+                <constraint firstItem="Alr-WA-NXi" firstAttribute="leading" secondItem="zdc-az-wy4" secondAttribute="leading" id="YeC-tp-5kh"/>
+                <constraint firstItem="4K5-bp-YIX" firstAttribute="top" secondItem="mUi-wS-6jv" secondAttribute="bottom" id="gow-DK-QiZ"/>
+                <constraint firstItem="mUi-wS-6jv" firstAttribute="top" secondItem="Alr-WA-NXi" secondAttribute="bottom" constant="4" id="pLt-NM-a4j"/>
+            </constraints>
+            <connections>
+                <outlet property="songArtistLabel" destination="4K5-bp-YIX" id="bYs-ef-TvH"/>
+                <outlet property="songButtonView" destination="Alr-WA-NXi" id="ZFn-NA-9xM"/>
+                <outlet property="songTitleLabel" destination="mUi-wS-6jv" id="eVx-KB-Yig"/>
+            </connections>
+            <point key="canvasLocation" x="263" y="186"/>
+        </collectionViewCell>
+    </objects>
+</document>

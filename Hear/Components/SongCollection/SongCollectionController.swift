@@ -12,8 +12,9 @@ import Bolts
 
 class SongCollectionController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     weak var view: SongCollectionView!
-    var songs = [Song]()
+    var songPosts = [SongPost]()
     var nextPage = 0
+    var loading = false
     
     init(view: SongCollectionView) {
         super.init()
@@ -37,36 +38,49 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     func locationChanged(notification: NSNotification) {
-        let location = notification.object as! CLLocation
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
+        reload()
+    }
     
+    private func setup() {
+        var songs = [Song]()
+        
+        for songPost in songPosts {
+            songs.append(songPost.song)
+        }
+        
+        AudioManager.sharedInstance.songs = songs
+        
+        view.registerNib(UINib(nibName: "SongCollectionCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "Cell")
+        view.delegate = self
+        view.dataSource = self
+        
+        setDistance(view)
+    }
+    
+    func reload() {
+        guard let location = LocationManager.sharedInstance.location else {
+            return
+        }
+
+        loading = true
+        NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
+        
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-            self.songs = task.result["songs"] as! [Song]
+            self.songPosts = task.result["songs"] as! [SongPost]
             self.nextPage = task.result["nextPage"] as! Int
             self.setup()
             self.view.reloadData()
+            self.loading = false
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                for song in self.songs {
-                    song.load()
+                for songPost in self.songPosts {
+                    songPost.song.load()
                 }
             })
             
             return task
         })
-    }
-    
-    private func setup() {
-        view.registerClass(SongCollectionCell.self, forCellWithReuseIdentifier: "Cell")
-        
-        AudioManager.sharedInstance.songs = songs
-        
-        view.delegate = self
-        view.dataSource = self
-        
-        setDistance(view)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -78,16 +92,22 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             }
         }
         
-        setDistance(scrollView)
+        if scrollView.contentOffset.y < -100 && !loading {
+            reload()
+        } else if scrollView.contentOffset.y < -30 && !loading {
+            NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: "pull to refresh")
+        } else {
+            setDistance(scrollView)
+        }
     }
     
     func setDistance(scrollView: UIScrollView) {
         var meters: CGFloat = 0
         
         if scrollView.contentOffset.y < 0 {
-            meters = self.songs[0].distance!
+            meters = self.songPosts[0].distance
         } else {
-            var songs = self.songs
+            var songs = self.songPosts
             
             // Remove songs from right column
             for var i = 2; i < songs.count; i += 2 {
@@ -102,23 +122,22 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             for i in 0 ..< songs.count {
                 nextItem += i > 0 && (i + 1) % 2 == 0 ? 2 : 1
                 
-                if nextItem >= self.songs.count {
-                    meters = songs[i].distance!
+                if nextItem >= self.songPosts.count {
+                    meters = songs[i].distance
                     break
                 }
                 
-                let currentDistance = songs[i].distance!
+                let currentDistance = songs[i].distance
                 let currentFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: currentItem, inSection: 0))!.frame
                 let currentFrameY = currentFrame.origin.y
                 
-                let nextDistance = i + 1 < songs.count ? songs[i + 1].distance! : currentDistance
+                let nextDistance = i + 1 < songs.count ? songs[i + 1].distance : currentDistance
                 let nextFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: nextItem, inSection: 0))?.frame
                 let nextFrameY = nextFrame?.origin.y ?? currentFrameY + 100
                 
                 if scrollY >= currentFrameY && scrollY < nextFrameY {
                     let distanceDiff = nextDistance - currentDistance
                     let scrollPercent = (scrollY - currentFrameY) / (nextFrameY - currentFrameY)
-                    print(scrollPercent)
                     
                     meters = currentDistance + distanceDiff * scrollPercent
                     
@@ -135,16 +154,25 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: distance)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SongCollectionCell
+        
+        cell?.bounce()
+        cell?.songButtonView.controller.toggle()
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return songs.count
+        return songPosts.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! SongCollectionCell
+        let song = songPosts[indexPath.item].song
         
-        cell.songButtonView.controller.song = songs[indexPath.item]
+        cell.songButtonView.controller.song = song
+        cell.songTitleLabel.text = song.title
+        cell.songArtistLabel.text = song.artist
         cell.fade(collectionView)
-        cell.songButtonView.controller.updateTime()
         
         return cell
     }

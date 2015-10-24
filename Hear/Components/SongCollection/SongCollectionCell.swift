@@ -9,27 +9,13 @@
 import UIKit
 
 class SongCollectionCell: UICollectionViewCell {
-    var songButtonView: SongButtonView!
+    @IBOutlet weak var songButtonView: SongButtonView!
+    @IBOutlet weak var songTitleLabel: UILabel!
+    @IBOutlet weak var songArtistLabel: UILabel!
     var reloadCount = 0
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        songButtonView = SongButtonView(frame: self.bounds)
-        contentView.addSubview(songButtonView)
-    }
     
     override func prepareForReuse() {
         songButtonView.songImageView.image = nil
-        songButtonView.loadingView.hidden = true
         songButtonView.timePercent = 0
     }
     

@@ -28,7 +28,7 @@ class SongCollectionLayout: UICollectionViewFlowLayout {
     
     func setup() {
         itemWidth = (UIScreen.mainScreen().bounds.width - 4 * 8)/3
-        itemHeight = itemWidth * 1.375
+        itemHeight = itemWidth * 1.4167
         
         self.itemSize = CGSizeMake(itemWidth, itemHeight)
         self.minimumInteritemSpacing = itemSpacing

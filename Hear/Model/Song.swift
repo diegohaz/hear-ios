@@ -17,23 +17,22 @@ class Song {
     var title: String
     var artist: String
     var url: NSURL
-    var distance: CGFloat?
+    var coverImage: UIImage?
+    var coverImageRounded: UIImage?
     
     private var coverUrl: NSURL?
-    private var coverData: NSData?
     private var coverTask: BFTask?
     
     var previewUrl: NSURL
     var previewData: NSData?
     var previewTask: BFTask?
     
-    private init(id: String, title: String, artist: String, cover: String, preview: String, url: String, distance: CGFloat?) {
+    private init(id: String, title: String, artist: String, cover: String, preview: String, url: String) {
         self.id = id
         self.title = title
         self.artist = artist
         self.previewUrl = NSURL(string: preview)!
         self.url = NSURL(string: url)!
-        self.distance = distance
         
         let largeSize = Int(UIScreen.mainScreen().bounds.width)
         let reachability = Reachability.reachabilityForInternetConnection()
@@ -45,12 +44,12 @@ class Song {
         }
     }
     
-    static func create(id id: String, title: String, artist: String, cover: String, preview: String, url: String, distance: CGFloat?) -> Song {
+    static func create(id id: String, title: String, artist: String, cover: String, preview: String, url: String) -> Song {
         if songs.indexForKey(id) != nil {
             return songs[id]!
         }
         
-        songs[id] = Song(id: id, title: title, artist: artist, cover: cover, preview: preview, url: url, distance: distance)
+        songs[id] = Song(id: id, title: title, artist: artist, cover: cover, preview: preview, url: url)
         
         return songs[id]!
     }
@@ -74,17 +73,29 @@ class Song {
     }
     
     func loadCover() -> BFTask {
-        if coverData != nil {
-            return BFTask(result: coverData)
+        if coverImage != nil {
+            return BFTask(result: coverImage)
         } else if coverTask != nil {
             return coverTask!
         } else {
             print("Loading cover for \(title)")
             coverTask = BFTask(delay: 0).continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                self.coverData = NSData(contentsOfURL: self.coverUrl!)
                 print("Retrieving cover for \(self.title)")
+                guard let data = NSData(contentsOfURL: self.coverUrl!) else {
+                    return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
+                }
                 
-                return self.coverData
+                self.coverImage = UIImage(data: data)!
+                let rect = CGRectMake(0, 0, self.coverImage!.size.width, self.coverImage!.size.height)
+                
+                UIGraphicsBeginImageContextWithOptions(self.coverImage!.size, false, self.coverImage!.scale)
+                UIBezierPath(roundedRect: rect, cornerRadius: self.coverImage!.size.width/2).addClip()
+                self.coverImage!.drawInRect(rect)
+                self.coverImageRounded = UIGraphicsGetImageFromCurrentImageContext()
+                
+                UIGraphicsEndImageContext()
+                
+                return self.coverImage
             })
             
             return coverTask!

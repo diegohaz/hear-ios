@@ -33,7 +33,7 @@ class ParseAPI {
         
         return task.continueWithSuccessBlock { (task) -> AnyObject! in
             let results = task.result as! NSDictionary
-            let songs = translate(songs: results["songs"]!)
+            let songs = translate(songPosts: results["songs"]!)
             
             return [
                 "nextPage": results["nextPage"] as! Int,
@@ -42,7 +42,7 @@ class ParseAPI {
         }
     }
     
-    private static func translate(song object: AnyObject) -> Song {
+    private static func translate(object: AnyObject) -> Song {
         let object = object as! NSDictionary
         
         return Song.create(
@@ -51,19 +51,32 @@ class ParseAPI {
             artist: object["artist"] as! String,
             cover: object["cover"] as! String,
             preview: object["preview"] as! String,
-            url: object["serviceUrl"] as! String,
-            distance: object["distance"] as? CGFloat
+            url: object["serviceUrl"] as! String
         )
     }
     
     private static func translate(songs objects: AnyObject) -> [Song] {
-        var songs = [Song]()
+        return each(objects) { self.translate($0) }
+    }
+    
+    private static func translate(object: AnyObject) -> SongPost {
+        let object = object as! NSDictionary
         
-        for song in objects as! [NSDictionary] {
-            songs.append(translate(song: song))
+        return SongPost(song: translate(object), distance: object["distance"] as! CGFloat)
+    }
+    
+    private static func translate(songPosts objects: AnyObject) -> [SongPost] {
+        return each(objects) { self.translate($0) }
+    }
+    
+    private static func each<T>(objects: AnyObject, fn: (AnyObject) -> T) -> [T] {
+        var objectsToReturn = [T]()
+        
+        for object in objects as! [AnyObject] {
+            objectsToReturn.append(fn(object))
         }
         
-        return songs
+        return objectsToReturn
     }
     
 }

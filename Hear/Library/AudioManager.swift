@@ -12,6 +12,7 @@ import MediaPlayer
 import Bolts
 
 public let AudioManagerPlayNotification = "AudioManagerPlayNotification"
+public let AudioManagerPauseNotification = "AudioManagerPauseNotification"
 public let AudioManagerFinishNotification = "AudioManagerFinishNotification"
 
 class AudioManager: NSObject, AVAudioPlayerDelegate {
@@ -61,7 +62,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         // Lock screen
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
             song.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                guard let image = UIImage(data: task.result as! NSData) else {
+                guard let image = song.coverImage else {
                     print("Image not found for \(song.title)")
                     return task
                 }
@@ -125,15 +126,9 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     func pause() {
         player?.pause()
         
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-        } catch let e {
-            print(e)
+        BFExecutor.mainThreadExecutor().execute { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerPauseNotification, object: self.currentIndex)
         }
-    }
-    
-    func stop() {
-        player?.stop()
         
         do {
             try AVAudioSession.sharedInstance().setActive(false)
@@ -163,7 +158,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: self.currentIndex)
         
         playNext()
     }
