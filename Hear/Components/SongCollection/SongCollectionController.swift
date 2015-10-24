@@ -14,7 +14,9 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     weak var view: SongCollectionView!
     var songPosts = [SongPost]()
     var nextPage = 0
+    var hasOtherPage = true
     var loading = false
+    var scrolling = false
     
     init(view: SongCollectionView) {
         super.init()
@@ -27,14 +29,18 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     func currentSongChanged(notification: NSNotification) {
+        if scrolling {
+            return
+        }
+        
         let index = notification.object as! Int
         let layout = view.collectionViewLayout as! SongCollectionLayout
-        var frame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))!.frame
+        var frame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))?.frame
         
-        frame.origin.y -= layout.sectionInset.top
-        frame.size.height += layout.sectionInset.top + layout.sectionInset.bottom
+        frame?.origin.y -= layout.sectionInset.top
+        frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
-        view.scrollRectToVisible(frame, animated: true)
+        view.scrollRectToVisible(frame ?? view.frame, animated: true)
     }
     
     func locationChanged(notification: NSNotification) {
@@ -42,13 +48,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     private func setup() {
-        var songs = [Song]()
-        
-        for songPost in songPosts {
-            songs.append(songPost.song)
-        }
-        
-        AudioManager.sharedInstance.songs = songs
+        AudioManager.sharedInstance.songPosts = songPosts
         
         view.registerNib(UINib(nibName: "SongCollectionCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "Cell")
         view.delegate = self
@@ -63,12 +63,15 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         }
 
         loading = true
+        LocationManager.sharedInstance.originalLocation = location
         NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
         
         ParseAPI.listSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songPosts = task.result["songs"] as! [SongPost]
             self.nextPage = task.result["nextPage"] as! Int
+            self.hasOtherPage = true
             self.setup()
+            AudioManager.sharedInstance.reset()
             self.view.reloadData()
             self.loading = false
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
@@ -83,8 +86,48 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         })
     }
     
+    func loadNextPage() {
+        if !hasOtherPage || loading {
+            return
+        }
+    
+        guard let location = LocationManager.sharedInstance.originalLocation else {
+            return
+        }
+        
+        loading = true
+        
+        ParseAPI.listSongs(location, limit: 30, skip: nextPage).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            self.loading = false
+            guard let songs = task.result["songs"] as? [SongPost] else {
+                return task
+            }
+            
+            if songs.count == 0 {
+                self.hasOtherPage = false
+                return task
+            }
+            
+            self.songPosts += songs
+            self.nextPage = task.result["nextPage"] as! Int
+            self.setup()
+            self.view.reloadData()
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                for songPost in songs {
+                    songPost.song.load()
+                }
+            })
+            
+            return task
+        })
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        scrolling = true
+        
         let paths = view.indexPathsForVisibleItems()
+        let y = scrollView.contentOffset.y
         
         for path in paths {
             if let cell = view.cellForItemAtIndexPath(path) as? SongCollectionCell {
@@ -92,13 +135,24 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             }
         }
         
-        if scrollView.contentOffset.y < -110 && !loading {
+        if y < -100 && !loading {
             reload()
-        } else if scrollView.contentOffset.y < -50 && !loading {
+        } else if y < -50 && !loading {
             NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: "pull to refresh")
         } else {
+            let frameHeight = scrollView.bounds.height
+            let contentHeight = scrollView.contentSize.height
             setDistance(scrollView)
+    
+            if contentHeight > frameHeight && y + frameHeight > contentHeight - 500 {
+                loadNextPage()
+            }
         }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        print("End scrolling")
+        scrolling = false
     }
     
     func setDistance(scrollView: UIScrollView) {
@@ -169,10 +223,10 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! SongCollectionCell
         let song = songPosts[indexPath.item].song
         
-        cell.songButtonView.controller.song = song
+        cell.songButtonView.controller.songPost = songPosts[indexPath.item]
         cell.songTitleLabel.text = song.title
         cell.songArtistLabel.text = song.artist
-        cell.fade(collectionView)
+        cell.fade(view)
         
         return cell
     }

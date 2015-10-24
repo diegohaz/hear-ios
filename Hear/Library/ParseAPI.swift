@@ -31,7 +31,14 @@ class ParseAPI {
         
         let task = PFCloud.callFunctionInBackground("listSongs", withParameters: parameters)
         
-        return task.continueWithSuccessBlock { (task) -> AnyObject! in
+        return task.continueWithBlock({ (task) -> AnyObject! in
+            if task.error != nil {
+                print("Trying again")
+                return BFTask(delay: 2000).continueWithBlock({ (task) -> AnyObject! in
+                    return listSongs(location, limit: limit, skip: skip)
+                })
+            }
+            
             let results = task.result as! NSDictionary
             let songs = translate(songPosts: results["songs"]!)
             
@@ -39,7 +46,7 @@ class ParseAPI {
                 "nextPage": results["nextPage"] as! Int,
                 "songs": songs
             ]
-        }
+        })
     }
     
     private static func translate(object: AnyObject) -> Song {

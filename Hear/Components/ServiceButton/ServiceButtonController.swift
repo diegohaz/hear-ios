@@ -37,6 +37,6 @@ class ServiceButtonController: NSObject {
     
     func currentSongChanged() {
         self.view.appear()
-        self.url = AudioManager.sharedInstance.getCurrentSong()?.url
+        self.url = AudioManager.sharedInstance.currentSong?.url
     }
 }

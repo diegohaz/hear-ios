@@ -16,8 +16,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     var location: CLLocation?
-    
-    private var originalLocation: CLLocation?
+    var originalLocation: CLLocation?
     
     override init() {
         super.init()
@@ -25,7 +24,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

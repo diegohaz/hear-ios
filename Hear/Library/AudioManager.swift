@@ -19,10 +19,11 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     static let sharedInstance = AudioManager()
     
     var player: AVAudioPlayer?
-    var songs = [Song]()
+    var songPosts = [SongPost]()
     
-    private var currentSong: Song?
-    private var currentIndex = 0
+    private(set) var currentSongPost: SongPost?
+    private(set) var currentSong: Song?
+    private(set) var currentIndex = 0
     
     private override init() {
         super.init()
@@ -35,31 +36,35 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    func play(song: Song) -> BFTask {
+    func reset() {
+        self.currentIndex = -1
+    }
+    
+    func play(songPost: SongPost) -> BFTask {
         var index = 0
         
-        for i in 0..<songs.count {
-            if songs[i].id == song.id {
+        for i in 0..<songPosts.count {
+            if songPosts[i].isEqual(songPost) {
                 index = i
                 break
-            } else if i == songs.count - 1 {
-                index = songs.count
-                songs.append(song)
+            } else if i == songPosts.count - 1 {
+                index = songPosts.count
+                songPosts.append(songPost)
             }
         }
         
         return play(index)
     }
     
-    func play(index: Int) -> BFTask {
-        guard songs.indices.contains(index) else {
+    func play(index: Int, song: Song? = nil) -> BFTask {
+        guard songPosts.indices.contains(index) else {
             print("There's no song at index \(index)")
             return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
         }
         
-        let song = songs[index]
+        let songPost = songPosts[index]
+        let song = song ?? songPost.song
         
-        // Lock screen
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
             song.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 guard let image = song.coverImage else {
@@ -81,32 +86,25 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         }
         
         return song.loadPreview(true).continueWithSuccessBlock({ (task) -> AnyObject! in
-            self.player = try? AVAudioPlayer(data: task.result as! NSData)
+            guard let result = task.result as? NSData else {
+                return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
+            }
+            
+            self.player = try? AVAudioPlayer(data: result)
             self.player?.delegate = self
             self.currentIndex = index
             self.currentSong = song
+            self.currentSongPost = songPost
             self.play()
             
             let reachability = Reachability.reachabilityForInternetConnection()
             
-            if reachability?.isReachableViaWWAN() == true && self.currentIndex < self.songs.count - 1 {
-                self.songs[self.currentIndex + 1].loadPreview()
+            if reachability?.isReachableViaWWAN() == true && self.currentIndex < self.songPosts.count - 1 {
+                self.songPosts[self.currentIndex + 1].song.loadPreview()
             }
             
             return task
         })
-    }
-    
-    func getCurrentSong() -> Song? {
-        return currentSong
-    }
-    
-    func current(song: Song) -> Bool {
-        if let currentSong = currentSong {
-            return currentSong.id == song.id
-        } else {
-            return false
-        }
     }
     
     func play() {
@@ -146,19 +144,19 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func playNext() {
-        if currentIndex < songs.count - 1 {
+        if currentIndex < songPosts.count - 1 {
             play(++currentIndex)
         }
     }
     
     func playPrevious() {
-        if (currentIndex > 0) {
+        if currentIndex > 0 {
             play(--currentIndex)
         }
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: self.currentIndex)
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: currentIndex > 0 ? currentIndex : 0)
         
         playNext()
     }

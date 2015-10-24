@@ -9,7 +9,7 @@
 import UIKit
 import Bolts
 
-class Song {
+class Song: NSObject {
     static private var songs = [String: Song]()
     static private var lastSongAdded: Song?
     
@@ -117,6 +117,14 @@ class Song {
             })
             
             return previewTask!
+        }
+    }
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? Song {
+            return object.id == self.id
+        } else {
+            return false
         }
     }
 }
