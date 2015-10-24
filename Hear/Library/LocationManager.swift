@@ -17,12 +17,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var location: CLLocation?
     
+    private var originalLocation: CLLocation?
+    
     override init() {
         super.init()
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 1000
+        locationManager.distanceFilter = 10
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -36,9 +38,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last
+        print("\(location?.coordinate.latitude),\(location?.coordinate.longitude)")
         
-        print(location)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerNotification, object: location)
+        if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 500 {
+            originalLocation = location
+            NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerNotification, object: location)
+        }
     }
 }

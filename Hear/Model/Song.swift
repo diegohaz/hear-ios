@@ -61,7 +61,7 @@ class Song {
             loadCover()
             
             if let lastSongAdded = Song.lastSongAdded {
-                loadPreview(after: lastSongAdded.previewTask!)
+                loadPreview(after: lastSongAdded.previewTask ?? BFTask(delay: 0))
             } else {
                 loadPreview()
             }
