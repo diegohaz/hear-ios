@@ -92,9 +92,9 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             }
         }
         
-        if scrollView.contentOffset.y < -100 && !loading {
+        if scrollView.contentOffset.y < -110 && !loading {
             reload()
-        } else if scrollView.contentOffset.y < -30 && !loading {
+        } else if scrollView.contentOffset.y < -50 && !loading {
             NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: "pull to refresh")
         } else {
             setDistance(scrollView)

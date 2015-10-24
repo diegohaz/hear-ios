@@ -103,7 +103,7 @@ import Bolts
         let circleFrame = playbackGuide.frame
         let circle = UIBezierPath(ovalInRect: circleFrame)
         UIColor(white: 0, alpha: 0.1).setStroke()
-        circle.lineWidth = circleFrame.size.width * 0.04
+        circle.lineWidth = 2
         circle.stroke()
         
         let centerX = circleFrame.origin.x + playbackGuide.bounds.width/2

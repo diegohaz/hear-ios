@@ -30,11 +30,12 @@
                         <constraint firstAttribute="width" constant="64" id="qPm-kY-UhW"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButtonView" customModule="Hear" customModuleProvider="target">
-                    <rect key="frame" x="285" y="24" width="30" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButtonView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="280" y="24" width="40" height="40"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Bpr-tS-Drc"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="nWz-xO-zX7"/>
                     </constraints>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-9j-QA3" customClass="ServiceButtonView" customModule="Hear" customModuleProvider="target">

@@ -12,15 +12,15 @@ public let LoadingNotification = "LocadingNotification"
 public let TitleNotification = "TitleNotification"
 
 @IBDesignable class TitleButtonView: UIButton {
-    var activityIndicatorView: UIActivityIndicatorView!
+    var springIndicator: SpringIndicator!
     var loading: Bool = false {
         didSet {
             if loading {
-                setTitle("   ", forState: .Normal)
-                activityIndicatorView.startAnimating()
+                setTitle("", forState: .Normal)
+                springIndicator.startAnimation()
             } else {
                 setTitle(title, forState: .Normal)
-                activityIndicatorView.stopAnimating()
+                springIndicator.stopAnimation(false)
             }
         }
     }
@@ -29,7 +29,6 @@ public let TitleNotification = "TitleNotification"
         didSet {
             if !loading {
                 setTitle(title, forState: .Normal)
-                sizeToFit()
             }
         }
     }
@@ -50,13 +49,15 @@ public let TitleNotification = "TitleNotification"
         setTitleColor(UIColor.whiteColor(), forState: .Normal)
         titleLabel?.lineBreakMode = NSLineBreakMode.ByClipping
         layer.cornerRadius = bounds.height/2
-        title = "   "
         
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
-        activityIndicatorView.frame.origin.x = bounds.width/2 - activityIndicatorView.bounds.width/2
-        activityIndicatorView.frame.origin.y = bounds.height/2 - activityIndicatorView.bounds.height/2 + 1
+        springIndicator = SpringIndicator(frame: CGRect(x: 0, y: 0, width: 22, height: 22))
+        springIndicator.frame.origin.x = bounds.width/2 - springIndicator.bounds.width/2
+        springIndicator.frame.origin.y = bounds.height/2 - springIndicator.bounds.height/2
+        springIndicator.lineCap = true
+        springIndicator.lineColor = UIColor.whiteColor()
+        springIndicator.lineWidth = 2
         
-        addSubview(activityIndicatorView)
+        addSubview(springIndicator)
         
         loading = true
         
