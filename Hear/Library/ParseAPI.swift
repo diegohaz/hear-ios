@@ -21,12 +21,12 @@ class ParseAPI {
         }
     }
     
-    static func listSongs(location: CLLocation, limit: Int = 30, skip: Int = 0) -> BFTask {
+    static func listSongs(location: CLLocation, limit: Int? = nil, skip: Int? = nil) -> BFTask {
         let parameters: [NSObject: AnyObject] = [
             "lat": location.coordinate.latitude,
             "lng": location.coordinate.longitude,
-            "limit": limit,
-            "skip": skip
+            "limit": limit ?? NSNull(),
+            "skip": skip ?? NSNull()
         ]
         
         let task = PFCloud.callFunctionInBackground("listSongs", withParameters: parameters)
