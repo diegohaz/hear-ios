@@ -57,7 +57,7 @@ class SongButtonController: NSObject {
     
     func audioDidToggle() {
         if let songPost = songPost {
-            if songPost.isEqual(audio.currentSongPost) && audio.player?.playing == true {
+            if songPost.isEqual(audio.currentSongPost) && songPost.song.isEqual(audio.currentSong) && audio.player?.playing == true {
                 view.play()
             } else if songPost.isEqual(audio.currentSongPost) {
                 view.pause()
@@ -76,7 +76,9 @@ class SongButtonController: NSObject {
     }
     
     func audioDidFinish(notification: NSNotification) {
-        let index = notification.object as! Int
+        guard let index = notification.object as? Int where index >= 0 else {
+            return
+        }
         
         if songPost != nil && songPost?.isEqual(audio.songPosts[index]) == true {
             view.pause()
@@ -86,7 +88,7 @@ class SongButtonController: NSObject {
     }
     
     func toggle() {
-        if songPost != nil && songPost!.isEqual(audio.currentSongPost) {
+        if songPost != nil && songPost!.isEqual(audio.currentSongPost) && songPost!.song.isEqual(audio.currentSong) {
             audio.toggle()
         } else if songPost == nil && song != nil && song!.isEqual(audio.currentSong) {
             audio.toggle()
@@ -96,14 +98,20 @@ class SongButtonController: NSObject {
             }
             
             BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
-                return self.audio.play(self.songPost!)
+                if let songPost = self.songPost {
+                    return self.audio.play(songPost: songPost)
+                } else if let song = self.song {
+                    return self.audio.play(song: song)
+                }
+                
+                return task
             })
         }
     }
     
     func updateTime() {
-        if (songPost != nil && songPost!.isEqual(audio.currentSongPost) && audio.player != nil)
-            || (songPost == nil && song != nil && song!.isEqual(audio.currentSong) && audio.player != nil) {
+        if (songPost != nil && songPost!.isEqual(audio.currentSongPost) && songPost!.song.isEqual(audio.currentSong) && audio.player?.playing == true)
+            || (songPost == nil && song != nil && song!.isEqual(audio.currentSong) && audio.player?.playing == true) {
             view?.timePercent = CGFloat(audio.player!.currentTime / audio.player!.duration)
         } else if view?.timePercent != 0 {
             view?.timePercent = 0

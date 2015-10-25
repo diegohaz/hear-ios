@@ -13,6 +13,29 @@ import Bolts
 
 class ParseAPI {
     
+    static func postSong(song: Song, location: CLLocation) -> BFTask {
+        let parameters: [NSObject: AnyObject] = [
+            "id": song.id,
+            "lat": location.coordinate.latitude,
+            "lng": location.coordinate.longitude
+        ]
+        
+        let task = PFCloud.callFunctionInBackground("postSong", withParameters: parameters)
+        
+        return task.continueWithBlock({ (task) -> AnyObject! in
+            if task.error != nil {
+                print("Trying again")
+                return BFTask(delay: 2000).continueWithBlock({ (task) -> AnyObject! in
+                    return postSong(song, location: location)
+                })
+            }
+            
+            let songPost: SongPost = translate(task.result)
+            
+            return songPost
+        })
+    }
+    
     static func searchSong(string: String) -> BFTask {
         let task = PFCloud.callFunctionInBackground("searchSong", withParameters: ["string": string])
         

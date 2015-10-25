@@ -20,6 +20,5 @@ class InputButtonController: NSObject {
     
     func viewDidTouch() {
         view.bounce()
-        
     }
 }

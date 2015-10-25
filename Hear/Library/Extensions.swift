@@ -18,6 +18,10 @@ extension UIColor {
         return UIColor(red: 33/255, green: 150/255, blue: 243/255, alpha: 1)
     }
     
+    static func hearGrayColor() -> UIColor {
+        return UIColor(white: 0, alpha: 0.1)
+    }
+    
 }
 
 extension UIView {

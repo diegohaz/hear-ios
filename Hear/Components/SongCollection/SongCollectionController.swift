@@ -26,6 +26,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: LocationManagerNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: PostSongNotification, object: nil)
     }
     
     func currentSongChanged(notification: NSNotification) {
@@ -40,7 +41,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         frame?.origin.y -= layout.sectionInset.top
         frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
-        view.scrollRectToVisible(frame ?? view.frame, animated: true)
+        view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
     }
     
     func locationChanged(notification: NSNotification) {
@@ -50,9 +51,10 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     private func setup() {
         AudioManager.sharedInstance.songPosts = songPosts
         
-        view.registerNib(UINib(nibName: "SongCollectionCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "Cell")
-        view.delegate = self
-        view.dataSource = self
+        self.view.registerNib(UINib(nibName: "SongCollectionCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "Cell")
+        
+        self.view.delegate = self
+        self.view.dataSource = self
         
         setDistance(view)
     }
@@ -144,14 +146,17 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             let contentHeight = scrollView.contentSize.height
             setDistance(scrollView)
     
-            if contentHeight > frameHeight && y + frameHeight > contentHeight - 500 {
+            if contentHeight > frameHeight && y + frameHeight > contentHeight - 700 {
                 loadNextPage()
             }
         }
     }
     
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        scrolling = false
+    }
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        print("End scrolling")
         scrolling = false
     }
     
@@ -159,7 +164,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         var meters: CGFloat = 0
         
         if scrollView.contentOffset.y < 0 {
-            meters = self.songPosts[0].distance
+            meters = songPosts.count > 0 ? songPosts[0].distance : 0
         } else {
             var songs = self.songPosts
             

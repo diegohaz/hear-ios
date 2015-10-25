@@ -40,7 +40,11 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         self.currentIndex = -1
     }
     
-    func play(songPost: SongPost) -> BFTask {
+    func play(song song: Song) -> BFTask {
+        return play(currentIndex > 0 ? currentIndex : 0, song: song)
+    }
+    
+    func play(songPost songPost: SongPost) -> BFTask {
         var index = 0
         
         for i in 0..<songPosts.count {
@@ -62,6 +66,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
         }
         
+        let reachability = Reachability.reachabilityForInternetConnection()
         let songPost = songPosts[index]
         let song = song ?? songPost.song
         
@@ -85,7 +90,9 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             })
         }
         
-        return song.loadPreview(true).continueWithSuccessBlock({ (task) -> AnyObject! in
+        return BFTask(delay: 0).continueWithExecutor(BFExecutor.defaultExecutor(), withBlock: { (task) -> AnyObject! in
+            return song.loadPreview(reachability?.isReachableViaWiFi() == true ? true : false)
+        }).continueWithSuccessBlock { (task) -> AnyObject! in
             guard let result = task.result as? NSData else {
                 return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
             }
@@ -96,15 +103,13 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             self.currentSong = song
             self.currentSongPost = songPost
             self.play()
-            
-            let reachability = Reachability.reachabilityForInternetConnection()
-            
+
             if reachability?.isReachableViaWWAN() == true && self.currentIndex < self.songPosts.count - 1 {
                 self.songPosts[self.currentIndex + 1].song.loadPreview()
             }
             
             return task
-        })
+        }
     }
     
     func play() {
@@ -143,6 +148,13 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
     
+    func stop() {
+        pause()
+        player = nil
+        currentSongPost = nil
+        currentSong = nil
+    }
+    
     func playNext() {
         if currentIndex < songPosts.count - 1 {
             play(++currentIndex)
@@ -158,6 +170,8 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: currentIndex > 0 ? currentIndex : 0)
         
-        playNext()
+        if currentSongPost?.song.isEqual(currentSong) == true {
+            playNext()
+        }
     }
 }

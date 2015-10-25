@@ -11,17 +11,25 @@ import UIKit
 class HomeScreenController: UIViewController {
     
     static let sharedInstance = HomeScreenController()
+    @IBOutlet weak var inputButtonView: InputButtonView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         view = UINib(nibName: "HomeScreenView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
+        
+        inputButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "inputButtonViewDidTouch"))
+        
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return [.Portrait, .PortraitUpsideDown]
     }
 
-
+    func inputButtonViewDidTouch() {
+        AudioManager.sharedInstance.stop()
+        presentViewController(SearchSongScreenController.sharedInstance, animated: true, completion: nil)
+    }
 }
 

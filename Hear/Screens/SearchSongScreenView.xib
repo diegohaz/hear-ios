@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchSongScreenController" customModule="Hear" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="V9v-z0-qZl" id="dgn-qc-CCs"/>
+                <outlet property="postButton" destination="bUU-Xx-N9n" id="Cng-pE-S69"/>
+                <outlet property="searchSongTextField" destination="ykE-sj-oBf" id="TOO-uV-Qsw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SOz-Lo-4nH" customClass="SearchSongCollectionView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="68" width="600" height="532"/>
+                    <animations/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mMB-OT-55r">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKc-gA-tov" userLabel="TitleBar">
+                    <rect key="frame" x="0.0" y="20" width="600" height="48"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-sj-oBf" customClass="SearchSongTextFieldView" customModule="Hear" customModuleProvider="target">
+                            <rect key="frame" x="72" y="4" width="473" height="40"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V9v-z0-qZl">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="48"/>
+                            <animations/>
+                            <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.7843137255" green="0.0" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bUU-Xx-N9n">
+                            <rect key="frame" x="545" y="0.0" width="55" height="48"/>
+                            <animations/>
+                            <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                            <state key="normal" title="Post">
+                                <color key="titleColor" red="0.7843137255" green="0.0" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="7uC-RO-qOb"/>
+                        <constraint firstItem="V9v-z0-qZl" firstAttribute="leading" secondItem="rKc-gA-tov" secondAttribute="leading" id="Cno-Id-ukT"/>
+                        <constraint firstItem="bUU-Xx-N9n" firstAttribute="leading" secondItem="ykE-sj-oBf" secondAttribute="trailing" id="PyL-rq-E21"/>
+                        <constraint firstItem="V9v-z0-qZl" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" id="T4P-eo-alg"/>
+                        <constraint firstAttribute="trailing" secondItem="bUU-Xx-N9n" secondAttribute="trailing" id="fP3-VD-NXr"/>
+                        <constraint firstItem="ykE-sj-oBf" firstAttribute="leading" secondItem="V9v-z0-qZl" secondAttribute="trailing" id="ls0-kY-J0X"/>
+                        <constraint firstAttribute="bottom" secondItem="ykE-sj-oBf" secondAttribute="bottom" constant="4" id="m61-Ei-v6T"/>
+                        <constraint firstAttribute="bottom" secondItem="V9v-z0-qZl" secondAttribute="bottom" id="nAG-8E-vVX"/>
+                        <constraint firstItem="ykE-sj-oBf" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" constant="4" id="rhZ-sH-bXV"/>
+                        <constraint firstAttribute="bottom" secondItem="bUU-Xx-N9n" secondAttribute="bottom" id="wk4-nT-pMc"/>
+                        <constraint firstItem="bUU-Xx-N9n" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" id="xO8-Wc-37l"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rKc-gA-tov" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3J7-2n-6YZ"/>
+                <constraint firstItem="SOz-Lo-4nH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4xe-Vt-yUz"/>
+                <constraint firstAttribute="trailing" secondItem="rKc-gA-tov" secondAttribute="trailing" id="6Ig-ZI-r0G"/>
+                <constraint firstItem="rKc-gA-tov" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="SAY-V4-Zkk"/>
+                <constraint firstAttribute="bottom" secondItem="SOz-Lo-4nH" secondAttribute="bottom" id="fOp-h9-cvR"/>
+                <constraint firstItem="SOz-Lo-4nH" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="bottom" id="hea-ac-IyN"/>
+                <constraint firstAttribute="trailing" secondItem="SOz-Lo-4nH" secondAttribute="trailing" id="ozI-rf-dgT"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

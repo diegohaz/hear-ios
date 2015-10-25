@@ -20,6 +20,7 @@ class ServiceButtonController: NSObject {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged", name: AudioManagerPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish", name: AudioManagerPauseNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish", name: AudioManagerFinishNotification, object: nil)
     }
     

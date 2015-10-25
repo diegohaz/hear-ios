@@ -14,6 +14,7 @@ import Bolts
     var controller: SongButtonController!
     @IBOutlet weak var newStoriesIndicator: UIView!
     @IBOutlet weak var songRoundView: UIView!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var songImageView: UIImageView!
     @IBOutlet weak var playbackGuide: UIView!
     @IBOutlet weak var pauseView: UIImageView!
@@ -99,6 +100,7 @@ import Bolts
     
     override func drawRect(rect: CGRect) {
         songImageView.layer.cornerRadius = songImageView.bounds.width/2
+        backgroundView.layer.cornerRadius = backgroundView.bounds.width/2
         
         let circleFrame = playbackGuide.frame
         let circle = UIBezierPath(ovalInRect: circleFrame)
