@@ -37,7 +37,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last
-        print("\(location?.coordinate.latitude),\(location?.coordinate.longitude)")
+        print("\(location!.coordinate.latitude),\(location!.coordinate.longitude)")
         
         if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 500 {
             originalLocation = location

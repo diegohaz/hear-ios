@@ -94,6 +94,9 @@
 		376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		376C07E01BBA83F100AD1DB1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		37769A261BDCA59800FC01DE /* SearchSongTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongTextFieldController.swift; sourceTree = "<group>"; };
+		37769A2C1BDCDB4700FC01DE /* Nova Iguaçu to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nova Iguaçu to PUC-Rio.gpx"; sourceTree = "<group>"; };
+		37769A2D1BDCDB8F00FC01DE /* PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "PUC-Rio.gpx"; sourceTree = "<group>"; };
+		37769A2E1BDCDC7C00FC01DE /* Botafogo to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Botafogo to PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 			children = (
 				3731FB1D1BB5A04200294F70 /* Hear */,
 				3731FB1C1BB5A04200294F70 /* Products */,
+				37769A2B1BDCDB3100FC01DE /* Locations */,
 				849F2F3F135A96E2F8B08A52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -245,6 +249,16 @@
 				372CC1B41BDB3CE9008AF7C5 /* SongPost.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		37769A2B1BDCDB3100FC01DE /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				37769A2C1BDCDB4700FC01DE /* Nova Iguaçu to PUC-Rio.gpx */,
+				37769A2E1BDCDC7C00FC01DE /* Botafogo to PUC-Rio.gpx */,
+				37769A2D1BDCDB8F00FC01DE /* PUC-Rio.gpx */,
+			);
+			path = Locations;
 			sourceTree = "<group>";
 		};
 		37A6E11A1BCB3EE0000C75C1 /* TitleButton */ = {
