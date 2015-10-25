@@ -113,9 +113,11 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func play() {
+        
         player?.play()
         
         BFExecutor.mainThreadExecutor().execute { () -> Void in
+            self.currentIndex = self.currentIndex > 0 ? self.currentIndex : 0
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerPlayNotification, object: self.currentIndex)
         }
         
