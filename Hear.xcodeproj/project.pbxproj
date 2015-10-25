@@ -94,9 +94,9 @@
 		376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		376C07E01BBA83F100AD1DB1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		37769A261BDCA59800FC01DE /* SearchSongTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongTextFieldController.swift; sourceTree = "<group>"; };
-		37769A2C1BDCDB4700FC01DE /* Nova Iguaçu to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nova Iguaçu to PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37769A2D1BDCDB8F00FC01DE /* PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37769A2E1BDCDC7C00FC01DE /* Botafogo to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Botafogo to PUC-Rio.gpx"; sourceTree = "<group>"; };
+		37769A2F1BDCDEFA00FC01DE /* Nova Iguacu to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nova Iguacu to PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		37769A2B1BDCDB3100FC01DE /* Locations */ = {
 			isa = PBXGroup;
 			children = (
-				37769A2C1BDCDB4700FC01DE /* Nova Iguaçu to PUC-Rio.gpx */,
+				37769A2F1BDCDEFA00FC01DE /* Nova Iguacu to PUC-Rio.gpx */,
 				37769A2E1BDCDC7C00FC01DE /* Botafogo to PUC-Rio.gpx */,
 				37769A2D1BDCDB8F00FC01DE /* PUC-Rio.gpx */,
 			);
