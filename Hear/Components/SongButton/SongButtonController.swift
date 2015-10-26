@@ -58,19 +58,19 @@ class SongButtonController: NSObject {
     func audioDidToggle() {
         if let songPost = songPost {
             if songPost.isEqual(audio.currentSongPost) && songPost.song.isEqual(audio.currentSong) && audio.player?.playing == true {
-                view.play()
+                view?.play()
             } else if songPost.isEqual(audio.currentSongPost) {
-                view.pause()
+                view?.pause()
             } else if view?.pauseView.transform.a > 0.1 || view?.springIndicator.transform.a > 0.1 {
-                view.pause()
+                view?.pause()
             }
         } else if let song = song {
             if song.isEqual(audio.currentSong) == true && audio.player?.playing == true {
-                view.play()
+                view?.play()
             } else if song.isEqual(audio.currentSong) {
-                view.pause()
+                view?.pause()
             } else if view?.pauseView.transform.a > 0.1 || view?.springIndicator.transform.a > 0.1 {
-                view.pause()
+                view?.pause()
             }
         }
     }
@@ -81,9 +81,9 @@ class SongButtonController: NSObject {
         }
         
         if songPost != nil && songPost?.isEqual(audio.songPosts[index]) == true {
-            view.pause()
+            view?.pause()
         } else if songPost == nil && song != nil && song!.isEqual(audio.currentSong) {
-            view.pause()
+            view?.pause()
         }
     }
     
@@ -94,7 +94,7 @@ class SongButtonController: NSObject {
             audio.toggle()
         } else {
             if song?.previewData == nil {
-                view.load()
+                view?.load()
             }
             
             BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
