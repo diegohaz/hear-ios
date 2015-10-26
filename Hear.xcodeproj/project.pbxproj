@@ -38,6 +38,9 @@
 		376998831BCB0EDD00AEB2E0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */; };
 		376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3731FB271BB5A04200294F70 /* LaunchScreen.storyboard */; };
 		37769A271BDCA59800FC01DE /* SearchSongTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A261BDCA59800FC01DE /* SearchSongTextFieldController.swift */; };
+		37769A321BDDE92B00FC01DE /* TutorialScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A301BDDE92B00FC01DE /* TutorialScreenController.swift */; };
+		37769A331BDDE92B00FC01DE /* TutorialScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37769A311BDDE92B00FC01DE /* TutorialScreenView.xib */; };
+		37769A391BDE1A9300FC01DE /* GenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A381BDE1A9300FC01DE /* GenericButton.swift */; };
 		37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */; };
 		37A6E11E1BCB8696000C75C1 /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */; };
 		37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */; };
@@ -97,6 +100,9 @@
 		37769A2D1BDCDB8F00FC01DE /* PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37769A2E1BDCDC7C00FC01DE /* Botafogo to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Botafogo to PUC-Rio.gpx"; sourceTree = "<group>"; };
 		37769A2F1BDCDEFA00FC01DE /* Nova Iguacu to PUC-Rio.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nova Iguacu to PUC-Rio.gpx"; sourceTree = "<group>"; };
+		37769A301BDDE92B00FC01DE /* TutorialScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScreenController.swift; sourceTree = "<group>"; };
+		37769A311BDDE92B00FC01DE /* TutorialScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialScreenView.xib; sourceTree = "<group>"; };
+		37769A381BDE1A9300FC01DE /* GenericButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericButton.swift; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E11D1BCB8696000C75C1 /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 		3731FB321BB5A27100294F70 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				37769A371BDE1A7D00FC01DE /* GenericButton */,
 				37ED40A91BD892CA00CF8C5E /* InputButton */,
 				372CC1B11BDB068D008AF7C5 /* SpringIndicator */,
 				37ED40B71BD8A33200CF8C5E /* ServiceButton */,
@@ -261,6 +268,14 @@
 			path = Locations;
 			sourceTree = "<group>";
 		};
+		37769A371BDE1A7D00FC01DE /* GenericButton */ = {
+			isa = PBXGroup;
+			children = (
+				37769A381BDE1A9300FC01DE /* GenericButton.swift */,
+			);
+			path = GenericButton;
+			sourceTree = "<group>";
+		};
 		37A6E11A1BCB3EE0000C75C1 /* TitleButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +291,8 @@
 				37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */,
 				374345E11BDC8D1100E50C94 /* SearchSongScreenController.swift */,
 				374345E31BDC8D5300E50C94 /* SearchSongScreenView.xib */,
+				37769A301BDDE92B00FC01DE /* TutorialScreenController.swift */,
+				37769A311BDDE92B00FC01DE /* TutorialScreenView.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -395,6 +412,7 @@
 				372CC1B71BDB47B0008AF7C5 /* SongCollectionCell.xib in Resources */,
 				376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */,
 				3731FB561BB89B2300294F70 /* SongButtonView.xib in Resources */,
+				37769A331BDDE92B00FC01DE /* TutorialScreenView.xib in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
 				374345E41BDC8D5300E50C94 /* SearchSongScreenView.xib in Resources */,
 			);
@@ -410,6 +428,7 @@
 				372CC1B31BDB068D008AF7C5 /* SpringIndicator.swift in Sources */,
 				3731FB531BB7DE6E00294F70 /* SongButtonController.swift in Sources */,
 				37A6E1251BCB9088000C75C1 /* LocationManager.swift in Sources */,
+				37769A321BDDE92B00FC01DE /* TutorialScreenController.swift in Sources */,
 				37ED40B51BD894A000CF8C5E /* SongCollectionLayout.swift in Sources */,
 				37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */,
 				374345E71BDC981B00E50C94 /* SearchSongTextFieldView.swift in Sources */,
@@ -427,6 +446,7 @@
 				3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */,
 				37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */,
 				37DC9EBD1BC7D14600F7DC99 /* AudioManager.swift in Sources */,
+				37769A391BDE1A9300FC01DE /* GenericButton.swift in Sources */,
 				37ED40B31BD894A000CF8C5E /* SongCollectionCell.swift in Sources */,
 				3751ADC91BBBD15C00B6B82C /* Functions.swift in Sources */,
 				37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */,

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialScreenController" customModule="Hear" customModuleProvider="target">
+            <connections>
+                <outlet property="inputButton" destination="kxA-4X-rNL" id="B6A-RC-e3j"/>
+                <outlet property="locationButton" destination="BdG-Jb-EvU" id="Zlx-nf-Riw"/>
+                <outlet property="locationLabel" destination="YR3-56-LMZ" id="0kP-0u-enX"/>
+                <outlet property="songLabel" destination="fSc-yZ-FhJ" id="zCg-Tw-h4C"/>
+                <outlet property="songView" destination="Exw-Fr-i2z" id="RaW-TI-3G9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="welcomeLabel" destination="7il-xD-jPT" id="Zts-If-HOD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxA-4X-rNL" customClass="InputButtonView" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="268" y="528" width="64" height="64"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="21f-0N-Pu0"/>
+                        <constraint firstAttribute="height" constant="64" id="hbg-7y-4M5"/>
+                    </constraints>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What if you could leave music at the exact location you are for others to hear it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-xD-jPT">
+                    <rect key="frame" x="165" y="265" width="270" height="71"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="270" id="ze1-2X-Oz8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great choice!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-yZ-FhJ">
+                    <rect key="frame" x="239" y="288" width="123" height="24"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What if you could hear music people left around you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR3-56-LMZ">
+                    <rect key="frame" x="165" y="276" width="270" height="47.5"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="270" id="SmV-1y-WDi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdG-Jb-EvU" customClass="GenericButton" customModule="Hear" customModuleProvider="target">
+                    <rect key="frame" x="204" y="339" width="191" height="30"/>
+                    <animations/>
+                    <state key="normal" title="ALLOW LOCATION ACCESS"/>
+                </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Exw-Fr-i2z">
+                    <rect key="frame" x="252" y="64" width="96" height="136"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="96" id="XMC-Nf-FYA"/>
+                        <constraint firstAttribute="height" constant="136" id="ipw-Yi-7Sr"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Exw-Fr-i2z" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="4E8-bc-1ax"/>
+                <constraint firstItem="7il-xD-jPT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="B6e-z1-Fty"/>
+                <constraint firstItem="BdG-Jb-EvU" firstAttribute="centerX" secondItem="YR3-56-LMZ" secondAttribute="centerX" id="CDF-57-AVG"/>
+                <constraint firstItem="fSc-yZ-FhJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EnB-Ft-icj"/>
+                <constraint firstAttribute="bottom" secondItem="kxA-4X-rNL" secondAttribute="bottom" constant="8" id="Pha-DV-Kme"/>
+                <constraint firstItem="BdG-Jb-EvU" firstAttribute="top" secondItem="YR3-56-LMZ" secondAttribute="bottom" constant="16" id="X6G-LD-ao5"/>
+                <constraint firstItem="7il-xD-jPT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cXJ-Gf-N2a"/>
+                <constraint firstItem="YR3-56-LMZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dXJ-Dq-Yhx"/>
+                <constraint firstItem="fSc-yZ-FhJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="jL4-Hw-BkY"/>
+                <constraint firstItem="Exw-Fr-i2z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="log-UU-fVy"/>
+                <constraint firstItem="YR3-56-LMZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="s2w-Xt-Esb"/>
+                <constraint firstItem="kxA-4X-rNL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yPU-D1-5HO"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

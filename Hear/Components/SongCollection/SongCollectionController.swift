@@ -30,13 +30,14 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     func currentSongChanged(notification: NSNotification) {
-        if scrolling {
+        if scrolling || songPosts.count == 0 {
             return
         }
         
         let index = notification.object as! Int
+        let indexPath = NSIndexPath(forItem: index, inSection: 0)
         let layout = view.collectionViewLayout as! SongCollectionLayout
-        var frame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0))?.frame
+        var frame = view.layoutAttributesForItemAtIndexPath(indexPath)?.frame
         
         frame?.origin.y -= layout.sectionInset.top
         frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom

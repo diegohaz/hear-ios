@@ -24,12 +24,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
+    }
+    
+    func request() {
         locationManager.requestAlwaysAuthorization()
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.NotDetermined {
-            locationManager.requestWhenInUseAuthorization()
+            HomeScreenController.sharedInstance.presentViewController(TutorialScreenController(), animated: false, completion: nil)
         } else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
         }

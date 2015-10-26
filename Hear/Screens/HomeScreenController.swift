@@ -11,7 +11,7 @@ import UIKit
 class HomeScreenController: UIViewController {
     
     static let sharedInstance = HomeScreenController()
-    @IBOutlet weak var inputButtonView: InputButtonView!
+    @IBOutlet weak var inputButton: InputButtonView!
     
 
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ class HomeScreenController: UIViewController {
         
         view = UINib(nibName: "HomeScreenView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
         
-        inputButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "inputButtonViewDidTouch"))
+        inputButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "inputButtonDidTouch"))
         
     }
     
@@ -27,7 +27,7 @@ class HomeScreenController: UIViewController {
         return [.Portrait, .PortraitUpsideDown]
     }
 
-    func inputButtonViewDidTouch() {
+    func inputButtonDidTouch() {
         AudioManager.sharedInstance.stop()
         presentViewController(SearchSongScreenController.sharedInstance, animated: true, completion: nil)
     }

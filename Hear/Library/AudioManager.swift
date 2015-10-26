@@ -61,14 +61,9 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func play(index: Int, song: Song? = nil) -> BFTask {
-        guard songPosts.indices.contains(index) else {
-            print("There's no song at index \(index)")
-            return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
-        }
-        
         let reachability = Reachability.reachabilityForInternetConnection()
-        let songPost = songPosts[index]
-        let song = song ?? songPost.song
+        let songPost: SongPost? = songPosts.indices.contains(index) ? songPosts[index] : nil
+        let song = song ?? songPost!.song
         
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
             song.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in

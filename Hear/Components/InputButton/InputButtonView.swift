@@ -11,6 +11,14 @@ import UIKit
 @IBDesignable class InputButtonView: UIButton {
     var controller: InputButtonController!
     
+    @IBInspectable var pulsing: Bool = false {
+        didSet {
+            if pulsing {
+                startPulsing()
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -23,6 +31,20 @@ import UIKit
     
     private func setup() {
         controller = InputButtonController(view: self)
+    }
+    
+    func startPulsing() {
+        UIView.animateWithDuration(0.2, delay: 1, options: [.AllowUserInteraction, .CurveEaseInOut], animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }, completion: { (finished) -> Void in
+                UIView.animateWithDuration(0.1, delay: 0, options: [.AllowUserInteraction, .CurveEaseInOut], animations: { () -> Void in
+                    self.transform = CGAffineTransformMakeScale(1, 1)
+                    
+                    if self.pulsing {
+                        self.startPulsing()
+                    }
+                    }, completion: nil)
+        })
     }
     
     override func drawRect(rect: CGRect) {

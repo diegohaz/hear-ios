@@ -9,6 +9,7 @@
 import UIKit
 import Bolts
 
+let LazyPostSongNotification = "LazyPostSongNotification"
 let PostSongNotification = "PostSongNotification"
 
 class SearchSongScreenController: UIViewController {
@@ -17,6 +18,8 @@ class SearchSongScreenController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var searchSongTextField: SearchSongTextFieldView!
+    
+    var waitingForLocation = false
     
     var selectedSong: Song? {
         didSet {
@@ -41,6 +44,7 @@ class SearchSongScreenController: UIViewController {
         postButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "postButtonDidTouch"))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidSelect:", name: SearchSongCollectionDidSelectNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged", name: LocationManagerNotification, object: nil)
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -57,11 +61,21 @@ class SearchSongScreenController: UIViewController {
             return
         }
         
+        guard let location = LocationManager.sharedInstance.location else {
+            waitingForLocation = true
+            cancelButtonDidTouch()
+            NSNotificationCenter.defaultCenter().postNotificationName(LazyPostSongNotification, object: selectedSong)
+            return
+        }
+        
         selectedSong = nil
-        cancelButtonDidTouch()
         NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
         
-        ParseAPI.postSong(song, location: LocationManager.sharedInstance.location!).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+        if !waitingForLocation {
+            cancelButtonDidTouch()
+        }
+        
+        ParseAPI.postSong(song, location: location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             guard let song = task.result as? SongPost else {
                 return task
             }
@@ -79,6 +93,11 @@ class SearchSongScreenController: UIViewController {
         } else {
             selectedSong = nil
         }
+    }
+    
+    func locationChanged() {
+        postButtonDidTouch()
+        waitingForLocation = false
     }
 
 }
