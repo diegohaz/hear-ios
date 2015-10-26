@@ -99,7 +99,7 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             self.currentSongPost = songPost
             self.play()
 
-            if reachability?.isReachableViaWWAN() == true && self.currentIndex < self.songPosts.count - 1 {
+            if self.currentIndex < self.songPosts.count - 1 {
                 self.songPosts[self.currentIndex + 1].song.loadPreview()
             }
             

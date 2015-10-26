@@ -113,14 +113,14 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             
             self.songPosts += songs
             self.nextPage = task.result["nextPage"] as! Int
-            self.setup()
+            AudioManager.sharedInstance.songPosts = self.songPosts
             self.view.reloadData()
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                for songPost in songs {
-                    songPost.song.load()
-                }
-            })
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+//                for songPost in songs {
+//                    songPost.song.load()
+//                }
+//            })
             
             return task
         })
