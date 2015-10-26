@@ -79,11 +79,11 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             self.loading = false
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), { () -> Void in
-                for songPost in self.songPosts {
-                    songPost.song.load()
-                }
-            })
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), { () -> Void in
+//                for songPost in self.songPosts {
+//                    songPost.song.load()
+//                }
+//            })
             
             return task
         })
