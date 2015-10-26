@@ -31,7 +31,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.NotDetermined {
+        if status == .NotDetermined || status == .Restricted || status == .Denied  {
             HomeScreenController.sharedInstance.presentViewController(TutorialScreenController(), animated: false, completion: nil)
         } else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
