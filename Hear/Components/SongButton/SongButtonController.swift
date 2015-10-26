@@ -22,7 +22,9 @@ class SongButtonController: NSObject {
         didSet {
             let song = self.song
             
-            song?.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            BFTask(delay: 0).continueWithBlock { (task) -> AnyObject! in
+                return song?.loadCover()
+            }.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 guard song?.id == self.song?.id else {
                     return task
                 }

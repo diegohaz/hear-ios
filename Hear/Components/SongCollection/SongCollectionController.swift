@@ -79,7 +79,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             self.loading = false
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), { () -> Void in
                 for songPost in self.songPosts {
                     songPost.song.load()
                 }
@@ -100,7 +100,9 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         loading = true
         
-        ParseAPI.listSongs(location, limit: 30, skip: nextPage).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+        BFTask(delay: 0).continueWithBlock { (task) -> AnyObject! in
+            return ParseAPI.listSongs(location, limit: 30, skip: self.nextPage)
+        }.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.loading = false
             guard let songs = task.result["songs"] as? [SongPost] else {
                 return task

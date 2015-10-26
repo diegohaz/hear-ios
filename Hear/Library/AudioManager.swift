@@ -61,12 +61,13 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func play(index: Int, song: Song? = nil) -> BFTask {
-        let reachability = Reachability.reachabilityForInternetConnection()
         let songPost: SongPost? = songPosts.indices.contains(index) ? songPosts[index] : nil
         let song = song ?? songPost!.song
         
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-            song.loadCover().continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
+                return song.loadCover()
+            }).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 guard let image = song.coverImage else {
                     print("Image not found for \(song.title)")
                     return task
@@ -85,7 +86,8 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
             })
         }
         
-        return BFTask(delay: 0).continueWithExecutor(BFExecutor.defaultExecutor(), withBlock: { (task) -> AnyObject! in
+        return BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
+            let reachability = Reachability.reachabilityForInternetConnection()
             return song.loadPreview(reachability?.isReachableViaWiFi() == true ? true : false)
         }).continueWithSuccessBlock { (task) -> AnyObject! in
             guard let result = task.result as? NSData else {

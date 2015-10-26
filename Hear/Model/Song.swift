@@ -81,8 +81,24 @@ class Song: NSObject {
             print("Loading cover for \(title)")
             coverTask = BFTask(delay: 0).continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 print("Retrieving cover for \(self.title)")
-                guard let data = NSData(contentsOfURL: self.coverUrl!) else {
-                    return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
+                
+                let otherTask = BFTaskCompletionSource()
+                
+                let request = NSMutableURLRequest(URL: self.coverUrl!)
+                
+                NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
+                    guard let data = data else {
+                        otherTask.setError(NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
+                        return
+                    }
+                    
+                    otherTask.setResult(data)
+                }).resume()
+                
+                return otherTask.task
+            }).continueWithSuccessBlock({ (task) -> AnyObject! in
+                guard let data = task.result as? NSData else {
+                    return nil
                 }
                 
                 self.coverImage = UIImage(data: data)!
@@ -109,11 +125,22 @@ class Song: NSObject {
             return previewTask!
         } else {
             print("Loading preview for \(title)")
-            previewTask = task.continueWithExecutor(BFExecutor.defaultExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                self.previewData = NSData(contentsOfURL: self.previewUrl)
+            previewTask = task.continueWithBlock({ (task) -> AnyObject! in
                 print("Retrieving preview for \(self.title)")
+                let otherTask = BFTaskCompletionSource()
                 
-                return self.previewData
+                let request = NSMutableURLRequest(URL: self.previewUrl)
+                
+                NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
+                    guard let data = data else {
+                        return
+                    }
+                    
+                    self.previewData = data
+                    otherTask.setResult(data)
+                }).resume()
+                
+                return otherTask.task
             })
             
             return previewTask!
