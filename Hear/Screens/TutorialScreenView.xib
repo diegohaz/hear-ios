@@ -29,8 +29,8 @@
                         <constraint firstAttribute="height" constant="64" id="hbg-7y-4M5"/>
                     </constraints>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What if you could leave music at the exact location you are for others to hear it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-xD-jPT">
-                    <rect key="frame" x="165" y="265" width="270" height="71"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the disc and choose your favorite song" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-xD-jPT">
+                    <rect key="frame" x="165" y="277" width="270" height="47.5"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="270" id="ze1-2X-Oz8"/>

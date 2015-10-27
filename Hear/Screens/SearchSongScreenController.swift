@@ -52,7 +52,7 @@ class SearchSongScreenController: UIViewController {
     }
     
     func cancelButtonDidTouch() {
-        AudioManager.sharedInstance.stop()
+        //AudioManager.sharedInstance.stop()
         dismissViewControllerAnimated(true, completion: nil)
     }
     

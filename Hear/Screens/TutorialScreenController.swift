@@ -39,19 +39,6 @@ class TutorialScreenController: UIViewController {
         if song == nil {
             welcomeLabel.rise()
             inputButton.pulsing = true
-        } else {
-            welcomeLabel.hidden = true
-            inputButton.pulsing = false
-            
-            songView.appear(completion: { (finished) -> Void in
-                self.songLabel.rise(completion: { (finished) -> Void in
-                    self.songLabel.disappear(3, completion: { (finished) -> Void in
-                        self.locationLabel.rise(completion: { (finished) -> Void in
-                            self.locationButton.appear()
-                        })
-                    })
-                })
-            })
         }
     }
     
@@ -66,6 +53,22 @@ class TutorialScreenController: UIViewController {
         songButton?.songArtistLabel.text = song!.artist
         
         songButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "songButtonDidTouch"))
+        
+        songView.hidden = true
+        locationLabel.hidden = true
+        locationButton.hidden = true
+        welcomeLabel.hidden = true
+        inputButton.pulsing = false
+        
+        songView.appear(completion: { (finished) -> Void in
+            self.songLabel.rise(completion: { (finished) -> Void in
+                self.songLabel.disappear(3, completion: { (finished) -> Void in
+                    self.locationLabel.rise(completion: { (finished) -> Void in
+                        self.locationButton.appear()
+                    })
+                })
+            })
+        })
     }
     
     func songButtonDidTouch() {
