@@ -63,8 +63,8 @@ class SearchSongScreenController: UIViewController {
         
         guard let location = LocationManager.sharedInstance.location else {
             waitingForLocation = true
-            cancelButtonDidTouch()
             NSNotificationCenter.defaultCenter().postNotificationName(LazyPostSongNotification, object: selectedSong)
+            cancelButtonDidTouch()
             return
         }
         
