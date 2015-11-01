@@ -40,7 +40,6 @@
 		37769A391BDE1A9300FC01DE /* GenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A381BDE1A9300FC01DE /* GenericButton.swift */; };
 		37769A411BE5D53400FC01DE /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A3B1BE5D53400FC01DE /* AudioManager.swift */; };
 		37769A421BE5D53400FC01DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A3C1BE5D53400FC01DE /* Extensions.swift */; };
-		37769A431BE5D53400FC01DE /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A3D1BE5D53400FC01DE /* Functions.swift */; };
 		37769A441BE5D53400FC01DE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A3E1BE5D53400FC01DE /* LocationManager.swift */; };
 		37769A451BE5D53400FC01DE /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A3F1BE5D53400FC01DE /* ParseAPI.swift */; };
 		37769A461BE5D53400FC01DE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A401BE5D53400FC01DE /* Reachability.swift */; };
@@ -101,7 +100,6 @@
 		37769A381BDE1A9300FC01DE /* GenericButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericButton.swift; sourceTree = "<group>"; };
 		37769A3B1BE5D53400FC01DE /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		37769A3C1BE5D53400FC01DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		37769A3D1BE5D53400FC01DE /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		37769A3E1BE5D53400FC01DE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		37769A3F1BE5D53400FC01DE /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
 		37769A401BE5D53400FC01DE /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			children = (
 				37769A3B1BE5D53400FC01DE /* AudioManager.swift */,
 				37769A3C1BE5D53400FC01DE /* Extensions.swift */,
-				37769A3D1BE5D53400FC01DE /* Functions.swift */,
 				37769A3E1BE5D53400FC01DE /* LocationManager.swift */,
 				37769A3F1BE5D53400FC01DE /* ParseAPI.swift */,
 				37769A401BE5D53400FC01DE /* Reachability.swift */,
@@ -436,7 +433,6 @@
 				37769A4B1BE5D54300FC01DE /* Song.swift in Sources */,
 				37ED40BB1BD8A3B700CF8C5E /* ServiceButtonController.swift in Sources */,
 				37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */,
-				37769A431BE5D53400FC01DE /* Functions.swift in Sources */,
 				374345E21BDC8D1100E50C94 /* SearchSongScreenController.swift in Sources */,
 				37ED40B61BD894A000CF8C5E /* SongCollectionView.swift in Sources */,
 				37769A461BE5D53400FC01DE /* Reachability.swift in Sources */,
