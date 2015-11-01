@@ -10,100 +10,108 @@ import UIKit
 import Bolts
 
 enum ImageSize: String {
-    case Default = "default"
     case Small = "small"
     case Medium = "medium"
     case Big = "big"
 }
 
 class Image: NSObject {
-    var defaultImage: UIImage!
-    var smallImage: UIImage?
-    var mediumImage: UIImage?
-    var bigImage: UIImage?
-    
-    var roundedDefaultImage: UIImage!
-    var roundedSmallImage: UIImage?
-    var roundedMediumImage: UIImage?
-    var roundedBigImage: UIImage?
-    
     private static var images = [String: Image]()
-    
     private var id: String
     
-    private var defaultUrl: NSURL
-    private var smallUrl: NSURL?
-    private var mediumUrl: NSURL?
-    private var bigUrl: NSURL?
+    private var image: [ImageSize: UIImage?] = [
+        .Small: nil,
+        .Medium: nil,
+        .Big: nil
+    ]
     
-    private var defaultTask: BFTask?
-    private var smallTask: BFTask?
-    private var mediumTask: BFTask?
-    private var bigTask: BFTask?
+    private var roundedImage: [ImageSize: UIImage?] = [
+        .Small: nil,
+        .Medium: nil,
+        .Big: nil
+    ]
     
-    private init(defaultUrl: NSURL, smallUrl: NSURL? = nil, mediumUrl: NSURL? = nil, bigUrl: NSURL? = nil) {
-        self.defaultUrl = defaultUrl
-        self.id = defaultUrl.absoluteString
+    private var url: [ImageSize: NSURL?] = [
+        .Small: nil,
+        .Medium: nil,
+        .Big: nil
+    ]
+    
+    private var task: [ImageSize: BFTask?] = [
+        .Small: nil,
+        .Medium: nil,
+        .Big: nil
+    ]
+    
+    private init(smallUrl: NSURL, mediumUrl: NSURL? = nil, bigUrl: NSURL? = nil) {
+        self.id = smallUrl.absoluteString
         
-        self.smallUrl = smallUrl
-        self.mediumUrl = mediumUrl
-        self.bigUrl = bigUrl
+        url[.Small] = smallUrl
+        url[.Medium] = mediumUrl
+        url[.Big] = bigUrl
     }
     
-    static func create(defaultUrl: NSURL, smallUrl: NSURL? = nil, mediumUrl: NSURL? = nil, bigUrl: NSURL? = nil) -> Image {
-        let id = defaultUrl.absoluteString
+    static func create(smallUrl: NSURL, mediumUrl: NSURL? = nil, bigUrl: NSURL? = nil) -> Image {
+        let id = smallUrl.absoluteString
         
         if images.indexForKey(id) != nil {
             return images[id]!
         }
         
-        images[id] = Image(defaultUrl: defaultUrl, smallUrl: smallUrl, mediumUrl: mediumUrl, bigUrl: bigUrl)
+        images[id] = Image(smallUrl: smallUrl, mediumUrl: mediumUrl, bigUrl: bigUrl)
         return images[id]!
     }
     
-    func load(var size: ImageSize = .Default, rounded: Bool = false) -> BFTask {
-        size = getSizeForReachability(size)
+    func load(var size: ImageSize = .Small, rounded: Bool = false) -> BFTask {
+        size = isSizeAvailable(size) ? getSizeForReachability(size) : ImageSize.Small
         
-        let sizeValue = isSizeAvailable(size) ? size.rawValue : ImageSize.Default.rawValue
-        let imageProperty = rounded ? "rounded\(sizeValue.capitalizedString)Image" : "\(sizeValue)Image"
-        let taskProperty = "\(sizeValue)Task"
-        let urlProperty = "\(sizeValue)Url"
+        let image = rounded ? roundedImage[size] : self.image[size]
+        let task = self.task[size]
         
-        if let image = self.valueForKey(imageProperty) as? UIImage {
-            return BFTask(result: image)
-        } else if let task = self.valueForKey(taskProperty) as? BFTask {
-            return task
+        if image! != nil {
+            return BFTask(result: image!)
+        } else if task! != nil {
+            return task!!
         } else {
             let task = rounded ? load(size, rounded: false) : BFTask(delay: 0)
             
-            task.continueWithSuccessBlock({ (task) -> AnyObject! in
+            return task.continueWithSuccessBlock({ (task) -> AnyObject! in
                 if rounded {
                     if let image = task.result as? UIImage {
                         let rect = CGRectMake(0, 0, image.size.width, image.size.height)
-                        
+
                         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
                         UIBezierPath(roundedRect: rect, cornerRadius: image.size.width/2).addClip()
                         image.drawInRect(rect)
                         
                         let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
-                        self.setValue(roundedImage, forKey: imageProperty)
+                        self.roundedImage[size] = roundedImage
                         
                         UIGraphicsEndImageContext()
                         
                         return roundedImage
                     }
-                } else if let data = NSData(contentsOfURL: self.valueForKey(urlProperty) as! NSURL) {
-                    let image = UIImage(data: data)
-                    self.setValue(image, forKey: imageProperty)
+                } else if let data = NSData(contentsOfURL: self.url[size]!!) {
+                    self.image[size] = UIImage(data: data)
                     
-                    return image
+                    return self.image[size]!
                 }
                 
                 return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
             })
-            
-            return task
         }
+    }
+    
+    func getLargestAvailable() -> UIImage? {
+        if let big = image[.Big] {
+            return big
+        } else if let medium = image[.Medium] {
+            return medium
+        } else if let small = image[.Small] {
+            return small
+        }
+        
+        return nil
     }
     
     private func getSizeForReachability(size: ImageSize) -> ImageSize {
@@ -119,13 +127,11 @@ class Image: NSObject {
                 return .Small
             case .Small:
                 return .Small
-            default:
-                return .Default
             }
         }
     }
     
     private func isSizeAvailable(size: ImageSize) -> Bool {
-        return valueForKey("\(size.rawValue)Url") as? NSURL != nil
+        return url[size] != nil
     }
 }
