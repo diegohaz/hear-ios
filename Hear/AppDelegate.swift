@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Initialize Parse.
-        Parse.setApplicationId("YoKGeRRzGizxpkXM6V11kfaV6iX3KXt7QSJeNeXR",
-            clientKey: "YO570TcN3GNXNtKbpk6cesIJ53S7V1l3Tdd11pFz")
+        Parse.setApplicationId("aQTf0BbHW5o643oIjuBVht36Q5IPzKbsu62rmT7Q",
+            clientKey: "FTm3d5cmxLM40vhYR8w9k3LCHRggyhCJAo2ZafkR")
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = HomeScreenController.sharedInstance;
