@@ -46,6 +46,7 @@
 		37769A4C1BE5D54300FC01DE /* SongPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A491BE5D54300FC01DE /* SongPost.swift */; };
 		37769A4D1BE5D54300FC01DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A4A1BE5D54300FC01DE /* User.swift */; };
 		37769A501BE5D5BF00FC01DE /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A4F1BE5D5BF00FC01DE /* ParseAPI.swift */; };
+		37769A521BE5D61200FC01DE /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A511BE5D61200FC01DE /* APIProtocol.swift */; };
 		37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */; };
 		37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */; };
 		37A6E1231BCB9053000C75C1 /* HomeScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */; };
@@ -106,6 +107,7 @@
 		37769A491BE5D54300FC01DE /* SongPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPost.swift; sourceTree = "<group>"; };
 		37769A4A1BE5D54300FC01DE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37769A4F1BE5D5BF00FC01DE /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
+		37769A511BE5D61200FC01DE /* APIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenView.xib; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				37769A4F1BE5D5BF00FC01DE /* ParseAPI.swift */,
+				37769A511BE5D61200FC01DE /* APIProtocol.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				37ED40B41BD894A000CF8C5E /* SongCollectionController.swift in Sources */,
 				3731FB541BB7DE6E00294F70 /* SongButtonView.swift in Sources */,
 				37769A441BE5D53400FC01DE /* LocationManager.swift in Sources */,
+				37769A521BE5D61200FC01DE /* APIProtocol.swift in Sources */,
 				3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */,
 				37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */,
 				37769A4C1BE5D54300FC01DE /* SongPost.swift in Sources */,
