@@ -10,12 +10,12 @@ import UIKit
 import CoreLocation
 import Bolts
 
+typealias API = ParseAPI
+
 protocol APIProtocol {
     static func login() -> BFTask
     
-    static func signUp() -> BFTask
-    
-    static func logOut() -> BFTask
+    static func logout() -> BFTask
     
     static func fetchPlace(location: CLLocation) -> BFTask
     
@@ -27,5 +27,5 @@ protocol APIProtocol {
     
     static func removeSong(song: Song) -> BFTask
     
-    static func removeArtist(song: Song) -> BFTask
+    static func removeArtist(artist: Artist) -> BFTask
 }
