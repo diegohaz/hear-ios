@@ -50,6 +50,7 @@
 		37769A561BE5DC7000FC01DE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A551BE5DC7000FC01DE /* UIColor.swift */; };
 		37769A581BE5E4AA00FC01DE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A571BE5E4AA00FC01DE /* Place.swift */; };
 		37769A5A1BE5EC2200FC01DE /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A591BE5EC2200FC01DE /* Artist.swift */; };
+		37769A5C1BE5F0C600FC01DE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37769A5B1BE5F0C600FC01DE /* Image.swift */; };
 		37A6E11C1BCB3EE0000C75C1 /* TitleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */; };
 		37A6E1221BCB9053000C75C1 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */; };
 		37A6E1231BCB9053000C75C1 /* HomeScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */; };
@@ -114,6 +115,7 @@
 		37769A551BE5DC7000FC01DE /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		37769A571BE5E4AA00FC01DE /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		37769A591BE5EC2200FC01DE /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		37769A5B1BE5F0C600FC01DE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButtonView.swift; sourceTree = "<group>"; };
 		37A6E1201BCB9053000C75C1 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		37A6E1211BCB9053000C75C1 /* HomeScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenView.xib; sourceTree = "<group>"; };
@@ -264,9 +266,9 @@
 			isa = PBXGroup;
 			children = (
 				37769A3B1BE5D53400FC01DE /* AudioManager.swift */,
+				37769A3E1BE5D53400FC01DE /* LocationManager.swift */,
 				37769A551BE5DC7000FC01DE /* UIColor.swift */,
 				37769A531BE5DC4300FC01DE /* UIView.swift */,
-				37769A3E1BE5D53400FC01DE /* LocationManager.swift */,
 				37769A401BE5D53400FC01DE /* Reachability.swift */,
 			);
 			path = Libraries;
@@ -279,6 +281,7 @@
 				37769A591BE5EC2200FC01DE /* Artist.swift */,
 				37769A491BE5D54300FC01DE /* SongPost.swift */,
 				37769A571BE5E4AA00FC01DE /* Place.swift */,
+				37769A5B1BE5F0C600FC01DE /* Image.swift */,
 				37769A4A1BE5D54300FC01DE /* User.swift */,
 			);
 			path = Models;
@@ -473,6 +476,7 @@
 				37ED40AD1BD892CA00CF8C5E /* InputButtonView.swift in Sources */,
 				37769A411BE5D53400FC01DE /* AudioManager.swift in Sources */,
 				37769A271BDCA59800FC01DE /* SearchSongTextFieldController.swift in Sources */,
+				37769A5C1BE5F0C600FC01DE /* Image.swift in Sources */,
 				372CC1C01BDC4FDD008AF7C5 /* SearchSongCollectionCell.swift in Sources */,
 				372CC1C31BDC5023008AF7C5 /* SearchSongCollectionController.swift in Sources */,
 				37ED40B91BD8A35400CF8C5E /* ServiceButtonView.swift in Sources */,
