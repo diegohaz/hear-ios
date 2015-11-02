@@ -1,5 +1,5 @@
 //
-//  ServiceButtonView.swift
+//  ServiceButton.swift
 //  Hear
 //
 //  Created by Diego Haz on 10/22/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class ServiceButtonView: UIButton {
+@IBDesignable class ServiceButton: UIButton {
     var controller: ServiceButtonController!
     
     override init(frame: CGRect) {

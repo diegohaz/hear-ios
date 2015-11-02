@@ -1,5 +1,5 @@
 //
-//  TitleButtonView.swift
+//  TitleButton.swift
 //  Hear
 //
 //  Created by Diego Haz on 10/9/15.
@@ -11,7 +11,7 @@ import UIKit
 public let LoadingNotification = "LocadingNotification"
 public let TitleNotification = "TitleNotification"
 
-@IBDesignable class TitleButtonView: UIButton {
+@IBDesignable class TitleButton: UIButton {
     var springIndicator: SpringIndicator!
     var loading: Bool = false {
         didSet {

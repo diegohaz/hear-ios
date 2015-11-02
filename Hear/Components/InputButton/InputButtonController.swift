@@ -9,9 +9,9 @@
 import UIKit
 
 class InputButtonController: NSObject {
-    weak var view: InputButtonView!
+    weak var view: InputButton!
     
-    init(view: InputButtonView) {
+    init(view: InputButton) {
         super.init()
         
         self.view = view

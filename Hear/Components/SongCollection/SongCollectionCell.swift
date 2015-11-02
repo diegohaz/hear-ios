@@ -9,14 +9,14 @@
 import UIKit
 
 class SongCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var songButtonView: SongButtonView!
+    @IBOutlet weak var songButton: SongButton!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
     var reloadCount = 0
     
     override func prepareForReuse() {
-        songButtonView.songImageView.image = nil
-        songButtonView.timePercent = 0
+        songButton.songImageView.image = nil
+        songButton.timePercent = 0
     }
     
     func fade(view: UIScrollView) {

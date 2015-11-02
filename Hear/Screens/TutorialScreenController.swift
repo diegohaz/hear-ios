@@ -9,7 +9,7 @@
 import UIKit
 
 class TutorialScreenController: UIViewController {
-    @IBOutlet weak var inputButton: InputButtonView!
+    @IBOutlet weak var inputButton: InputButton!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -48,7 +48,7 @@ class TutorialScreenController: UIViewController {
     
     func songWasPosted(notification: NSNotification) {
         song = notification.object as? Song
-        songButton?.songButtonView.controller.song = song
+        songButton?.songButton.controller.song = song
         songButton?.songTitleLabel.text = song!.title
         songButton?.songArtistLabel.text = song!.artist.name
         
@@ -73,7 +73,7 @@ class TutorialScreenController: UIViewController {
     
     func songButtonDidTouch() {
         songButton?.bounce()
-        songButton?.songButtonView.controller.toggle()
+        songButton?.songButton.controller.toggle()
     }
     
     func locationButtonDidTouch() {

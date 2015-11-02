@@ -11,7 +11,7 @@ import AVFoundation
 import Bolts
 
 class SongButtonController: NSObject {
-    weak var view: SongButtonView!
+    weak var view: SongButton!
     var audio = AudioManager.sharedInstance
     var song: Song? {
         didSet {
@@ -31,7 +31,7 @@ class SongButtonController: NSObject {
         }
     }
     
-    init(view: SongButtonView) {
+    init(view: SongButton) {
         super.init()
         
         self.view = view

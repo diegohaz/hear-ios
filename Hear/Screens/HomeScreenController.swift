@@ -11,11 +11,13 @@ import UIKit
 class HomeScreenController: UIViewController {
     
     static let sharedInstance = HomeScreenController()
-    @IBOutlet weak var inputButton: InputButtonView!
+    @IBOutlet weak var inputButton: InputButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        API.login()
         
         view = UINib(nibName: "HomeScreenView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
         

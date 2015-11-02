@@ -25,7 +25,7 @@
                         <inset key="sectionInset" minX="8" minY="72" maxX="8" maxY="72"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="InputButtonView" customModule="Hear" customModuleProvider="target">
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmy-O3-y2C" customClass="InputButton" customModule="Hear" customModuleProvider="target">
                     <rect key="frame" x="268" y="528" width="64" height="64"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -34,7 +34,7 @@
                         <constraint firstAttribute="width" constant="64" id="qPm-kY-UhW"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButtonView" customModule="Hear" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButton" customModule="Hear" customModuleProvider="target">
                     <rect key="frame" x="280" y="24" width="40" height="40"/>
                     <animations/>
                     <constraints>
@@ -42,7 +42,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="nWz-xO-zX7"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-9j-QA3" customClass="ServiceButtonView" customModule="Hear" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-9j-QA3" customClass="ServiceButton" customModule="Hear" customModuleProvider="target">
                     <rect key="frame" x="482" y="540" width="110" height="40"/>
                     <animations/>
                     <constraints>

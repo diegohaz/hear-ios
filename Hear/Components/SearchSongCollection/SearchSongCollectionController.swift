@@ -67,9 +67,9 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SearchSongCollectionCell
         
         cell?.backgroundColor = UIColor.hearGrayColor()
-        cell?.songButtonView.bounce()
-        cell?.songButtonView.controller.toggle()
-        selected = cell?.songButtonView.controller.song
+        cell?.songButton.bounce()
+        cell?.songButton.controller.toggle()
+        selected = cell?.songButton.controller.song
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,7 +81,7 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
     
         let song = songs[indexPath.item]
         
-        cell.songButtonView.controller.song = song
+        cell.songButton.controller.song = song
         cell.songTitleLabel.text = song.title
         cell.songArtistLabel.text = song.artist.name
         

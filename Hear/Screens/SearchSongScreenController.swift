@@ -17,7 +17,7 @@ class SearchSongScreenController: UIViewController {
     static let sharedInstance = SearchSongScreenController()
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
-    @IBOutlet weak var searchSongTextField: SearchSongTextFieldView!
+    @IBOutlet weak var searchSongTextField: SearchSongTextField!
     
     var waitingForLocation = false
     

@@ -85,7 +85,7 @@ class AudioManager: NSObject {
         guard let player = player else { return 0 }
         guard let item = player.currentItem else { return 0 }
         
-        return item.currentTime().seconds
+        return CMTimeGetSeconds(item.currentTime())
     }
     
     func duration() -> Double {
@@ -164,16 +164,6 @@ class AudioManager: NSObject {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let player = object as? AVPlayer {
-            if player.rate != 0 {
-                print("lol")
-                NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: self.currentSong)
-                player.removeObserver(self, forKeyPath: "rate")
-            }
-        }
-    }
-    
     private func setSongInfo(song: Song, item: AVPlayerItem) {
         var songInfo: [String: AnyObject] = [
             MPMediaItemPropertyTitle: song.title,
@@ -187,12 +177,12 @@ class AudioManager: NSObject {
         
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
         
-        song.image.load(.Big).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+        song.image.load(.Big).continueWithBlock { (task) -> AnyObject! in
             songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: task.result as! UIImage)
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
             
             return nil
-        })
+        }
     }
     
     func songDidFinish() {

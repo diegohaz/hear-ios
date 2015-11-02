@@ -6,7 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongButton" customModule="Hear" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="67G-1R-ohU" id="LeD-WG-smp"/>
                 <outlet property="newStoriesIndicator" destination="y4Y-jy-ngl" id="ytu-RV-aUf"/>

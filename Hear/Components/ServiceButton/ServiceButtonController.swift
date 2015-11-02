@@ -9,11 +9,11 @@
 import UIKit
 
 class ServiceButtonController: NSObject {
-    weak var view: ServiceButtonView!
+    weak var view: ServiceButton!
 
     private var url: NSURL?
     
-    init(view: ServiceButtonView) {
+    init(view: ServiceButton) {
         super.init()
         
         self.view = view

@@ -14,7 +14,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <subviews>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSD-68-Qsm" customClass="SongButtonView" customModule="Hear" customModuleProvider="target">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSD-68-Qsm" customClass="SongButton" customModule="Hear" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="48" height="48"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -26,14 +26,14 @@
                         <rect key="frame" x="64" y="15" width="248" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do artista" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-GJ-Uai">
                         <rect key="frame" x="64" y="32" width="248" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -54,7 +54,7 @@
             </constraints>
             <connections>
                 <outlet property="songArtistLabel" destination="6JZ-GJ-Uai" id="DfX-Xo-e1g"/>
-                <outlet property="songButtonView" destination="YSD-68-Qsm" id="Jia-es-WOE"/>
+                <outlet property="songButton" destination="YSD-68-Qsm" id="Ysa-jd-Uao"/>
                 <outlet property="songTitleLabel" destination="L6q-pz-9Qs" id="hC7-wQ-cS7"/>
             </connections>
         </collectionViewCell>

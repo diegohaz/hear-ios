@@ -1,5 +1,5 @@
 //
-//  InputButtonView.swift
+//  InputButton.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/25/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class InputButtonView: UIButton {
+@IBDesignable class InputButton: UIButton {
     var controller: InputButtonController!
     
     @IBInspectable var pulsing: Bool = false {

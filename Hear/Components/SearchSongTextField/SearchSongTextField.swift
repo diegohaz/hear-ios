@@ -1,5 +1,5 @@
 //
-//  SearchSongTextFieldView.swift
+//  SearchSongTextField.swift
 //  Hear
 //
 //  Created by Diego Haz on 10/25/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class SearchSongTextFieldView: UITextField {
+@IBDesignable class SearchSongTextField: UITextField {
     var controller: SearchSongTextFieldController!
     
     override init(frame: CGRect) {

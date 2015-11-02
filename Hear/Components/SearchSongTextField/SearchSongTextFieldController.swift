@@ -11,9 +11,9 @@ import UIKit
 let SearchSongTextFieldNotification = "SearchSongTextFieldNotification"
 
 class SearchSongTextFieldController: NSObject, UITextFieldDelegate {
-    weak var view: SearchSongTextFieldView!
+    weak var view: SearchSongTextField!
     
-    init(view: SearchSongTextFieldView) {
+    init(view: SearchSongTextField) {
         super.init()
         
         self.view = view

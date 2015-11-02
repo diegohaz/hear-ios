@@ -1,5 +1,5 @@
 //
-//  SongButtonView.swift
+//  SongButton.swift
 //  Hear
 //
 //  Created by Diego Haz on 9/27/15.
@@ -9,7 +9,7 @@
 import UIKit
 import Bolts
 
-@IBDesignable class SongButtonView: UIButton {
+@IBDesignable class SongButton: UIButton {
     
     var controller: SongButtonController!
     @IBOutlet weak var newStoriesIndicator: UIView!

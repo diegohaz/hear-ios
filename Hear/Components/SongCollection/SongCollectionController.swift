@@ -175,11 +175,13 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                 }
                 
                 let currentDistance = songs[i].distance!
-                let currentFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: currentItem, inSection: 0))!.frame
+                let currentIndexPath = NSIndexPath(forItem: currentItem, inSection: 0)
+                let currentFrame = view.layoutAttributesForItemAtIndexPath(currentIndexPath)!.frame
                 let currentFrameY = currentFrame.origin.y
                 
                 let nextDistance = i + 1 < songs.count ? songs[i + 1].distance! : currentDistance
-                let nextFrame = view.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: nextItem, inSection: 0))?.frame
+                let nextIndexPath = NSIndexPath(forItem: nextItem, inSection: 0)
+                let nextFrame = view.layoutAttributesForItemAtIndexPath(nextIndexPath)?.frame
                 let nextFrameY = nextFrame?.origin.y ?? currentFrameY + 100
                 
                 if scrollY >= currentFrameY && scrollY < nextFrameY {
@@ -205,7 +207,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SongCollectionCell
         
         cell?.bounce()
-        cell?.songButtonView.controller.toggle()
+        cell?.songButton.controller.toggle()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -216,7 +218,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! SongCollectionCell
         let song = songs[indexPath.item]
         
-        cell.songButtonView.controller.song = songs[indexPath.item]
+        cell.songButton.controller.song = songs[indexPath.item]
         cell.songTitleLabel.text = song.title
         cell.songArtistLabel.text = song.artist.name
         cell.fade(view)
