@@ -13,28 +13,21 @@ import Bolts
 class SongButtonController: NSObject {
     weak var view: SongButtonView!
     var audio = AudioManager.sharedInstance
-    var songPost: SongPost? {
-        didSet {
-            song = songPost?.song
-        }
-    }
     var song: Song? {
         didSet {
             let song = self.song
+            let size: ImageSize = view.bounds.width < 50 ? .Small : .Medium
+            let task = song?.image.load(size, rounded: true)
             
-            BFTask(delay: 0).continueWithBlock { (task) -> AnyObject! in
-                return song?.loadCover()
-            }.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                guard song?.id == self.song?.id else {
-                    return task
+            task?.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+                if song?.id == self.song?.id {
+                    self.view.songImageView.image = task.result as? UIImage
                 }
                 
-                self.view.songImageView.image = song?.coverImageRounded
-                
-                return task
+                return nil
             })
             
-            audioDidToggle()
+            view.pause()
         }
     }
     
@@ -44,9 +37,10 @@ class SongButtonController: NSObject {
         self.view = view
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidToggle", name: AudioManagerPlayNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidToggle", name: AudioManagerPauseNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish:", name: AudioManagerFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPlay", name: AudioManagerDidPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPause", name: AudioManagerDidPauseNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPause", name: AudioManagerDidFinishNotification, object: nil)
+        
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
         NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -57,64 +51,36 @@ class SongButtonController: NSObject {
         toggle()
     }
     
-    func audioDidToggle() {
-        if let songPost = songPost {
-            if songPost.isEqual(audio.currentSongPost) && songPost.song.isEqual(audio.currentSong) && audio.player?.playing == true {
-                view?.play()
-            } else if songPost.isEqual(audio.currentSongPost) {
-                view?.pause()
-            } else if view?.pauseView.transform.a > 0.1 || view?.springIndicator.transform.a > 0.1 {
-                view?.pause()
-            }
-        } else if let song = song {
-            if song.isEqual(audio.currentSong) == true && audio.player?.playing == true {
-                view?.play()
-            } else if song.isEqual(audio.currentSong) {
-                view?.pause()
-            } else if view?.pauseView.transform.a > 0.1 || view?.springIndicator.transform.a > 0.1 {
-                view?.pause()
-            }
+    func audioDidPlay() {
+        if song != nil && audio.current(song!) {
+            view.load()
         }
     }
     
-    func audioDidFinish(notification: NSNotification) {
-        guard let index = notification.object as? Int where index >= 0 else {
-            return
-        }
-        
-        if songPost != nil && songPost?.isEqual(audio.songPosts[index]) == true {
-            view?.pause()
-        } else if songPost == nil && song != nil && song!.isEqual(audio.currentSong) {
-            view?.pause()
+    func audioDidPause() {
+        if song != nil && audio.current(song!) {
+            view.pause()
         }
     }
     
     func toggle() {
-        if songPost != nil && songPost!.isEqual(audio.currentSongPost) && songPost!.song.isEqual(audio.currentSong) {
-            audio.toggle()
-        } else if songPost == nil && song != nil && song!.isEqual(audio.currentSong) {
-            audio.toggle()
+        guard let song = song else {
+            return
+        }
+        
+        if audio.playing(song) {
+            audio.pause()
+        } else if audio.current(song) {
+            audio.play()
         } else {
-            if song?.previewData == nil {
-                view?.load()
-            }
-            
-            BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
-                if let songPost = self.songPost {
-                    return self.audio.play(songPost: songPost)
-                } else if let song = self.song {
-                    return self.audio.play(song: song)
-                }
-                
-                return task
-            })
+            audio.play(song)
         }
     }
     
     func updateTime() {
-        if (songPost != nil && songPost!.isEqual(audio.currentSongPost) && songPost!.song.isEqual(audio.currentSong) && audio.player?.playing == true)
-            || (songPost == nil && song != nil && song!.isEqual(audio.currentSong) && audio.player?.playing == true) {
-            view?.timePercent = CGFloat(audio.player!.currentTime / audio.player!.duration)
+        if song != nil && audio.playing(song!) && audio.currentTime() > 0 {
+            view?.timePercent = CGFloat(audio.currentTime() / audio.duration())
+            view?.play()
         } else if view?.timePercent != 0 {
             view?.timePercent = 0
         }

@@ -18,10 +18,6 @@ class ServiceButtonController: NSObject {
         
         self.view = view
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged", name: AudioManagerPlayNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish", name: AudioManagerPauseNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidFinish", name: AudioManagerFinishNotification, object: nil)
     }
     
     func viewDidTouch() {
@@ -38,6 +34,6 @@ class ServiceButtonController: NSObject {
     
     func currentSongChanged() {
         self.view.appear()
-        self.url = AudioManager.sharedInstance.currentSong?.url
+        self.url = AudioManager.sharedInstance.currentSong?.serviceUrl
     }
 }

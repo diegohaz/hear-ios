@@ -28,7 +28,6 @@ class HomeScreenController: UIViewController {
     }
 
     func inputButtonDidTouch() {
-        AudioManager.sharedInstance.stop()
         presentViewController(SearchSongScreenController.sharedInstance, animated: true, completion: nil)
     }
 }

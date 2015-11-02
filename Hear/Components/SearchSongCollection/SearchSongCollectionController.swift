@@ -42,7 +42,6 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
     
     func search(string: String) {
         selected = nil
-        AudioManager.sharedInstance.stop()
         
         ParseAPI.searchSong(string).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             guard let songs = task.result as? [Song] else {
@@ -60,10 +59,6 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SearchSongCollectionCell
         
         cell?.backgroundColor = UIColor.whiteColor()
-        
-        if AudioManager.sharedInstance.currentSong?.isEqual(selected) == true {
-            AudioManager.sharedInstance.stop()
-        }
         
         selected = nil
     }
@@ -88,7 +83,7 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         
         cell.songButtonView.controller.song = song
         cell.songTitleLabel.text = song.title
-        cell.songArtistLabel.text = song.artist
+        cell.songArtistLabel.text = song.artist.name
         
         if selected?.isEqual(song) == true {
             cell.backgroundColor = UIColor.hearGrayColor()

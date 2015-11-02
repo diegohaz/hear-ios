@@ -69,8 +69,7 @@ class ParseAPI : APIProtocol {
     /// Search songs
     static func searchSong(string: String, limit: Int? = nil) -> BFTask {
         let parameters: [NSObject: AnyObject] = [
-            "string": string,
-            "limit": limit ?? NSNull()
+            "string": string
         ]
         
         print("Searching song for string \"\(string)\"...")
@@ -152,7 +151,7 @@ class ParseAPI : APIProtocol {
         }
         
         print("Removing song \"\(song.title)\"...")
-        user.addUniqueObject(song.id, forKey: "removedSongs")
+        user.addUniqueObject(song.songId, forKey: "removedSongs")
         
         return user.saveInBackground().continueWithSuccessBlock({ (task) -> AnyObject! in
             print("Removed!")
@@ -176,6 +175,29 @@ class ParseAPI : APIProtocol {
     }
     
     // MARK: Translation
+    /// Translate image
+    private static func translate(image object: AnyObject) -> Image {
+        let object = object as! NSDictionary
+        
+        return Image.create(
+            NSURL(string: object["small"] as! String)!,
+            mediumUrl: NSURL(string: object["medium"] as! String),
+            bigUrl: NSURL(string: object["big"] as! String)
+        )
+    }
+    
+    /// Translate artist
+    private static func translate(artist object: AnyObject) -> Artist {
+        if let object = object as? NSDictionary {
+            return Artist(
+                id: object["id"] as! String,
+                name: object["name"] as! String
+            )
+        } else {
+            return Artist(id: "null", name: object as! String)
+        }
+    }
+    
     /// Translate place
     private static func translate(place object: AnyObject) -> Place {
         let object = object as! NSDictionary
@@ -191,14 +213,20 @@ class ParseAPI : APIProtocol {
     /// Translate song
     private static func translate(song object: AnyObject) -> Song {
         let object = object as! NSDictionary
+        let serviceId = object["serviceId"] as! String
+        let songId = object["songId"] as? String ?? serviceId
+        let id = object["id"] as? String ?? songId
         
         return Song.create(
-            id: object["id"] as! String,
+            id,
+            songId: songId,
+            serviceId: serviceId,
             title: object["title"] as! String,
-            artist: object["artist"] as! String,
-            cover: object["cover"] as! String,
-            preview: object["preview"] as! String,
-            url: object["serviceUrl"] as! String
+            artist: translate(artist: object["artist"]!),
+            image: translate(image: object["images"]!),
+            previewUrl: NSURL(string: object["previewUrl"] as! String)!,
+            serviceUrl: NSURL(string: object["serviceUrl"] as! String)!,
+            distance: object["distance"] as? CGFloat
         )
     }
     

@@ -11,22 +11,25 @@ import AVFoundation
 import MediaPlayer
 import Bolts
 
-public let AudioManagerPlayNotification = "AudioManagerPlayNotification"
-public let AudioManagerPauseNotification = "AudioManagerPauseNotification"
-public let AudioManagerFinishNotification = "AudioManagerFinishNotification"
+public let AudioManagerDidPlayNotification = "AudioManagerDidPlayNotification"
+public let AudioManagerDidPauseNotification = "AudioManagerDidPauseNotification"
+public let AudioManagerDidFinishNotification = "AudioManagerDidFinishNotification"
 
-class AudioManager: NSObject, AVAudioPlayerDelegate {
+class AudioManager: NSObject {
     static let sharedInstance = AudioManager()
     
-    var player: AVAudioPlayer?
-    var songPosts = [SongPost]()
+    private var player: AVPlayer?
     
-    private(set) var currentSongPost: SongPost?
+    private(set) var songs = [Song]()
     private(set) var currentSong: Song?
-    private(set) var currentIndex = 0
+    private(set) var currentIndex: Int?
     
     private override init() {
         super.init()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidFinish", name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidStalled", name: AVPlayerItemPlaybackStalledNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "lambda:", name: AVPlayerItemFailedToPlayToEndTimeNotification, object: nil)
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -36,141 +39,191 @@ class AudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    func reset() {
-        self.currentIndex = -1
-    }
-    
-    func play(song song: Song) -> BFTask {
-        return play(currentIndex > 0 ? currentIndex : 0, song: song)
-    }
-    
-    func play(songPost songPost: SongPost) -> BFTask {
-        var index = 0
+    func reload(songs: [Song]) {
+        self.songs = [Song]()
+        self.currentIndex = nil
+        self.append(songs)
         
-        for i in 0..<songPosts.count {
-            if songPosts[i].isEqual(songPost) {
-                index = i
-                break
-            } else if i == songPosts.count - 1 {
-                index = songPosts.count
-                songPosts.append(songPost)
-            }
-        }
-        
-        return play(index)
-    }
-    
-    func play(index: Int, song: Song? = nil) -> BFTask {
-        let songPost: SongPost? = songPosts.indices.contains(index) ? songPosts[index] : nil
-        let song = song ?? songPost!.song
-        
-        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-            BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
-                return song.loadCover()
-            }).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-                guard let image = song.coverImage else {
-                    print("Image not found for \(song.title)")
-                    return task
+        if let player = player as? AVQueuePlayer {
+            let items = player.items()
+            
+            for item in items {
+                if item.currentTime().seconds == 0 {
+                    player.removeItem(item)
+                } else {
+                    currentIndex = -1
                 }
-                
-                let songInfo: [String: AnyObject] = [
-                    MPMediaItemPropertyTitle: song.title,
-                    MPMediaItemPropertyArtist: song.artist,
-                    MPMediaItemPropertyPlaybackDuration: 30,
-                    MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: image)
-                ]
-                
-                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
-                
-                return task
-            })
-        }
-        
-        return BFTask(delay: 0).continueWithBlock({ (task) -> AnyObject! in
-            let reachability = Reachability.reachabilityForInternetConnection()
-            return song.loadPreview(reachability?.isReachableViaWiFi() == true ? true : false)
-        }).continueWithSuccessBlock { (task) -> AnyObject! in
-            guard let result = task.result as? NSData else {
-                return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
             }
             
-            self.player = try? AVAudioPlayer(data: result)
-            self.player?.delegate = self
-            self.currentIndex = index
-            self.currentSong = song
-            self.currentSongPost = songPost
-            self.play()
-
-            if self.currentIndex < self.songPosts.count - 1 {
-                self.songPosts[self.currentIndex + 1].song.loadPreview()
+            for song in songs {
+                player.insertItem(AVPlayerItem(URL: song.previewUrl), afterItem: nil)
             }
-            
-            return task
         }
     }
     
-    func play() {
-        
-        player?.play()
-        
-        BFExecutor.mainThreadExecutor().execute { () -> Void in
-            self.currentIndex = self.currentIndex > 0 ? self.currentIndex : 0
-            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerPlayNotification, object: self.currentIndex)
+    func append(songs: [Song]) {
+        self.songs += songs
+    }
+    
+    func current(song: Song) -> Bool {
+        return currentSong?.id == song.id
+    }
+    
+    func playing() -> Bool {
+        guard let player = player where player.error == nil else {
+            return false
         }
         
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch let e {
-            print(e)
-        }
+        return player.rate != 0
+    }
+    
+    func playing(song: Song) -> Bool {
+        return current(song) && playing()
+    }
+    
+    func currentTime() -> Double {
+        guard let player = player else { return 0 }
+        guard let item = player.currentItem else { return 0 }
+        
+        return item.currentTime().seconds
+    }
+    
+    func duration() -> Double {
+        guard let player = player else { return 0 }
+        guard let item = player.currentItem else { return 0 }
+        
+        return item.asset.duration.seconds
     }
     
     func pause() {
         player?.pause()
         
-        BFExecutor.mainThreadExecutor().execute { () -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerPauseNotification, object: self.currentIndex)
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPauseNotification, object: currentSong)
+    }
+    
+    func play(song: Song? = nil) {
+        guard let song = song ?? currentSong else {
+            return
         }
         
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-        } catch let e {
-            print(e)
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: currentSong)
+        
+        do  { try AVAudioSession.sharedInstance().setActive(true) }
+        catch let e { print(e) }
+        
+        let isCurrentSong = song == currentSong
+        var useQueue = false
+        var item: AVPlayerItem?
+        
+        if let index = songs.indexOf(song) {
+            currentIndex = index
+            useQueue = true
         }
+        currentSong = song
+        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: song)
+
+        BFExecutor.backgroundExecutor().execute({ () -> Void in
+            if !isCurrentSong {
+                if useQueue {
+                    self.player = AVQueuePlayer(items: self.songs[self.currentIndex! ..< self.songs.count].map({ AVPlayerItem(URL: $0.previewUrl) }))
+                    item = self.player!.currentItem
+                } else {
+                    item = AVPlayerItem(URL: song.previewUrl)
+                    self.player = AVPlayer(playerItem: item!)
+                }
+            }
+            
+            self.player?.play()
+            
+            if let item = item {
+                self.setSongInfo(song, item: item)
+            }
+        })
     }
     
     func toggle() {
-        if player?.playing == true {
+        if playing() {
             pause()
         } else {
             play()
         }
     }
     
-    func stop() {
-        pause()
-        player = nil
-        currentSongPost = nil
-        currentSong = nil
+    func playPrevious() {
+        guard let currentSong = currentSong else { return }
+        
+        if var index = songs.indexOf(currentSong) where index > 0 {
+            play(songs[--index])
+        }
     }
     
     func playNext() {
-        if currentIndex < songPosts.count - 1 {
-            play(++currentIndex)
+        if let player = player as? AVQueuePlayer {
+            player.advanceToNextItem()
+            songDidFinish()
         }
     }
     
-    func playPrevious() {
-        if currentIndex > 0 {
-            play(--currentIndex)
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if let player = object as? AVPlayer {
+            if player.rate != 0 {
+                print("lol")
+                NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: self.currentSong)
+                player.removeObserver(self, forKeyPath: "rate")
+            }
         }
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerFinishNotification, object: currentIndex > 0 ? currentIndex : 0)
+    private func setSongInfo(song: Song, item: AVPlayerItem) {
+        var songInfo: [String: AnyObject] = [
+            MPMediaItemPropertyTitle: song.title,
+            MPMediaItemPropertyArtist: song.artist.name,
+            MPMediaItemPropertyPlaybackDuration: item.asset.duration.seconds
+        ]
         
-        if currentSongPost?.song.isEqual(currentSong) == true {
-            playNext()
+        if let image = song.image.getLargestAvailable() {
+            songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
         }
+        
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+        
+        song.image.load(.Big).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: task.result as! UIImage)
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
+            
+            return nil
+        })
+    }
+    
+    func songDidFinish() {
+        guard let song = currentSong else { return }
+        
+        BFExecutor.mainThreadExecutor().execute { () -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)
+        }
+        
+        if songs.indexOf(song) == nil { return }
+        guard var index = currentIndex else { return }
+        
+        if songs.count > ++index {
+            currentIndex = index
+            currentSong = songs[index]
+            
+            BFExecutor.mainThreadExecutor().execute({ () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: self.currentSong)
+            })
+            
+            setSongInfo(currentSong!, item: player!.currentItem!)
+        }
+    }
+    
+    func songDidStalled() {
+        pause()
+        
+        BFTask(delay: 3000).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: { (task) -> AnyObject! in
+            self.play()
+            
+            return nil
+        })
     }
 }

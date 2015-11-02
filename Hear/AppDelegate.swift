@@ -30,20 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        let audio = AudioManager.sharedInstance
+        
         if event?.type == UIEventType.RemoteControl {
-            if event!.subtype == UIEventSubtype.RemoteControlPlay {
-                print("received remote play")
-                AudioManager.sharedInstance.play()
-            } else if event?.subtype == UIEventSubtype.RemoteControlPause {
-                print("received remote pause")
-                AudioManager.sharedInstance.pause()
-            } else if event?.subtype == UIEventSubtype.RemoteControlTogglePlayPause {
-                print("received toggle")
-                AudioManager.sharedInstance.toggle()
-            } else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
-                AudioManager.sharedInstance.playNext()
-            } else if event?.subtype == UIEventSubtype.RemoteControlPreviousTrack {
-                AudioManager.sharedInstance.playPrevious()
+            if event!.subtype == .RemoteControlPlay {
+                audio.play()
+            } else if event?.subtype == .RemoteControlPause {
+                audio.pause()
+            } else if event?.subtype == .RemoteControlTogglePlayPause {
+                audio.toggle()
+            } else if event?.subtype == .RemoteControlNextTrack {
+                audio.playNext()
+            } else if event?.subtype == .RemoteControlPreviousTrack {
+                audio.playPrevious()
             }
         }
     }

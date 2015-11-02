@@ -103,11 +103,11 @@ class Image: NSObject {
     }
     
     func getLargestAvailable() -> UIImage? {
-        if let big = image[.Big] {
+        if let big = image[.Big]! {
             return big
-        } else if let medium = image[.Medium] {
+        } else if let medium = image[.Medium]! {
             return medium
-        } else if let small = image[.Small] {
+        } else if let small = image[.Small]! {
             return small
         }
         

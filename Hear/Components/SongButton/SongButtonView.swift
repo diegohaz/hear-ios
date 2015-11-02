@@ -53,13 +53,16 @@ import Bolts
         }
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.currentCover.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (finished) -> Void in
                 self.springIndicator.startAnimation()
                 self.currentCover = self.springIndicator
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.springIndicator.transform = CGAffineTransformMakeScale(1, 1)
+                    self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+                    self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     }, completion: nil)
         }
     }
@@ -70,13 +73,16 @@ import Bolts
         }
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.currentCover.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (b) -> Void in
                 self.springIndicator.stopAnimation(false)
                 self.currentCover = self.pauseView
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.pauseView.transform = CGAffineTransformMakeScale(1, 1)
+                    self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+                    self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     }, completion: nil)
         }
     }
@@ -87,13 +93,16 @@ import Bolts
         }
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.currentCover.transform = CGAffineTransformMakeScale(0, 0)
+            self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (b) -> Void in
                 self.springIndicator.stopAnimation(false)
                 self.currentCover = self.songImageView
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.songImageView.transform = CGAffineTransformMakeScale(1, 1)
+                    self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+                    self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     }, completion: nil)
         }
     }

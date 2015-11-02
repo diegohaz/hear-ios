@@ -75,10 +75,12 @@ class SearchSongScreenController: UIViewController {
             cancelButtonDidTouch()
         }
         
-        ParseAPI.postSong(song, location: location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-            guard let song = task.result as? SongPost else {
+        API.placeSong(song, location: location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            guard let song = task.result as? Song else {
                 return task
             }
+            
+            AudioManager.sharedInstance.play(song)
             
             NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
             NSNotificationCenter.defaultCenter().postNotificationName(PostSongNotification, object: song)

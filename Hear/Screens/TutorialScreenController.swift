@@ -50,7 +50,7 @@ class TutorialScreenController: UIViewController {
         song = notification.object as? Song
         songButton?.songButtonView.controller.song = song
         songButton?.songTitleLabel.text = song!.title
-        songButton?.songArtistLabel.text = song!.artist
+        songButton?.songArtistLabel.text = song!.artist.name
         
         songButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "songButtonDidTouch"))
         
