@@ -85,7 +85,11 @@ class AudioManager: NSObject {
         guard let player = player else { return 0 }
         guard let item = player.currentItem else { return 0 }
         
-        return CMTimeGetSeconds(item.currentTime())
+        if currentSong?.previewUrl != (item.asset as? AVURLAsset)?.URL {
+            return 0
+        }
+        
+        return item.currentTime().seconds
     }
     
     func duration() -> Double {
@@ -106,8 +110,6 @@ class AudioManager: NSObject {
             return
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: currentSong)
-        
         do  { try AVAudioSession.sharedInstance().setActive(true) }
         catch let e { print(e) }
         
@@ -119,6 +121,11 @@ class AudioManager: NSObject {
             currentIndex = index
             useQueue = true
         }
+        
+        if !isCurrentSong {
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: currentSong)
+        }
+        
         currentSong = song
         NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: song)
 

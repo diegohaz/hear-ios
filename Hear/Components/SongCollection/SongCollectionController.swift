@@ -10,8 +10,15 @@ import UIKit
 import CoreLocation
 import Bolts
 
+public let SongCollectionPullNotification = "SongCollectionPullNotification"
+public let SongCollectionBeginLoadingNotification = "SongCollectionBeginLoadingNotification"
+public let SongCollectionEndLoadingNotification = "SongCollectionEndLoadingNotification"
+public let SongCollectionDistanceDidChangeNotification = "SongCollectionDistanceDidChangeNotification"
+public let SongCollectionPlaceDidChangeNotification = "SongCollectionPlaceDidChangeNotification"
+
 class SongCollectionController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     weak var view: SongCollectionView!
+    var place: Place?
     var songs = [Song]()
     var offset = 0
     var hasOtherPage = true
@@ -67,7 +74,15 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
 
         loading = true
         LocationManager.sharedInstance.originalLocation = location
-        NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
+        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionBeginLoadingNotification, object: nil)
+        
+        API.fetchPlace(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            self.place = task.result as? Place
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionPlaceDidChangeNotification, object: self.place?.name)
+            
+            return nil
+        })
         
         API.listPlacedSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songs = task.result["songs"] as! [Song]
@@ -76,7 +91,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             self.setup()
             self.view.reloadData()
             self.loading = false
-            NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
+            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
             
             return task
         })
@@ -128,7 +143,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         if y < -100 && !loading {
             reload()
         } else if y < -50 && !loading {
-            NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: "pull to refresh")
+            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionPullNotification, object: nil)
         } else {
             let frameHeight = scrollView.bounds.height
             let contentHeight = scrollView.contentSize.height
@@ -197,10 +212,17 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             }
         }
         
-        //let distance = "\(Int(meters))m"
+        var place = self.place
+        
+        while place != nil && meters > place!.radius {
+            place = place!.parent
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionPlaceDidChangeNotification, object: place?.name ?? "World")
+        
         let distance = meters > 1000 ? "\(Int(meters/1000))km" : "\(Int(meters))m"
         
-        NSNotificationCenter.defaultCenter().postNotificationName(TitleNotification, object: distance)
+        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionDistanceDidChangeNotification, object: distance)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

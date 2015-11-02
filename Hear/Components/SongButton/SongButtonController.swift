@@ -53,7 +53,11 @@ class SongButtonController: NSObject {
     
     func audioDidPlay() {
         if song != nil && audio.current(song!) {
-            view.load()
+            if audio.currentTime() > 0 {
+                view.play()
+            } else {
+                view.load()
+            }
         }
     }
     

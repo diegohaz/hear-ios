@@ -69,7 +69,7 @@ class SearchSongScreenController: UIViewController {
         }
         
         selectedSong = nil
-        NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: true)
+        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionBeginLoadingNotification, object: nil)
         
         if !waitingForLocation {
             cancelButtonDidTouch()
@@ -82,7 +82,7 @@ class SearchSongScreenController: UIViewController {
             
             AudioManager.sharedInstance.play(song)
             
-            NSNotificationCenter.defaultCenter().postNotificationName(LoadingNotification, object: false)
+            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
             NSNotificationCenter.defaultCenter().postNotificationName(PostSongNotification, object: song)
             
             return task

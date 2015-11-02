@@ -201,11 +201,12 @@ class ParseAPI : APIProtocol {
     /// Translate place
     private static func translate(place object: AnyObject) -> Place {
         let object = object as! NSDictionary
+        let parent = object["parent"]
         
         return Place(
             name: object["name"] as! String,
             radius: object["radius"] as! CGFloat,
-            parent: object["parent"] != nil ? translate(place: object["parent"]!) : nil
+            parent: parent != nil ? translate(place: parent!) : nil
         )
     }
     
