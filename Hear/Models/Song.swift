@@ -22,9 +22,10 @@ class Song: NSObject {
     var previewUrl: NSURL
     var serviceUrl: NSURL
     
+    var user: User?
     var distance: CGFloat?
     
-    private init(id: String, songId: String, serviceId: String, title: String, artist: Artist, image: Image, previewUrl: NSURL, serviceUrl: NSURL, distance: CGFloat?) {
+    private init(id: String, songId: String, serviceId: String, title: String, artist: Artist, image: Image, previewUrl: NSURL, serviceUrl: NSURL, user: User?, distance: CGFloat?) {
         self.id = id
         self.songId = songId
         self.serviceId = serviceId
@@ -33,17 +34,18 @@ class Song: NSObject {
         self.image = image
         self.previewUrl = previewUrl
         self.serviceUrl = serviceUrl
+        self.user = user
         self.distance = distance
     }
     
-    static func create(id: String, songId: String, serviceId: String, title: String, artist: Artist, image: Image, previewUrl: NSURL, serviceUrl: NSURL, distance: CGFloat?) -> Song {
+    static func create(id: String, songId: String, serviceId: String, title: String, artist: Artist, image: Image, previewUrl: NSURL, serviceUrl: NSURL, user: User?, distance: CGFloat?) -> Song {
         if songs.indexForKey(id) != nil && songs[id]?.serviceId == serviceId {
             songs[id]?.distance = distance
             
             return songs[id]!
         }
         
-        songs[id] = Song(id: id, songId: songId, serviceId: serviceId, title: title, artist: artist, image: image, previewUrl: previewUrl, serviceUrl: serviceUrl, distance: distance)
+        songs[id] = Song(id: id, songId: songId, serviceId: serviceId, title: title, artist: artist, image: image, previewUrl: previewUrl, serviceUrl: serviceUrl, user: user, distance: distance)
         
         return songs[id]!
     }

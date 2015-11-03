@@ -24,12 +24,17 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     var hasOtherPage = true
     var loading = false
     var scrolling = false
+    var longPressedCell: SongCollectionCell?
     
     init(view: SongCollectionView) {
         super.init()
         
         self.view = view
         self.view.alwaysBounceVertical = true
+        
+        let hold = UILongPressGestureRecognizer(target: self, action: "viewDidLongPress:")
+        hold.minimumPressDuration = 0.5
+        self.view.addGestureRecognizer(hold)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reload", name: LocationManagerNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerDidPlayNotification, object: nil)
@@ -49,6 +54,47 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
         view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
+    }
+    
+    func viewDidLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        let point = gestureRecognizer.locationInView(view)
+        
+        guard let index = view.indexPathForItemAtPoint(point) else {
+            longPressedCell?.stopTrembling()
+            longPressedCell = nil
+            return
+        }
+        
+        guard let cell = view.cellForItemAtIndexPath(index) as? SongCollectionCell else {
+            longPressedCell?.stopTrembling()
+            longPressedCell = nil
+            return
+        }
+        
+        if longPressedCell != nil && cell != longPressedCell {
+            longPressedCell?.stopTrembling()
+            longPressedCell = nil
+            return
+        }
+        
+        if gestureRecognizer.state == .Began {
+            longPressedCell = cell
+            longPressedCell?.startTrembling()
+        } else if gestureRecognizer.state == .Ended {
+            longPressedCell?.hide(completion: { (finished) -> Void in
+                self.longPressedCell?.stopTrembling()
+                
+                if let song = self.longPressedCell?.songButton.controller.song {
+                    if let songIndex = self.songs.indexOf(song) {
+                        self.songs.removeAtIndex(songIndex)
+                        API.removeSong(song)
+                    }
+                }
+                
+                self.view.reloadData()
+                self.longPressedCell = nil
+            })
+        }
     }
     
     func didPlaceSong(notification: NSNotification) {

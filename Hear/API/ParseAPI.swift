@@ -245,6 +245,7 @@ class ParseAPI : APIProtocol {
         let serviceId = object["serviceId"] as! String
         let songId = object["songId"] as? String ?? serviceId
         let id = object["id"] as? String ?? songId
+        let user = object["user"] as? NSDictionary
         
         return Song.create(
             id,
@@ -255,6 +256,7 @@ class ParseAPI : APIProtocol {
             image: translate(image: object["images"]!),
             previewUrl: NSURL(string: object["previewUrl"] as! String)!,
             serviceUrl: NSURL(string: object["serviceUrl"] as! String)!,
+            user: user != nil ? User(id: user!["id"] as! String) : nil,
             distance: object["distance"] as? CGFloat
         )
     }

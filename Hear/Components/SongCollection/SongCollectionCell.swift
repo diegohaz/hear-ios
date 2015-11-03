@@ -12,9 +12,11 @@ class SongCollectionCell: UICollectionViewCell {
     @IBOutlet weak var songButton: SongButton!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
-    var reloadCount = 0
     
     override func prepareForReuse() {
+        transform = CGAffineTransformMakeScale(1, 1)
+        hidden = false
+
         songButton.songImageView.image = nil
         songButton.timePercent = 0
     }

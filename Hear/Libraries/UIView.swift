@@ -44,6 +44,15 @@ extension UIView {
         }
     }
     
+    func hide(delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
+        UIView.animateWithDuration(0.1, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(0.001, 0.001)
+            }) { (finished) -> Void in
+                self.hidden = true
+                completion?(finished)
+        }
+    }
+    
     func disappear(delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
         UIView.animateWithDuration(0.2, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
             self.alpha = 0
@@ -62,5 +71,24 @@ extension UIView {
             self.alpha = 1
             self.transform = CGAffineTransformMakeTranslation(0, 0)
             }, completion: completion)
+    }
+    
+    func startTrembling() {
+        transform = CGAffineTransformMakeScale(1.1, 1.1)
+        
+        let animation = CABasicAnimation(keyPath: "position")
+        
+        animation.duration = 0.05
+        animation.repeatCount = 2000
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(center.x - 10, center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(center.x + 10, center.y))
+        
+        layer.addAnimation(animation, forKey: "position")
+    }
+    
+    func stopTrembling() {
+        transform = CGAffineTransformMakeScale(1, 1)
+        layer.removeAnimationForKey("position")
     }
 }
