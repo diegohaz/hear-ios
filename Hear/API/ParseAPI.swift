@@ -15,9 +15,9 @@ class ParseAPI : APIProtocol {
     
     /// Login
     static func login() -> BFTask {
-        if let user = PFUser.currentUser() {
+        if PFUser.currentUser() != nil {
             print("User is already logged in")
-            return BFTask(result: user)
+            return saveLocale()
         }
         
         print("Signing up...")
@@ -34,7 +34,7 @@ class ParseAPI : APIProtocol {
             print("Signed up!")
             print("Saving country and locale...")
             user["country"] = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
-            user["locale"] = NSLocale.preferredLanguages().first
+            user["locale"] = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
             
             return user.saveInBackground()
         }.continueWithSuccessBlock { (task) -> AnyObject! in
@@ -43,6 +43,34 @@ class ParseAPI : APIProtocol {
         }
         
         return task
+    }
+    
+    /// Save locale
+    private static func saveLocale() -> BFTask {
+        guard let user = PFUser.currentUser() else {
+            return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
+        }
+        
+        print("Verifying locale...")
+        let userCountry = user["country"] as? String
+        let userLocale = user["locale"] as? String
+        
+        let currentCountry = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        let currentLocale = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String
+        
+        if userCountry != currentCountry || userLocale != currentLocale {
+            print("Locale is different, updating...")
+            user["country"] = currentCountry
+            user["locale"] = currentLocale
+
+            return user.saveInBackground().continueWithSuccessBlock({ (task) -> AnyObject! in
+                print("Locale has been saved!")
+                return task
+            })
+        } else {
+            print("Locale is same")
+            return BFTask(result: user)
+        }
     }
     
     /// Logout
