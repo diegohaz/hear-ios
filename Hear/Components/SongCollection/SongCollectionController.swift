@@ -32,24 +32,23 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         self.view.alwaysBounceVertical = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: LocationManagerNotification, object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerDidPlayNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: PostSongNotification, object: nil)
     }
     
     func currentSongChanged(notification: NSNotification) {
-//        if scrolling || songs.count == 0 {
-//            return
-//        }
-//        
-//        let index = notification.object as! Int
-//        let indexPath = NSIndexPath(forItem: index, inSection: 0)
-//        let layout = view.collectionViewLayout as! SongCollectionLayout
-//        var frame = view.layoutAttributesForItemAtIndexPath(indexPath)?.frame
-//        
-//        frame?.origin.y -= layout.sectionInset.top
-//        frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
-//        
-//        view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
+        guard let song = notification.object as? Song else { return }
+        guard let index = songs.indexOf(song) else { return }
+        if scrolling || songs.count == 0 { return }
+        
+        let indexPath = NSIndexPath(forItem: index, inSection: 0)
+        let layout = view.collectionViewLayout as! SongCollectionLayout
+        var frame = view.layoutAttributesForItemAtIndexPath(indexPath)?.frame
+        
+        frame?.origin.y -= layout.sectionInset.top
+        frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
+        
+        view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
     }
     
     func locationChanged(notification: NSNotification) {
@@ -153,6 +152,10 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                 loadNextPage()
             }
         }
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrolling = false
     }
     
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
