@@ -55,6 +55,10 @@ class AudioManager: NSObject {
                         player.removeItem(item)
                     }
                 }
+                
+                if self.reloaded {
+                    player.insertItem(AVPlayerItem(URL: self.songs.first!.previewUrl), afterItem: nil)
+                }
             })
         }
         
@@ -214,10 +218,12 @@ class AudioManager: NSObject {
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)
         }
         
-        guard var index = songs.indexOf(song) where !reloaded else {
+        guard let player = self.player as? AVQueuePlayer else {
             currentSong = nil
             return
         }
+        
+        var index = songs.indexOf(song) ?? -1
         
         if reloaded {
             index = -1
@@ -225,7 +231,6 @@ class AudioManager: NSObject {
         }
         
         if songs.count > ++index {
-            let player = self.player as! AVQueuePlayer
             let item = player.currentItem!
             currentSong = songs[index]
             
