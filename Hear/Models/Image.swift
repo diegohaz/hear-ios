@@ -122,9 +122,9 @@ class Image: NSObject {
         } else {
             switch size {
             case .Big:
-                return .Medium
+                return isSizeAvailable(.Big) ? .Big : .Medium
             case .Medium:
-                return .Small
+                return isSizeAvailable(.Medium) ? .Medium : .Small
             case .Small:
                 return .Small
             }
