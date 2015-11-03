@@ -19,10 +19,10 @@ class AudioManager: NSObject {
     static let sharedInstance = AudioManager()
     
     private var player: AVPlayer?
+    private var reloaded = false
     
     private(set) var songs = [Song]()
     private(set) var currentSong: Song?
-    private(set) var currentIndex: Int?
     
     private override init() {
         super.init()
@@ -40,29 +40,37 @@ class AudioManager: NSObject {
     }
     
     func reload(songs: [Song]) {
+        if self.songs.count > 0 {
+            reloaded = true
+        }
+        
         self.songs = [Song]()
-        self.currentIndex = nil
-        self.append(songs)
         
         if let player = player as? AVQueuePlayer {
-            let items = player.items()
-            
-            for item in items {
-                if item.currentTime().seconds == 0 {
-                    player.removeItem(item)
-                } else {
-                    currentIndex = -1
+            BFExecutor.backgroundExecutor().execute({ () -> Void in
+                let items = player.items()
+                
+                for item in items {
+                    if item.currentTime().seconds == 0 {
+                        player.removeItem(item)
+                    }
                 }
-            }
-            
-            for song in songs {
-                player.insertItem(AVPlayerItem(URL: song.previewUrl), afterItem: nil)
-            }
+            })
         }
+        
+        self.append(songs)
     }
     
     func append(songs: [Song]) {
         self.songs += songs
+        
+        if let player = player as? AVQueuePlayer {
+            BFExecutor.backgroundExecutor().execute({ () -> Void in
+                songs.forEach({
+                    player.insertItem(AVPlayerItem(URL: $0.previewUrl), afterItem: nil)
+                })
+            })
+        }
     }
     
     func current(song: Song) -> Bool {
@@ -113,26 +121,24 @@ class AudioManager: NSObject {
         do  { try AVAudioSession.sharedInstance().setActive(true) }
         catch let e { print(e) }
         
-        let isCurrentSong = song == currentSong
-        var useQueue = false
+        // There's a bug when place a song
+        let isCurrentSong = song.id == currentSong?.id
+        let useQueue = songs.indexOf(song) != nil
         var item: AVPlayerItem?
-        
-        if let index = songs.indexOf(song) {
-            currentIndex = index
-            useQueue = true
-        }
         
         if !isCurrentSong {
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: currentSong)
         }
         
+        reloaded = false
         currentSong = song
         NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: song)
 
         BFExecutor.backgroundExecutor().execute({ () -> Void in
             if !isCurrentSong {
                 if useQueue {
-                    self.player = AVQueuePlayer(items: self.songs[self.currentIndex! ..< self.songs.count].map({ AVPlayerItem(URL: $0.previewUrl) }))
+                    let songs = self.songs[self.songs.indexOf(song)! ..< self.songs.count]
+                    self.player = AVQueuePlayer(items: songs.map({ AVPlayerItem(URL: $0.previewUrl) }))
                     item = self.player!.currentItem
                 } else {
                     item = AVPlayerItem(URL: song.previewUrl)
@@ -199,18 +205,25 @@ class AudioManager: NSObject {
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)
         }
         
-        if songs.indexOf(song) == nil { return }
-        guard var index = currentIndex else { return }
+        var index = songs.indexOf(song)
         
-        if songs.count > ++index {
-            currentIndex = index
-            currentSong = songs[index]
+        if reloaded {
+            index = -1
+            reloaded = false
+        } else if index == nil {
+            currentSong = nil
+            return
+        }
+        
+        if songs.count > ++index! {
+            let item = player!.currentItem!
+            currentSong = songs[index!]
             
             BFExecutor.mainThreadExecutor().execute({ () -> Void in
                 NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: self.currentSong)
             })
             
-            setSongInfo(currentSong!, item: player!.currentItem!)
+            setSongInfo(currentSong!, item: item)
         }
     }
     
