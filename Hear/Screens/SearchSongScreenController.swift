@@ -80,8 +80,6 @@ class SearchSongScreenController: UIViewController {
                 return task
             }
             
-            AudioManager.sharedInstance.play(song)
-            
             NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
             NSNotificationCenter.defaultCenter().postNotificationName(PostSongNotification, object: song)
             

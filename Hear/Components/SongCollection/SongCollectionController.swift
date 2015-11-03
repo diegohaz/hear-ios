@@ -31,9 +31,9 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         self.view = view
         self.view.alwaysBounceVertical = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: LocationManagerNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reload", name: LocationManagerNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerDidPlayNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged:", name: PostSongNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didPlaceSong:", name: PostSongNotification, object: nil)
     }
     
     func currentSongChanged(notification: NSNotification) {
@@ -51,8 +51,14 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
     }
     
-    func locationChanged(notification: NSNotification) {
-        reload()
+    func didPlaceSong(notification: NSNotification) {
+        reload().continueWithBlock { (task) -> AnyObject! in
+            if let song = notification.object as? Song {
+                AudioManager.sharedInstance.play(song)
+            }
+            
+            return nil
+        }
     }
     
     private func setup() {
@@ -66,9 +72,9 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         setDistance(view)
     }
     
-    func reload() {
+    func reload() -> BFTask {
         guard let location = LocationManager.sharedInstance.location else {
-            return
+            return BFTask(error: NSError(domain: BFTaskErrorDomain, code: 0, userInfo: nil))
         }
 
         loading = true
@@ -83,7 +89,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             return nil
         })
         
-        API.listPlacedSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+        return API.listPlacedSongs(location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.songs = task.result["songs"] as! [Song]
             self.offset = task.result["offset"] as! Int
             self.hasOtherPage = true
