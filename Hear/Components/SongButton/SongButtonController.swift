@@ -12,6 +12,7 @@ import Bolts
 
 class SongButtonController: NSObject {
     weak var view: SongButton!
+    var timer: NSTimer?
     var audio = AudioManager.sharedInstance
     var song: Song? {
         didSet {
@@ -42,8 +43,8 @@ class SongButtonController: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPause", name: AudioManagerDidFinishNotification, object: nil)
         
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
     }
     
     func viewDidTouch() {
