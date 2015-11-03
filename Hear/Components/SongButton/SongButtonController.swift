@@ -54,16 +54,16 @@ class SongButtonController: NSObject {
     func audioDidPlay() {
         if song != nil && audio.current(song!) {
             if audio.currentTime() > 0 {
-                view.play()
+                view?.play()
             } else {
-                view.load()
+                view?.load()
             }
         }
     }
     
     func audioDidPause() {
         if song != nil && audio.current(song!) {
-            view.pause()
+            view?.pause()
         }
     }
     
