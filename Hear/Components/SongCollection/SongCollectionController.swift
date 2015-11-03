@@ -113,7 +113,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         loading = true
 
-        API.listPlacedSongs(location, limit: 30, offset: offset).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+        API.listPlacedSongs(location, limit: 90, offset: offset).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             self.loading = false
             guard let songs = task.result["songs"] as? [Song] else {
                 return task
