@@ -11,6 +11,6 @@ import Bolts
 
 extension BFExecutor {
     static func backgroundExecutor() -> BFExecutor {
-        return BFExecutor(dispatchQueue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0))
+        return BFExecutor(dispatchQueue: dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0))
     }
 }
