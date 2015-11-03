@@ -42,7 +42,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         location = locations.last
         print("\(location!.coordinate.latitude),\(location!.coordinate.longitude)")
         
-        if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 500 {
+        if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 1000 {
             originalLocation = location
             NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerNotification, object: location)
         }
