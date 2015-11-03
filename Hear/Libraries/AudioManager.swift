@@ -63,14 +63,6 @@ class AudioManager: NSObject {
     
     func append(songs: [Song]) {
         self.songs += songs
-        
-        if let player = player as? AVQueuePlayer {
-            BFExecutor.backgroundExecutor().execute({ () -> Void in
-                songs.forEach({
-                    player.insertItem(AVPlayerItem(URL: $0.previewUrl), afterItem: nil)
-                })
-            })
-        }
     }
     
     func current(song: Song) -> Bool {
@@ -123,6 +115,7 @@ class AudioManager: NSObject {
         
         // There's a bug when place a song
         let isCurrentSong = song.id == currentSong?.id
+        let currentIndex = currentSong != nil ? songs.indexOf(currentSong!) : nil
         let useQueue = songs.indexOf(song) != nil
         var item: AVPlayerItem?
         
@@ -137,16 +130,32 @@ class AudioManager: NSObject {
         BFExecutor.backgroundExecutor().execute({ () -> Void in
             if !isCurrentSong {
                 if useQueue {
-                    let songs = self.songs[self.songs.indexOf(song)! ..< self.songs.count]
-                    self.player = AVQueuePlayer(items: songs.map({ AVPlayerItem(URL: $0.previewUrl) }))
+                    let index = self.songs.indexOf(song)!
+                    
+                    if currentIndex != nil && currentIndex! + 1 == self.songs.indexOf(song)! {
+                        let player = self.player as? AVQueuePlayer
+                        player?.advanceToNextItem()
+                        
+                        if index + 1 < self.songs.count {
+                            player?.insertItem(AVPlayerItem(URL: self.songs[index + 1].previewUrl), afterItem: nil)
+                        }
+                    } else {
+                        let limit = index + 1 > self.songs.count ? index : index + 1
+                        let songs = self.songs[index ... limit]
+                        self.player?.pause()
+                        self.player = AVQueuePlayer(items: songs.map({ AVPlayerItem(URL: $0.previewUrl) }))
+                        self.player?.play()
+                    }
+                    
                     item = self.player!.currentItem
                 } else {
                     item = AVPlayerItem(URL: song.previewUrl)
                     self.player = AVPlayer(playerItem: item!)
+                    self.player?.play()
                 }
+            } else {
+                self.player?.play()
             }
-            
-            self.player?.play()
             
             if let item = item {
                 self.setSongInfo(song, item: item)
@@ -205,19 +214,24 @@ class AudioManager: NSObject {
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)
         }
         
-        var index = songs.indexOf(song)
-        
-        if reloaded {
-            index = -1
-            reloaded = false
-        } else if index == nil {
+        guard var index = songs.indexOf(song) where !reloaded else {
             currentSong = nil
             return
         }
         
-        if songs.count > ++index! {
-            let item = player!.currentItem!
-            currentSong = songs[index!]
+        if reloaded {
+            index = -1
+            reloaded = false
+        }
+        
+        if songs.count > ++index {
+            let player = self.player as! AVQueuePlayer
+            let item = player.currentItem!
+            currentSong = songs[index]
+            
+            if index + 1 < songs.count {
+                player.insertItem(AVPlayerItem(URL: songs[index + 1].previewUrl), afterItem: nil)
+            }
             
             BFExecutor.mainThreadExecutor().execute({ () -> Void in
                 NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: self.currentSong)
