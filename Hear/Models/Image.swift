@@ -75,7 +75,7 @@ class Image: NSObject {
         } else {
             let task = rounded ? load(size, rounded: false) : BFTask(delay: 0)
             
-            return task.continueWithSuccessBlock({ (task) -> AnyObject! in
+            return task.continueWithExecutor(BFExecutor.backgroundExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 if rounded {
                     if let image = task.result as? UIImage {
                         let rect = CGRectMake(0, 0, image.size.width, image.size.height)
