@@ -37,7 +37,7 @@ class Song: NSObject {
     }
     
     static func create(id: String, songId: String, serviceId: String, title: String, artist: Artist, image: Image, previewUrl: NSURL, serviceUrl: NSURL, distance: CGFloat?) -> Song {
-        if songs.indexForKey(id) != nil {
+        if songs.indexForKey(id) != nil && songs[id]?.serviceId == serviceId {
             songs[id]?.distance = distance
             
             return songs[id]!
