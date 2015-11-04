@@ -87,11 +87,16 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                 if let song = self.longPressedCell?.songButton.controller.song {
                     if let songIndex = self.songs.indexOf(song) {
                         self.songs.removeAtIndex(songIndex)
-                        API.removeSong(song)
+                        self.view.reloadData()
+                    }
+                    
+                    API.removeSong(song)
+                    
+                    if AudioManager.sharedInstance.playing(song) {
+                        AudioManager.sharedInstance.playNext()
                     }
                 }
                 
-                self.view.reloadData()
                 self.longPressedCell = nil
             })
         }
