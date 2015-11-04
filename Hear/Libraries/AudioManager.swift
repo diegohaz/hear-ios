@@ -56,7 +56,6 @@ class AudioManager: NSObject {
                 
                 for item in items {
                     if item.currentTime().seconds == 0 {
-                        print("Removing item from playlist")
                         player.removeItem(item)
                     } else {
                         print("There's an item playing in playlist. Didn't remove this one.")
@@ -133,7 +132,7 @@ class AudioManager: NSObject {
         var item: AVPlayerItem?
         
         if !isCurrentSong {
-            print("Finishing song \(currentSong?.title)")
+            print("\(currentSong?.title) has just finished")
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: currentSong)
         }
         
@@ -163,7 +162,7 @@ class AudioManager: NSObject {
                         }
                     } else {
                         print("It is a song in any position. Create a new playlist from it.")
-                        let limit = index + 1 > self.songs.count ? index : index + 1
+                        let limit = index + 1 >= self.songs.count ? index : index + 1
                         let songs = self.songs[index ... limit]
                         self.player?.pause()
                         self.player = AVQueuePlayer(items: songs.map({ AVPlayerItem(URL: $0.previewUrl) }))
@@ -234,7 +233,7 @@ class AudioManager: NSObject {
     
     func songDidFinish() {
         guard let song = currentSong else { return }
-        print("\(song.title) just finished")
+        print("\(song.title) has just finished")
         
         BFExecutor.mainThreadExecutor().execute { () -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)

@@ -40,7 +40,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last
-        print("\(location!.coordinate.latitude),\(location!.coordinate.longitude)")
+        print("Location has changed!")
         
         if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 1000 {
             originalLocation = location
