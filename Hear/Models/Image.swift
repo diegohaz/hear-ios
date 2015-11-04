@@ -63,7 +63,7 @@ class Image: NSObject {
     }
     
     func load(var size: ImageSize = .Small, rounded: Bool = false) -> BFTask {
-        size = isSizeAvailable(size) ? getSizeForReachability(size) : ImageSize.Small
+        size = getSizeForReachability(size)
         
         let image = rounded ? roundedImage[size] : self.image[size]
         let task = self.task[size]
@@ -122,9 +122,9 @@ class Image: NSObject {
         } else {
             switch size {
             case .Big:
-                return isSizeAvailable(.Big) ? .Big : .Medium
+                return image[size]! != nil ? size : .Medium
             case .Medium:
-                return isSizeAvailable(.Medium) ? .Medium : .Small
+                return image[size]! != nil ? size : .Small
             case .Small:
                 return .Small
             }
@@ -132,6 +132,6 @@ class Image: NSObject {
     }
     
     private func isSizeAvailable(size: ImageSize) -> Bool {
-        return url[size] != nil
+        return url[size]! != nil
     }
 }
