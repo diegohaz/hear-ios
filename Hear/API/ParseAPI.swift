@@ -179,12 +179,24 @@ class ParseAPI : APIProtocol {
         }
         
         print("Removing song \"\(song.title)\"...")
-        user.addUniqueObject(song.songId, forKey: "removedSongs")
         
-        return user.saveInBackground().continueWithSuccessBlock({ (task) -> AnyObject! in
-            print("Removed!")
-            return task
-        })
+        if let author = song.user where author.id == user.objectId {
+            print("Current user is the author, deleting...")
+            
+            let placedSong = PFObject(withoutDataWithClassName: "PlacedSong", objectId: song.id)
+            return placedSong.deleteInBackground().continueWithBlock({ (task) -> AnyObject! in
+                print("Deleted!")
+                return task
+            })
+        } else {
+            user.addUniqueObject(song.songId, forKey: "removedSongs")
+            
+            return user.saveInBackground().continueWithSuccessBlock({ (task) -> AnyObject! in
+                print("Removed!")
+                return task
+            })
+        }
+        
     }
     
     /// Remove artist
