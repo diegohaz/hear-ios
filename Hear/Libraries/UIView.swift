@@ -74,21 +74,23 @@ extension UIView {
     }
     
     func startTrembling() {
-        transform = CGAffineTransformMakeScale(1.1, 1.1)
+        UIView.animateWithDuration(0.1) { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        }
         
-        let animation = CABasicAnimation(keyPath: "position")
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
         
-        animation.duration = 0.05
+        animation.duration = 0.1
         animation.repeatCount = 2000
         animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(center.x - 10, center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(center.x + 10, center.y))
+        animation.fromValue = -0.05
+        animation.toValue = 0.05
         
-        layer.addAnimation(animation, forKey: "position")
+        layer.addAnimation(animation, forKey: "trembling")
     }
     
     func stopTrembling() {
         transform = CGAffineTransformMakeScale(1, 1)
-        layer.removeAnimationForKey("position")
+        layer.removeAnimationForKey("trembling")
     }
 }
