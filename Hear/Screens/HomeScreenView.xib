@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeScreenController" customModule="Hear" customModuleProvider="target">
             <connections>
                 <outlet property="inputButton" destination="zmy-O3-y2C" id="kZA-tF-qMH"/>
-                <outlet property="titleButton" destination="2r4-vz-pDg" id="x7X-zS-jeM"/>
+                <outlet property="titleButton" destination="2r4-vz-pDg" id="uI6-Yy-6e2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -35,7 +35,7 @@
                         <constraint firstAttribute="width" constant="64" id="qPm-kY-UhW"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButton" customModule="Hear" customModuleProvider="target">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r4-vz-pDg" customClass="TitleButton" customModule="Hear" customModuleProvider="target">
                     <rect key="frame" x="280" y="24" width="40" height="40"/>
                     <animations/>
                     <constraints>

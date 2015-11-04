@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class TitleButton: UIView {
+class TitleButton: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!

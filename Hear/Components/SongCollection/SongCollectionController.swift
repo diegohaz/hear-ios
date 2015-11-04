@@ -38,7 +38,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reload", name: LocationManagerNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentSongChanged:", name: AudioManagerDidPlayNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didPlaceSong:", name: PostSongNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didPlaceSong:", name: SearchSongCollectionDidPlaceSongNotification, object: nil)
     }
     
     func currentSongChanged(notification: NSNotification) {

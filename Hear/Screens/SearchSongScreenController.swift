@@ -9,27 +9,12 @@
 import UIKit
 import Bolts
 
-let LazyPostSongNotification = "LazyPostSongNotification"
-let PostSongNotification = "PostSongNotification"
-
 class SearchSongScreenController: UIViewController {
     
     static let sharedInstance = SearchSongScreenController()
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var searchSongTextField: SearchSongTextField!
-    
-    var waitingForLocation = false
-    
-    var selectedSong: Song? {
-        didSet {
-            if selectedSong != nil {
-                postButton.enabled = true
-            } else {
-                postButton.enabled = false
-            }
-        }
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +26,9 @@ class SearchSongScreenController: UIViewController {
         
         searchSongTextField.becomeFirstResponder()
         cancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "cancelButtonDidTouch"))
-        postButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "postButtonDidTouch"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidSelect:", name: SearchSongCollectionDidSelectNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged", name: LocationManagerNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cancelButtonDidTouch", name: SearchSongCollectionDidPlaceSongNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cancelButtonDidTouch", name: SearchSongCollectionDidPrepareToPlaceSongNotification, object: nil)
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -52,52 +36,7 @@ class SearchSongScreenController: UIViewController {
     }
     
     func cancelButtonDidTouch() {
-        //AudioManager.sharedInstance.stop()
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func postButtonDidTouch() {
-        guard let song = selectedSong else {
-            return
-        }
-        
-        guard let location = LocationManager.sharedInstance.location else {
-            waitingForLocation = true
-            NSNotificationCenter.defaultCenter().postNotificationName(LazyPostSongNotification, object: selectedSong)
-            cancelButtonDidTouch()
-            return
-        }
-        
-        selectedSong = nil
-        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionBeginLoadingNotification, object: nil)
-        
-        if !waitingForLocation {
-            cancelButtonDidTouch()
-        }
-        
-        API.placeSong(song, location: location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
-            guard let song = task.result as? Song else {
-                return task
-            }
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName(PostSongNotification, object: song)
-            
-            return task
-        })
-    }
-    
-    func songDidSelect(notification: NSNotification) {
-        if let song = notification.object as? Song {
-            selectedSong = song
-        } else {
-            selectedSong = nil
-        }
-    }
-    
-    func locationChanged() {
-        postButtonDidTouch()
-        waitingForLocation = false
     }
 
 }

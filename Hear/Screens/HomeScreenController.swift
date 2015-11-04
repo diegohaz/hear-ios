@@ -37,10 +37,14 @@ class HomeScreenController: UIViewController {
     }
 
     func inputButtonDidTouch() {
-        presentViewController(SearchSongScreenController.sharedInstance, animated: true, completion: nil)
+        inputButton.bounce { (finished) -> Void in
+            self.presentViewController(SearchSongScreenController.sharedInstance, animated: true, completion: nil)
+        }
     }
     
     func changeTitle(notification: NSNotification) {
+        titleButton.hidden = false
+        
         switch notification.name {
         case SongCollectionBeginLoadingNotification:
             titleButton.loading = true

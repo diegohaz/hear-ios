@@ -25,8 +25,7 @@ import UIKit
         controller = SearchSongTextFieldController(view: self)
         
         placeholder = "Search for songs or artists"
-        backgroundColor = UIColor.hearGrayColor()
-        borderStyle = .RoundedRect
+        borderStyle = .None
         returnKeyType = .Search
         clearButtonMode = .Always
     }

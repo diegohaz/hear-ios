@@ -9,16 +9,13 @@
 import UIKit
 import Bolts
 
-let SearchSongCollectionDidSelectNotification = "SearchSongCollectionDidSelectNotification"
+let SearchSongCollectionDidPrepareToPlaceSongNotification = "SearchSongCollectionDidPrepareToPlaceSongNotification"
+let SearchSongCollectionDidPlaceSongNotification = "SearchSongCollectionDidPlaceSongNotification"
 
 class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     weak var view: SearchSongCollectionView!
     var songs = [Song]()
-    var selected: Song? {
-        didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(SearchSongCollectionDidSelectNotification, object: selected)
-        }
-    }
+    var songWaitingForLocation: Song?
     
     init(view: SearchSongCollectionView) {
         super.init()
@@ -29,6 +26,7 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         self.view.delegate = self
         self.view.dataSource = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged", name: LocationManagerNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "searchSongTextFieldDidReturn:", name: SearchSongTextFieldNotification, object: nil)
     }
     
@@ -41,8 +39,6 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
     }
     
     func search(string: String) {
-        selected = nil
-        
         ParseAPI.searchSong(string).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
             guard let songs = task.result as? [Song] else {
                 return task
@@ -55,21 +51,57 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         })
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SearchSongCollectionCell
+    func locationChanged() {
+        if let song = songWaitingForLocation {
+            placeSong(song)
+        }
+    }
+    
+    func placeButtonDidTouch() {
+        guard let index = view.indexPathsForSelectedItems()?[0] else {
+            return
+        }
         
-        cell?.backgroundColor = UIColor.whiteColor()
+        guard let cell = view.cellForItemAtIndexPath(index) as? SearchSongCollectionCell else {
+            return
+        }
         
-        selected = nil
+        guard let song = cell.songButton.controller.song else {
+            return
+        }
+        
+        cell.placeButton.bounce { (finished) -> Void in
+            self.placeSong(song)
+        }
+    }
+    
+    func placeSong(song: Song) {
+        NSNotificationCenter.defaultCenter().postNotificationName(SearchSongCollectionDidPrepareToPlaceSongNotification, object: song)
+        
+        guard let location = LocationManager.sharedInstance.location else {
+            self.songWaitingForLocation = song
+            return
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionBeginLoadingNotification, object: nil)
+        
+        API.placeSong(song, location: location).continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
+            guard let song = task.result as? Song else {
+                return task
+            }
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(SearchSongCollectionDidPlaceSongNotification, object: song)
+            
+            return task
+        })
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as? SearchSongCollectionCell
         
-        cell?.backgroundColor = UIColor.hearGrayColor()
-        cell?.songButton.bounce()
+        cell?.select()
         cell?.songButton.controller.toggle()
-        selected = cell?.songButton.controller.song
+        cell?.placeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "placeButtonDidTouch"))
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,12 +116,6 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
         cell.songButton.controller.song = song
         cell.songTitleLabel.text = song.title
         cell.songArtistLabel.text = song.artist.name
-        
-        if selected?.isEqual(song) == true {
-            cell.backgroundColor = UIColor.hearGrayColor()
-        } else {
-            cell.backgroundColor = UIColor.whiteColor()
-        }
         
         return cell
     }

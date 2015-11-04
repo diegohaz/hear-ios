@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchSongScreenController" customModule="Hear" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="V9v-z0-qZl" id="dgn-qc-CCs"/>
-                <outlet property="postButton" destination="bUU-Xx-N9n" id="Cng-pE-S69"/>
                 <outlet property="searchSongTextField" destination="ykE-sj-oBf" id="TOO-uV-Qsw"/>
             </connections>
         </placeholder>
@@ -31,29 +30,17 @@
                     <rect key="frame" x="0.0" y="20" width="600" height="48"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-sj-oBf" customClass="SearchSongTextField" customModule="Hear" customModuleProvider="target">
-                            <rect key="frame" x="72" y="4" width="473" height="40"/>
+                            <rect key="frame" x="49" y="0.0" width="543" height="48"/>
                             <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V9v-z0-qZl">
-                            <rect key="frame" x="0.0" y="0.0" width="72" height="48"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V9v-z0-qZl">
+                            <rect key="frame" x="0.0" y="0.0" width="49" height="48"/>
                             <animations/>
+                            <color key="tintColor" red="0.82745098039215681" green="0.10980392156862745" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
-                            <state key="normal" title="Cancel">
-                                <color key="titleColor" red="0.7843137255" green="0.0" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bUU-Xx-N9n">
-                            <rect key="frame" x="545" y="0.0" width="55" height="48"/>
-                            <animations/>
-                            <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
-                            <state key="normal" title="Post">
-                                <color key="titleColor" red="0.7843137255" green="0.0" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="disabled">
-                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                            <state key="normal" image="Down"/>
                         </button>
                     </subviews>
                     <animations/>
@@ -61,15 +48,20 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="7uC-RO-qOb"/>
                         <constraint firstItem="V9v-z0-qZl" firstAttribute="leading" secondItem="rKc-gA-tov" secondAttribute="leading" id="Cno-Id-ukT"/>
-                        <constraint firstItem="bUU-Xx-N9n" firstAttribute="leading" secondItem="ykE-sj-oBf" secondAttribute="trailing" id="PyL-rq-E21"/>
                         <constraint firstItem="V9v-z0-qZl" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" id="T4P-eo-alg"/>
-                        <constraint firstAttribute="trailing" secondItem="bUU-Xx-N9n" secondAttribute="trailing" id="fP3-VD-NXr"/>
                         <constraint firstItem="ykE-sj-oBf" firstAttribute="leading" secondItem="V9v-z0-qZl" secondAttribute="trailing" id="ls0-kY-J0X"/>
-                        <constraint firstAttribute="bottom" secondItem="ykE-sj-oBf" secondAttribute="bottom" constant="4" id="m61-Ei-v6T"/>
+                        <constraint firstAttribute="bottom" secondItem="ykE-sj-oBf" secondAttribute="bottom" id="m61-Ei-v6T"/>
                         <constraint firstAttribute="bottom" secondItem="V9v-z0-qZl" secondAttribute="bottom" id="nAG-8E-vVX"/>
-                        <constraint firstItem="ykE-sj-oBf" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" constant="4" id="rhZ-sH-bXV"/>
-                        <constraint firstAttribute="bottom" secondItem="bUU-Xx-N9n" secondAttribute="bottom" id="wk4-nT-pMc"/>
-                        <constraint firstItem="bUU-Xx-N9n" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" id="xO8-Wc-37l"/>
+                        <constraint firstItem="ykE-sj-oBf" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="top" id="rhZ-sH-bXV"/>
+                        <constraint firstAttribute="trailing" secondItem="ykE-sj-oBf" secondAttribute="trailing" constant="8" id="tnr-wF-Klw"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="601-hR-6Pz">
+                    <rect key="frame" x="0.0" y="67" width="600" height="1"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="tMz-lF-IfF"/>
                     </constraints>
                 </view>
             </subviews>
@@ -81,9 +73,15 @@
                 <constraint firstAttribute="trailing" secondItem="rKc-gA-tov" secondAttribute="trailing" id="6Ig-ZI-r0G"/>
                 <constraint firstItem="rKc-gA-tov" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="SAY-V4-Zkk"/>
                 <constraint firstAttribute="bottom" secondItem="SOz-Lo-4nH" secondAttribute="bottom" id="fOp-h9-cvR"/>
+                <constraint firstItem="601-hR-6Pz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="g9d-fR-7B4"/>
                 <constraint firstItem="SOz-Lo-4nH" firstAttribute="top" secondItem="rKc-gA-tov" secondAttribute="bottom" id="hea-ac-IyN"/>
+                <constraint firstAttribute="trailing" secondItem="601-hR-6Pz" secondAttribute="trailing" id="mdb-yL-V0O"/>
                 <constraint firstAttribute="trailing" secondItem="SOz-Lo-4nH" secondAttribute="trailing" id="ozI-rf-dgT"/>
+                <constraint firstItem="SOz-Lo-4nH" firstAttribute="top" secondItem="601-hR-6Pz" secondAttribute="bottom" id="snY-Dp-ZTV"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="Down" width="25" height="25"/>
+    </resources>
 </document>

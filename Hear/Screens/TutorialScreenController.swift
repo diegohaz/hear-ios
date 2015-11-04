@@ -30,7 +30,7 @@ class TutorialScreenController: UIViewController {
         inputButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "inputButtonDidTouch"))
         locationButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "locationButtonDidTouch"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songWasPosted:", name: LazyPostSongNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songWasPosted:", name: SearchSongCollectionDidPrepareToPlaceSongNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationChanged", name: LocationManagerNotification, object: nil)
         
     }

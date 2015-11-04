@@ -36,27 +36,45 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonGradient" translatesAutoresizingMaskIntoConstraints="NO" id="eDJ-Rg-BH2">
+                        <rect key="frame" x="237" y="0.0" width="211" height="64"/>
+                        <animations/>
+                    </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76r-Ii-9aY" customClass="GenericButton" customModule="Hear" customModuleProvider="target">
+                        <rect key="frame" x="261" y="17" width="51" height="30"/>
+                        <animations/>
+                        <state key="normal" title="Place It"/>
+                    </button>
                 </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
             <constraints>
+                <constraint firstItem="76r-Ii-9aY" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="53G-zh-Ua7"/>
                 <constraint firstItem="YSD-68-Qsm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Fbe-BF-Yb8"/>
                 <constraint firstItem="L6q-pz-9Qs" firstAttribute="leading" secondItem="YSD-68-Qsm" secondAttribute="trailing" constant="8" id="Lu7-MN-u37"/>
                 <constraint firstItem="6JZ-GJ-Uai" firstAttribute="top" secondItem="L6q-pz-9Qs" secondAttribute="bottom" id="OgJ-P6-v5n"/>
+                <constraint firstAttribute="trailing" secondItem="76r-Ii-9aY" secondAttribute="trailing" constant="8" id="Uge-gF-B2A"/>
                 <constraint firstItem="YSD-68-Qsm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="YIM-Bs-9gx"/>
                 <constraint firstAttribute="trailing" secondItem="6JZ-GJ-Uai" secondAttribute="trailing" constant="8" id="YwE-ed-e2X"/>
+                <constraint firstItem="eDJ-Rg-BH2" firstAttribute="leading" secondItem="76r-Ii-9aY" secondAttribute="leading" constant="-24" id="b5b-Db-g7f"/>
+                <constraint firstItem="eDJ-Rg-BH2" firstAttribute="centerY" secondItem="76r-Ii-9aY" secondAttribute="centerY" id="nqd-lV-hQr"/>
                 <constraint firstItem="6JZ-GJ-Uai" firstAttribute="leading" secondItem="YSD-68-Qsm" secondAttribute="trailing" constant="8" id="qGn-1t-nSQ"/>
                 <constraint firstAttribute="trailing" secondItem="L6q-pz-9Qs" secondAttribute="trailing" constant="8" id="qwd-wY-byt"/>
                 <constraint firstItem="L6q-pz-9Qs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="tXw-Tm-Wgi"/>
                 <constraint firstAttribute="bottom" secondItem="YSD-68-Qsm" secondAttribute="bottom" constant="8" id="tpq-sK-wQS"/>
             </constraints>
             <connections>
+                <outlet property="placeButton" destination="76r-Ii-9aY" id="TFI-M7-FWt"/>
+                <outlet property="placeButtonMask" destination="eDJ-Rg-BH2" id="3j5-Ke-Dne"/>
                 <outlet property="songArtistLabel" destination="6JZ-GJ-Uai" id="DfX-Xo-e1g"/>
                 <outlet property="songButton" destination="YSD-68-Qsm" id="Ysa-jd-Uao"/>
                 <outlet property="songTitleLabel" destination="L6q-pz-9Qs" id="hC7-wQ-cS7"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ButtonGradient" width="211" height="64"/>
+    </resources>
 </document>
