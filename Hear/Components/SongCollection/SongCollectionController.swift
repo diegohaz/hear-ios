@@ -92,7 +92,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                     
                     API.removeSong(song)
                     
-                    if AudioManager.sharedInstance.playing(song) {
+                    if AudioManager.sharedInstance.playing(song: song) {
                         AudioManager.sharedInstance.playNext()
                     }
                 }
@@ -113,7 +113,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     private func setup() {
-        AudioManager.sharedInstance.reload(songs)
+        AudioManager.sharedInstance.queue(songs)
         
         self.view.registerNib(UINib(nibName: "SongCollectionCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "Cell")
         
@@ -178,7 +178,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             
             self.songs += songs
             self.offset = task.result["offset"] as! Int
-            AudioManager.sharedInstance.append(songs)
+            AudioManager.sharedInstance.insert(songs)
             self.view.reloadData()
             
             return task

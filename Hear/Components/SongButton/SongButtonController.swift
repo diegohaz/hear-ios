@@ -28,7 +28,7 @@ class SongButtonController: NSObject {
                 return nil
             })
             
-            view.pause()
+            statusChanged()
         }
     }
     
@@ -38,13 +38,11 @@ class SongButtonController: NSObject {
         self.view = view
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewDidTouch"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPlay", name: AudioManagerDidPlayNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPause", name: AudioManagerDidPauseNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioDidPause", name: AudioManagerDidFinishNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerWillLoadNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPlayNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPauseNotification, object: nil)
         
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateTime", userInfo: [], repeats: true)
-        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+        audio.addObserver(self, forKeyPath: "time", options: .New, context: nil)
     }
     
     func viewDidTouch() {
@@ -52,40 +50,50 @@ class SongButtonController: NSObject {
         toggle()
     }
     
-    func audioDidPlay() {
-        if song != nil && audio.current(song!) {
-            if audio.currentTime() > 0 {
-                view?.play()
-            } else {
-                view?.load()
-            }
+    func statusChanged() {
+        guard let song = song where audio.current(song: song) else {
+            view?.timePercent = 0
+            view?.pause()
+            return
         }
-    }
-    
-    func audioDidPause() {
-        if song != nil && audio.current(song!) {
+        
+        switch audio.status {
+        case .Loading:
+            view?.load()
+            break
+        case .Paused:
+            view?.pause()
+            break
+        case .Playing:
+            view?.play()
+            break
+        case .Idle:
+            view?.timePercent = 0
             view?.pause()
         }
     }
     
     func toggle() {
-        guard let song = song else {
-            return
-        }
+        guard let song = song else { return }
         
-        if audio.playing(song) {
+        if audio.playing(song: song) {
             audio.pause()
-        } else if audio.current(song) {
+        } else if audio.current(song: song) {
             audio.play()
         } else {
             audio.play(song)
         }
     }
     
-    func updateTime() {
-        if song != nil && audio.playing(song!) && audio.currentTime() > 0 {
-            view?.timePercent = CGFloat(audio.currentTime() / audio.duration())
-            view?.play()
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "time" {
+            updateTime()
+        }
+    }
+    
+    private func updateTime() {
+        if song != nil && audio.current(song: song!) {
+            view?.timePercent = CGFloat(audio.time/audio.duration)
         } else if view?.timePercent != 0 {
             view?.timePercent = 0
         }

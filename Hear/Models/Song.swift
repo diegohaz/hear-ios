@@ -49,4 +49,12 @@ class Song: NSObject {
         
         return songs[id]!
     }
+    
+    static func get(id: String) -> Song? {
+        guard let index = songs.indexOf({ $1.id == id }) else { return nil }
+        
+        let song = songs.values[index]
+        
+        return song
+    }
 }
