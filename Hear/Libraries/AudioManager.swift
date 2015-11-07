@@ -182,7 +182,7 @@ class AudioManager: NSObject {
             
             NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerTimerNotification, object: self.time)
             
-            if let currentSong = self.currentSong where self.status != .Playing && self.time > 0 {
+            if let currentSong = self.currentSong where self.status != .Playing && self.playing() {
                 self.status = .Playing
                 NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidPlayNotification, object: currentSong)
             }
