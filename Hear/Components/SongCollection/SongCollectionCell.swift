@@ -29,11 +29,11 @@ class SongCollectionCell: UICollectionViewCell {
         
         if maxY > limitBottom {
             let scale = 1 - (maxY - limitBottom)/bounds.height
-            contentView.alpha = pow(scale, 6)
+            contentView.alpha = pow(scale, 8)
             transform = CGAffineTransformMakeScale(scale, scale)
         } else if minY < limitTop {
             let scale = 1 - (limitTop - minY)/bounds.height
-            contentView.alpha = pow(scale, 6)
+            contentView.alpha = pow(scale, 8)
             transform = CGAffineTransformMakeScale(scale, scale)
         } else if contentView.alpha < 1 {
             contentView.alpha = 1

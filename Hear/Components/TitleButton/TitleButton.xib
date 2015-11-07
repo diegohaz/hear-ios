@@ -61,19 +61,19 @@
             </subviews>
             <animations/>
             <constraints>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AHx-og-stT" secondAttribute="trailing" constant="16" id="0nG-9k-ItE"/>
-                <constraint firstItem="y9e-dU-3Sg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="16" id="4Sf-Vs-QHo"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AHx-og-stT" secondAttribute="trailing" constant="20" id="0nG-9k-ItE"/>
+                <constraint firstItem="y9e-dU-3Sg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="20" id="4Sf-Vs-QHo"/>
                 <constraint firstItem="AHx-og-stT" firstAttribute="top" secondItem="6B3-QP-cK5" secondAttribute="top" constant="6" id="5X9-ec-GKs"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y9e-dU-3Sg" secondAttribute="trailing" constant="16" id="B0G-fA-1py"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qS9-wV-XMU" secondAttribute="trailing" constant="16" id="DdX-iV-6dD"/>
-                <constraint firstItem="AHx-og-stT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="16" id="Drm-ba-V1c"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y9e-dU-3Sg" secondAttribute="trailing" constant="20" id="B0G-fA-1py"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qS9-wV-XMU" secondAttribute="trailing" constant="20" id="DdX-iV-6dD"/>
+                <constraint firstItem="AHx-og-stT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="20" id="Drm-ba-V1c"/>
                 <constraint firstItem="y9e-dU-3Sg" firstAttribute="centerY" secondItem="6B3-QP-cK5" secondAttribute="centerY" id="IWq-Ty-ghq"/>
                 <constraint firstItem="b9H-OE-scX" firstAttribute="centerX" secondItem="6B3-QP-cK5" secondAttribute="centerX" id="VeG-Of-fTK"/>
                 <constraint firstItem="AHx-og-stT" firstAttribute="centerX" secondItem="6B3-QP-cK5" secondAttribute="centerX" id="WJ0-oH-0bt"/>
                 <constraint firstAttribute="bottom" secondItem="qS9-wV-XMU" secondAttribute="bottom" constant="3" id="WdB-UT-6QS"/>
                 <constraint firstItem="qS9-wV-XMU" firstAttribute="centerX" secondItem="6B3-QP-cK5" secondAttribute="centerX" id="gZA-eX-PQu"/>
                 <constraint firstItem="b9H-OE-scX" firstAttribute="centerY" secondItem="6B3-QP-cK5" secondAttribute="centerY" id="i1q-8I-8sc"/>
-                <constraint firstItem="qS9-wV-XMU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="16" id="pYB-46-T8q"/>
+                <constraint firstItem="qS9-wV-XMU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6B3-QP-cK5" secondAttribute="leading" constant="20" id="pYB-46-T8q"/>
                 <constraint firstItem="y9e-dU-3Sg" firstAttribute="centerX" secondItem="6B3-QP-cK5" secondAttribute="centerX" id="vnm-ob-m5W"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

@@ -14,6 +14,7 @@ import Bolts
 let AudioManagerWillLoadNotification = "AudioManagerWillLoadNotification"
 let AudioManagerDidPlayNotification = "AudioManagerDidPlayNotification"
 let AudioManagerDidPauseNotification = "AudioManagerDidPauseNotification"
+let AudioManagerTimerNotification = "AudioManagerTimerNotification"
 
 enum AudioManagerStatus: Int {
     case Loading
@@ -32,7 +33,7 @@ class AudioManager: NSObject {
     private(set) var songs = [Song]()
     private(set) var currentSong: Song?
     private(set) var status = AudioManagerStatus.Idle
-    private(set) dynamic var time: Double = 0
+    private(set) var time: Double = 0
     
     var duration: Double {
         get {
@@ -93,6 +94,20 @@ class AudioManager: NSObject {
     func remove(song: Song) {
         if let index = songs.indexOf(song) {
             songs.removeAtIndex(index)
+            
+            if let player = player as? AVQueuePlayer {
+                let items = player.items()
+                
+                items.forEach({
+                    if self.getSongByItem($0)?.id == song.id {
+                        player.removeItem($0)
+                        
+                        if index < self.songs.count {
+                            self.loadItem(self.songs[index], { player.insertItem($0, afterItem: nil) })
+                        }
+                    }
+                })
+            }
         }
     }
     
@@ -158,6 +173,8 @@ class AudioManager: NSObject {
         player?.addObserver(self, forKeyPath: "currentItem", options: .Initial, context: nil)
         timeObserver = player?.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(0.1, 600), queue: nil, usingBlock: { (time) -> Void in
             self.time = time.seconds
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerTimerNotification, object: self.time)
             
             if let currentSong = self.currentSong where self.status != .Playing && self.time > 0 {
                 self.status = .Playing

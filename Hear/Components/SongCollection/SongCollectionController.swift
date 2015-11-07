@@ -48,12 +48,13 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
         let layout = view.collectionViewLayout as! SongCollectionLayout
-        var frame = view.layoutAttributesForItemAtIndexPath(indexPath)?.frame
+        var frame = layout.frameForItemAtIndexPath(indexPath)
+        let diff = max(frame.origin.y, view.contentOffset.y) - min(frame.origin.y, view.contentOffset.y)
         
-        frame?.origin.y -= layout.sectionInset.top
-        frame?.size.height += layout.sectionInset.top + layout.sectionInset.bottom
+        frame.origin.y -= layout.sectionInset.top
+        frame.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
-        view.scrollRectToVisible(frame ?? CGRect(x: 0, y: view.contentOffset.y, width: 10, height: 10), animated: true)
+        view.scrollRectToVisible(frame, animated: diff < view.bounds.height)
     }
     
     func viewDidLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -92,11 +93,11 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                     
                     API.removeSong(song)
                     
-                    AudioManager.sharedInstance.remove(song)
-                    
                     if AudioManager.sharedInstance.playing(song: song) {
                         AudioManager.sharedInstance.playNext()
                     }
+                    
+                    AudioManager.sharedInstance.remove(song)
                 }
                 
                 self.longPressedCell = nil

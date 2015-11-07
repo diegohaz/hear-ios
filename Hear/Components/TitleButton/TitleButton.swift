@@ -88,9 +88,6 @@ class TitleButton: UIView {
     
     override func drawRect(rect: CGRect) {
         layer.cornerRadius = bounds.height/2
-        
-        springIndicator.frame.origin.x = bounds.width/2 - springIndicator.bounds.width/2
-        springIndicator.frame.origin.y = bounds.height/2 - springIndicator.bounds.height/2
     }
     
     private func hideAll(but objects: UIView...) {

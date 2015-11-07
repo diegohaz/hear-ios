@@ -22,7 +22,7 @@ class SongButtonController: NSObject {
             
             task?.continueWithExecutor(BFExecutor.mainThreadExecutor(), withSuccessBlock: { (task) -> AnyObject! in
                 if song?.id == self.song?.id {
-                    self.view.songImageView.image = task.result as? UIImage
+                    self.view?.songImageView.image = task.result as? UIImage
                 }
                 
                 return nil
@@ -41,8 +41,7 @@ class SongButtonController: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerWillLoadNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPlayNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPauseNotification, object: nil)
-        
-        audio.addObserver(self, forKeyPath: "time", options: .New, context: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChanged", name: AudioManagerTimerNotification, object: nil)
     }
     
     func viewDidTouch() {
@@ -85,13 +84,7 @@ class SongButtonController: NSObject {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "time" {
-            updateTime()
-        }
-    }
-    
-    private func updateTime() {
+    func timeChanged() {
         if song != nil && audio.current(song: song!) {
             view?.timePercent = CGFloat(audio.time/audio.duration)
         } else if view?.timePercent != 0 {
