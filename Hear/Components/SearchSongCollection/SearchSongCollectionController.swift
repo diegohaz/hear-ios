@@ -47,6 +47,13 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
             self.songs = songs
             self.view.reloadData()
             
+            if songs.count == 0 {
+                self.view.noResultsLabel.text = "Sorry, we could not find any song for \"\(string)\"."
+                self.view.noResultsLabel.hidden = false
+            } else {
+                self.view.noResultsLabel.hidden = true
+            }
+            
             return task
         })
     }

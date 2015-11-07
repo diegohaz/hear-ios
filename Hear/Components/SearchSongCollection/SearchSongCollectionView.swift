@@ -10,6 +10,7 @@ import UIKit
 
 class SearchSongCollectionView: UICollectionView {
     var controller: SearchSongCollectionController!
+    var noResultsLabel: UILabel!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -23,6 +24,13 @@ class SearchSongCollectionView: UICollectionView {
     
     private func setup() {
         controller = SearchSongCollectionController(view: self)
+        
+        noResultsLabel = UILabel(frame: CGRect(x: 16, y: 16, width: UIScreen.mainScreen().bounds.width - 32, height: 48))
+        noResultsLabel.font = UIFont.systemFontOfSize(14)
+        noResultsLabel.numberOfLines = 0
+        noResultsLabel.textAlignment = .Center
+        noResultsLabel.hidden = true
+        addSubview(noResultsLabel)
         
         backgroundColor = UIColor.whiteColor()
     }
