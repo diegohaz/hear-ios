@@ -92,6 +92,8 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                     
                     API.removeSong(song)
                     
+                    AudioManager.sharedInstance.remove(song)
+                    
                     if AudioManager.sharedInstance.playing(song: song) {
                         AudioManager.sharedInstance.playNext()
                     }

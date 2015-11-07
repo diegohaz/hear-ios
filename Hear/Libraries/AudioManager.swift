@@ -90,7 +90,13 @@ class AudioManager: NSObject {
         self.songs += songs
     }
     
-    func loadItem(song: Song, _ completion: ((item: AVPlayerItem) -> Void)? = nil) {
+    func remove(song: Song) {
+        if let index = songs.indexOf(song) {
+            songs.removeAtIndex(index)
+        }
+    }
+    
+    private func loadItem(song: Song, _ completion: ((item: AVPlayerItem) -> Void)? = nil) {
         let asset = AVURLAsset(URL: song.previewUrl)
         let keys = ["playable"]
         
