@@ -29,35 +29,35 @@
                         <constraint firstAttribute="height" constant="64" id="hbg-7y-4M5"/>
                     </constraints>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your favorite song to leave at the location you are" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-xD-jPT">
-                    <rect key="frame" x="165" y="277" width="270" height="47.5"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spread music from the location you are." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7il-xD-jPT">
+                    <rect key="frame" x="165" y="276" width="270" height="48"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="270" id="ze1-2X-Oz8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great choice!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-yZ-FhJ">
-                    <rect key="frame" x="239" y="288" width="123" height="24"/>
+                    <rect key="frame" x="242" y="288" width="117" height="24"/>
                     <animations/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What if you could hear music people left around you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR3-56-LMZ">
-                    <rect key="frame" x="165" y="276" width="270" height="47.5"/>
+                    <rect key="frame" x="165" y="276" width="270" height="48"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="270" id="SmV-1y-WDi"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdG-Jb-EvU" customClass="GenericButton" customModule="Hear" customModuleProvider="target">
-                    <rect key="frame" x="204" y="339" width="191" height="30"/>
+                    <rect key="frame" x="204" y="340" width="191" height="30"/>
                     <animations/>
                     <state key="normal" title="ALLOW LOCATION ACCESS"/>
                 </button>

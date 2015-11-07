@@ -55,6 +55,10 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         frame.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
         view.scrollRectToVisible(frame, animated: diff < view.bounds.height)
+        
+        if diff < view.bounds.height {
+            scrolling = false
+        }
     }
     
     func viewDidLongPress(gestureRecognizer: UILongPressGestureRecognizer) {

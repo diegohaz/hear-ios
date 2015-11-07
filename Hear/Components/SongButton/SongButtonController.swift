@@ -41,6 +41,7 @@ class SongButtonController: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerWillLoadNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPlayNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidPauseNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "statusChanged", name: AudioManagerDidFinishNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChanged", name: AudioManagerTimerNotification, object: nil)
     }
     

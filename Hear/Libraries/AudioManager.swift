@@ -14,6 +14,7 @@ import Bolts
 let AudioManagerWillLoadNotification = "AudioManagerWillLoadNotification"
 let AudioManagerDidPlayNotification = "AudioManagerDidPlayNotification"
 let AudioManagerDidPauseNotification = "AudioManagerDidPauseNotification"
+let AudioManagerDidFinishNotification = "AudioManagerDidFinishNotification"
 let AudioManagerTimerNotification = "AudioManagerTimerNotification"
 
 enum AudioManagerStatus: Int {
@@ -44,7 +45,8 @@ class AudioManager: NSObject {
     private override init() {
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidStalled", name: AVPlayerItemPlaybackStalledNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidStagnate", name: AVPlayerItemPlaybackStalledNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songDidFinish", name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -127,11 +129,11 @@ class AudioManager: NSObject {
     func play(song: Song) {
         let lastSong = currentSong
         
+        player?.pause()
         currentSong = song
         status = .Loading
+        
         NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerWillLoadNotification, object: song)
-    
-        player?.pause()
         
         if let index = songs.indexOf(song) {
             if index - 1 > 0 && lastSong == songs[index - 1] {
@@ -139,19 +141,23 @@ class AudioManager: NSObject {
                 player?.play()
             } else {
                 removeObservers()
+                player = AVQueuePlayer()
+                addObservers()
+                
                 loadItem(song, { (item) -> Void in
-                    self.player = AVQueuePlayer(playerItem: item)
+                    (self.player as? AVQueuePlayer)?.insertItem(item, afterItem: nil)
                     
                     BFExecutor.mainThreadExecutor().execute({ () -> Void in
-                        self.addObservers()
                         self.player?.play()
                     })
                 })
             }
         } else {
             removeObservers()
+            player = player?.dynamicType == AVPlayer.self ? player : AVPlayer()
+            addObservers()
+            
             loadItem(song, { (item) -> Void in
-                self.player = self.player?.dynamicType == AVPlayer.self ? self.player : AVPlayer()
                 self.player?.replaceCurrentItemWithPlayerItem(item)
                 
                 BFExecutor.mainThreadExecutor().execute({ () -> Void in
@@ -270,7 +276,7 @@ class AudioManager: NSObject {
         
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
         
-        song.image.load(.Big).continueWithBlock { (task) -> AnyObject! in
+        song.image.load(.Big).continueWithSuccessBlock { (task) -> AnyObject! in
             songInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: task.result as! UIImage)
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo
             
@@ -278,8 +284,17 @@ class AudioManager: NSObject {
         }
     }
     
-    func songDidStalled() {
+    func songDidFinish() {
+        if let song = currentSong {
+            status = .Idle
+            NSNotificationCenter.defaultCenter().postNotificationName(AudioManagerDidFinishNotification, object: song)
+            currentSong = nil
+        }
+    }
+    
+    func songDidStagnate() {
         pause()
+        player?.seekToTime(CMTimeMakeWithSeconds(time - 1, 600))
         
         BFTask(delay: 3000).continueWithExecutor(BFExecutor.mainThreadExecutor(), withBlock: { (task) -> AnyObject! in
             self.play()
