@@ -23,7 +23,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     var offset = 0
     var hasOtherPage = true
     var loading = false
-    var scrolling = false
     var longPressedCell: SongCollectionCell?
     
     init(view: SongCollectionView) {
@@ -44,7 +43,7 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     func currentSongChanged(notification: NSNotification) {
         guard let song = notification.object as? Song else { return }
         guard let index = songs.indexOf(song) else { return }
-        if scrolling || songs.count == 0 { return }
+        if view.decelerating || view.dragging || songs.count == 0 { return }
         
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
         let layout = view.collectionViewLayout as! SongCollectionLayout
@@ -55,10 +54,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
         frame.size.height += layout.sectionInset.top + layout.sectionInset.bottom
         
         view.scrollRectToVisible(frame, animated: diff < view.bounds.height)
-        
-        if diff < view.bounds.height {
-            scrolling = false
-        }
     }
     
     func viewDidLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -193,8 +188,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        scrolling = true
-        
         let paths = view.indexPathsForVisibleItems()
         let y = scrollView.contentOffset.y
         
@@ -217,18 +210,6 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                 loadNextPage()
             }
         }
-    }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        scrolling = false
-    }
-    
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        scrolling = false
-    }
-    
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        scrolling = false
     }
     
     func setDistance(scrollView: UIScrollView) {
