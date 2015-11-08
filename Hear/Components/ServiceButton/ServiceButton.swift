@@ -23,7 +23,6 @@ import UIKit
     
     private func setup() {
         controller = ServiceButtonController(view: self)
-        hidden = true
     }
 
 }

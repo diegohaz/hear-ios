@@ -56,6 +56,8 @@ class AudioManager: NSObject {
         }
     }
     
+    func queued() -> Bool { return player as? AVQueuePlayer != nil }
+    
     func current(song song: Song) -> Bool { return currentSong?.id == song.id }
     private func current(item item: AVPlayerItem) -> Bool { return player?.currentItem == item }
     

@@ -9,9 +9,18 @@
 import UIKit
 import Bolts
 
+enum SongButtonStatus: Int {
+    case Loading
+    case Playing
+    case Paused
+    case Animating
+}
+
 @IBDesignable class SongButton: UIButton {
     
     var controller: SongButtonController!
+    var status = SongButtonStatus.Paused
+    
     @IBOutlet weak var newStoriesIndicator: UIView!
     @IBOutlet weak var songRoundView: UIView!
     @IBOutlet weak var backgroundView: UIView!
@@ -19,8 +28,6 @@ import Bolts
     @IBOutlet weak var playbackGuide: UIView!
     @IBOutlet weak var pauseView: UIImageView!
     @IBOutlet weak var springIndicator: SpringIndicator!
-    
-    private weak var currentCover: UIView!
     
     @IBInspectable var timePercent: CGFloat = 0 {
         didSet {
@@ -41,69 +48,71 @@ import Bolts
     private func setup() {
         loadNib()
         controller = SongButtonController(view: self)
-        
-        currentCover = songImageView
+    
         pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
         springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
     }
     
     func load() {
-        if self.currentCover == self.springIndicator {
+        if status == .Animating || status == .Loading {
             return
         }
+        
+        status = .Animating
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (finished) -> Void in
                 self.springIndicator.startAnimation()
-                self.currentCover = self.springIndicator
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.springIndicator.transform = CGAffineTransformMakeScale(1, 1)
                     self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
-                    }, completion: nil)
+                    }, completion: { f in self.status = .Loading })
         }
     }
     
     func play() {
-        if self.currentCover == self.pauseView {
+        if status == .Animating || status == .Playing {
             return
         }
+        
+        status = .Animating
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (b) -> Void in
                 self.springIndicator.stopAnimation(false)
-                self.currentCover = self.pauseView
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.pauseView.transform = CGAffineTransformMakeScale(1, 1)
                     self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     self.songImageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
-                    }, completion: nil)
+                    }, completion: { f in self.status = .Playing })
         }
     }
     
     func pause() {
-        if self.currentCover == self.songImageView {
+        if status == .Animating || status == .Paused {
             return
         }
+        
+        status = .Animating
         
         UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
             }) { (b) -> Void in
                 self.springIndicator.stopAnimation(false)
-                self.currentCover = self.songImageView
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.songImageView.transform = CGAffineTransformMakeScale(1, 1)
                     self.springIndicator.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
                     self.pauseView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
-                    }, completion: nil)
+                    }, completion: { f in self.status = .Paused })
         }
     }
     

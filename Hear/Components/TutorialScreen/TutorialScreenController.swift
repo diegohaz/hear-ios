@@ -22,7 +22,7 @@ class TutorialScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view = UINib(nibName: "TutorialScreenView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
+        view = UINib(nibName: "TutorialScreen", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
         songButton = UINib(nibName: "SongCollectionCell", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? SongCollectionCell
         
         songView.addSubview(songButton!)
@@ -60,15 +60,15 @@ class TutorialScreenController: UIViewController {
         welcomeLabel.hidden = true
         inputButton.pulsing = false
         
-        songView.appear(completion: { (finished) -> Void in
-            self.songLabel.rise(completion: { (finished) -> Void in
-                self.songLabel.disappear(3, completion: { (finished) -> Void in
-                    self.locationLabel.rise(completion: { (finished) -> Void in
-                        self.locationButton.appear()
+        songView.expand(delay: 0.5) { (f) -> Void in
+            self.songLabel.rise(completion: { (f) -> Void in
+                self.songLabel.hide(delay: 2, completion: { (f) -> Void in
+                    self.locationLabel.rise(completion: { (f) -> Void in
+                        self.locationButton.expand()
                     })
                 })
             })
-        })
+        }
     }
     
     func songButtonDidTouch() {

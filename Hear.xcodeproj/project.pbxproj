@@ -52,11 +52,13 @@
 		37A6E12B1BCC00D4000C75C1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */; };
 		37E24C1C1BE9098A00CD52E7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E24C1B1BE9098A00CD52E7 /* User.swift */; };
 		37E24C261BEE0D8900CD52E7 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E24C1E1BEE0D8900CD52E7 /* HomeScreenController.swift */; };
-		37E24C271BEE0D8900CD52E7 /* HomeScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C1F1BEE0D8900CD52E7 /* HomeScreenView.xib */; };
+		37E24C271BEE0D8900CD52E7 /* HomeScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C1F1BEE0D8900CD52E7 /* HomeScreen.xib */; };
 		37E24C281BEE0D8900CD52E7 /* SearchSongScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E24C211BEE0D8900CD52E7 /* SearchSongScreenController.swift */; };
-		37E24C291BEE0D8900CD52E7 /* SearchSongScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C221BEE0D8900CD52E7 /* SearchSongScreenView.xib */; };
+		37E24C291BEE0D8900CD52E7 /* SearchSongScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C221BEE0D8900CD52E7 /* SearchSongScreen.xib */; };
 		37E24C2A1BEE0D8900CD52E7 /* TutorialScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E24C241BEE0D8900CD52E7 /* TutorialScreenController.swift */; };
-		37E24C2B1BEE0D8900CD52E7 /* TutorialScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C251BEE0D8900CD52E7 /* TutorialScreenView.xib */; };
+		37E24C2B1BEE0D8900CD52E7 /* TutorialScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C251BEE0D8900CD52E7 /* TutorialScreen.xib */; };
+		37E24C2F1BEE184600CD52E7 /* OptionsScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E24C2D1BEE184600CD52E7 /* OptionsScreenController.swift */; };
+		37E24C301BEE184600CD52E7 /* OptionsScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37E24C2E1BEE184600CD52E7 /* OptionsScreen.xib */; };
 		37ED40AC1BD892CA00CF8C5E /* InputButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */; };
 		37ED40AD1BD892CA00CF8C5E /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AB1BD892CA00CF8C5E /* InputButton.swift */; };
 		37ED40B31BD894A000CF8C5E /* SongCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED40AF1BD894A000CF8C5E /* SongCollectionCell.swift */; };
@@ -118,11 +120,13 @@
 		37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		37E24C1B1BE9098A00CD52E7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37E24C1E1BEE0D8900CD52E7 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
-		37E24C1F1BEE0D8900CD52E7 /* HomeScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenView.xib; sourceTree = "<group>"; };
+		37E24C1F1BEE0D8900CD52E7 /* HomeScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreen.xib; sourceTree = "<group>"; };
 		37E24C211BEE0D8900CD52E7 /* SearchSongScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongScreenController.swift; sourceTree = "<group>"; };
-		37E24C221BEE0D8900CD52E7 /* SearchSongScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSongScreenView.xib; sourceTree = "<group>"; };
+		37E24C221BEE0D8900CD52E7 /* SearchSongScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSongScreen.xib; sourceTree = "<group>"; };
 		37E24C241BEE0D8900CD52E7 /* TutorialScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScreenController.swift; sourceTree = "<group>"; };
-		37E24C251BEE0D8900CD52E7 /* TutorialScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialScreenView.xib; sourceTree = "<group>"; };
+		37E24C251BEE0D8900CD52E7 /* TutorialScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialScreen.xib; sourceTree = "<group>"; };
+		37E24C2D1BEE184600CD52E7 /* OptionsScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsScreenController.swift; sourceTree = "<group>"; };
+		37E24C2E1BEE184600CD52E7 /* OptionsScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsScreen.xib; sourceTree = "<group>"; };
 		37ED40AA1BD892CA00CF8C5E /* InputButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButtonController.swift; sourceTree = "<group>"; };
 		37ED40AB1BD892CA00CF8C5E /* InputButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
 		37ED40AF1BD894A000CF8C5E /* SongCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCollectionCell.swift; sourceTree = "<group>"; };
@@ -222,9 +226,10 @@
 				37ED40AE1BD894A000CF8C5E /* SongCollection */,
 				372CC1BB1BDC4F90008AF7C5 /* SearchSongCollection */,
 				374345E51BDC97DD00E50C94 /* SearchSongTextField */,
-				37E24C1D1BEE0D8900CD52E7 /* HomeScreen */,
-				37E24C201BEE0D8900CD52E7 /* SearchSongScreen */,
 				37E24C231BEE0D8900CD52E7 /* TutorialScreen */,
+				37E24C1D1BEE0D8900CD52E7 /* HomeScreen */,
+				37E24C2C1BEE180E00CD52E7 /* OptionsScreen */,
+				37E24C201BEE0D8900CD52E7 /* SearchSongScreen */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -313,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				37E24C1E1BEE0D8900CD52E7 /* HomeScreenController.swift */,
-				37E24C1F1BEE0D8900CD52E7 /* HomeScreenView.xib */,
+				37E24C1F1BEE0D8900CD52E7 /* HomeScreen.xib */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -322,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				37E24C211BEE0D8900CD52E7 /* SearchSongScreenController.swift */,
-				37E24C221BEE0D8900CD52E7 /* SearchSongScreenView.xib */,
+				37E24C221BEE0D8900CD52E7 /* SearchSongScreen.xib */,
 			);
 			path = SearchSongScreen;
 			sourceTree = "<group>";
@@ -331,9 +336,18 @@
 			isa = PBXGroup;
 			children = (
 				37E24C241BEE0D8900CD52E7 /* TutorialScreenController.swift */,
-				37E24C251BEE0D8900CD52E7 /* TutorialScreenView.xib */,
+				37E24C251BEE0D8900CD52E7 /* TutorialScreen.xib */,
 			);
 			path = TutorialScreen;
+			sourceTree = "<group>";
+		};
+		37E24C2C1BEE180E00CD52E7 /* OptionsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				37E24C2D1BEE184600CD52E7 /* OptionsScreenController.swift */,
+				37E24C2E1BEE184600CD52E7 /* OptionsScreen.xib */,
+			);
+			path = OptionsScreen;
 			sourceTree = "<group>";
 		};
 		37ED40A91BD892CA00CF8C5E /* InputButton */ = {
@@ -448,11 +462,12 @@
 			files = (
 				3760E39C1BE76B0500A49FEF /* TitleButton.xib in Resources */,
 				372CC1C81BDC5F49008AF7C5 /* SearchSongCollectionCell.xib in Resources */,
-				37E24C291BEE0D8900CD52E7 /* SearchSongScreenView.xib in Resources */,
+				37E24C291BEE0D8900CD52E7 /* SearchSongScreen.xib in Resources */,
 				372CC1B71BDB47B0008AF7C5 /* SongCollectionCell.xib in Resources */,
 				376C07EB1BBA84D500AD1DB1 /* LaunchScreen.storyboard in Resources */,
-				37E24C2B1BEE0D8900CD52E7 /* TutorialScreenView.xib in Resources */,
-				37E24C271BEE0D8900CD52E7 /* HomeScreenView.xib in Resources */,
+				37E24C2B1BEE0D8900CD52E7 /* TutorialScreen.xib in Resources */,
+				37E24C301BEE184600CD52E7 /* OptionsScreen.xib in Resources */,
+				37E24C271BEE0D8900CD52E7 /* HomeScreen.xib in Resources */,
 				3731FB561BB89B2300294F70 /* SongButton.xib in Resources */,
 				3731FB261BB5A04200294F70 /* Assets.xcassets in Resources */,
 			);
@@ -489,6 +504,7 @@
 				37769A441BE5D53400FC01DE /* LocationManager.swift in Sources */,
 				37769A521BE5D61200FC01DE /* APIProtocol.swift in Sources */,
 				3731FB5F1BB8A22700294F70 /* AppDelegate.swift in Sources */,
+				37E24C2F1BEE184600CD52E7 /* OptionsScreenController.swift in Sources */,
 				37A6E11C1BCB3EE0000C75C1 /* TitleButton.swift in Sources */,
 				37769A391BDE1A9300FC01DE /* GenericButton.swift in Sources */,
 				37ED40B31BD894A000CF8C5E /* SongCollectionCell.swift in Sources */,

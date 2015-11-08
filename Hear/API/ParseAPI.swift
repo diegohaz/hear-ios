@@ -69,7 +69,7 @@ class ParseAPI : APIProtocol {
             })
         } else {
             print("Locale is same")
-            return BFTask(result: user)
+            return BFTask(result: User(id: user.objectId!))
         }
     }
     

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OptionsScreenController" customModule="Hear" customModuleProvider="target">
+            <connections>
+                <outlet property="actionSheet" destination="utz-Km-asr" id="Gw4-Ee-FXD"/>
+                <outlet property="backgroundView" destination="qSf-BI-GsN" id="bri-ey-8RE"/>
+                <outlet property="cancelButton" destination="YLX-JI-6tb" id="FBz-Sf-1w8"/>
+                <outlet property="removeArtistButton" destination="IIY-Hu-QFl" id="Lvr-E5-BBB"/>
+                <outlet property="removeSongButton" destination="jXp-ix-9bh" id="Jyd-Hp-h68"/>
+                <outlet property="songArtistLabel" destination="0UQ-l1-mEm" id="p5X-44-dXW"/>
+                <outlet property="songButton" destination="4WZ-1d-LDL" id="KAR-q2-sXw"/>
+                <outlet property="songTitleLabel" destination="nqY-91-07J" id="zBe-fh-6We"/>
+                <outlet property="songView" destination="7Hi-YQ-iKz" id="W4S-Uo-iCX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSf-BI-GsN">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" verticalHuggingPriority="240" verticalCompressionResistancePriority="600" translatesAutoresizingMaskIntoConstraints="NO" id="utz-Km-asr">
+                    <rect key="frame" x="0.0" y="364" width="600" height="236"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hi-YQ-iKz">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4WZ-1d-LDL" customClass="SongButton" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="4WZ-1d-LDL" secondAttribute="height" multiplier="1:1" id="QoZ-jQ-HQC"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome da música" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="nqY-91-07J">
+                                    <rect key="frame" x="64" y="15" width="410" height="17"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do artista" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="0UQ-l1-mEm">
+                                    <rect key="frame" x="64" y="32" width="410" height="17"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYp-1x-VOt" customClass="ServiceButton" customModule="Hear" customModuleProvider="target">
+                                    <rect key="frame" x="482" y="12" width="110" height="40"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="3b3-R8-GMp"/>
+                                        <constraint firstAttribute="width" secondItem="ZYp-1x-VOt" secondAttribute="height" multiplier="11:4" id="Rqv-zJ-fMb"/>
+                                    </constraints>
+                                    <state key="normal" image="AppleMusicBadge"/>
+                                </button>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ZYp-1x-VOt" secondAttribute="trailing" constant="8" id="PAd-Me-1jC"/>
+                                <constraint firstItem="4WZ-1d-LDL" firstAttribute="leading" secondItem="7Hi-YQ-iKz" secondAttribute="leading" constant="8" id="UAR-Jv-66I"/>
+                                <constraint firstItem="4WZ-1d-LDL" firstAttribute="top" secondItem="7Hi-YQ-iKz" secondAttribute="top" constant="8" id="Xur-5o-jeZ"/>
+                                <constraint firstItem="ZYp-1x-VOt" firstAttribute="centerY" secondItem="7Hi-YQ-iKz" secondAttribute="centerY" id="YXC-C9-5cs"/>
+                                <constraint firstItem="nqY-91-07J" firstAttribute="leading" secondItem="4WZ-1d-LDL" secondAttribute="trailing" constant="8" id="bQJ-xK-1hP"/>
+                                <constraint firstItem="0UQ-l1-mEm" firstAttribute="leading" secondItem="4WZ-1d-LDL" secondAttribute="trailing" constant="8" id="ebr-sK-buh"/>
+                                <constraint firstItem="ZYp-1x-VOt" firstAttribute="leading" secondItem="0UQ-l1-mEm" secondAttribute="trailing" constant="8" id="gNv-lf-87w"/>
+                                <constraint firstItem="nqY-91-07J" firstAttribute="top" secondItem="7Hi-YQ-iKz" secondAttribute="top" constant="15" id="iqM-4c-VDN"/>
+                                <constraint firstAttribute="bottom" secondItem="4WZ-1d-LDL" secondAttribute="bottom" constant="8" id="jJr-xr-Rcc"/>
+                                <constraint firstAttribute="height" constant="64" id="kd5-yN-Cvf"/>
+                                <constraint firstItem="ZYp-1x-VOt" firstAttribute="leading" secondItem="nqY-91-07J" secondAttribute="trailing" constant="8" id="miP-xL-oYU"/>
+                                <constraint firstItem="0UQ-l1-mEm" firstAttribute="top" secondItem="nqY-91-07J" secondAttribute="bottom" id="v5b-Pc-g7q"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdB-dT-CPn">
+                            <rect key="frame" x="0.0" y="64" width="600" height="1"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="u1F-Le-reL"/>
+                            </constraints>
+                        </view>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIY-Hu-QFl">
+                            <rect key="frame" x="0.0" y="65" width="600" height="57"/>
+                            <animations/>
+                            <color key="tintColor" red="0.86969566350000005" green="0.2111390531" blue="0.43110176919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                            <inset key="titleEdgeInsets" minX="22" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="3.5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Remove Artist" image="RemoveArtist">
+                                <color key="titleColor" red="0.86969566345214844" green="0.21113905310630798" blue="0.43110176920890808" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXp-ix-9bh">
+                            <rect key="frame" x="0.0" y="122" width="600" height="57"/>
+                            <animations/>
+                            <color key="tintColor" red="0.86969566350000005" green="0.2111390531" blue="0.43110176919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                            <inset key="titleEdgeInsets" minX="22" minY="0.0" maxX="0.0" maxY="14"/>
+                            <inset key="imageEdgeInsets" minX="3.5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Remove Song" image="RemoveSong">
+                                <color key="titleColor" red="0.86969566350000005" green="0.2111390531" blue="0.43110176919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or do long press the song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9K-yo-Fan">
+                            <rect key="frame" x="64" y="153.5" width="544" height="13.5"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-JI-6tb">
+                            <rect key="frame" x="0.0" y="179" width="600" height="57"/>
+                            <animations/>
+                            <color key="tintColor" red="0.86969566350000005" green="0.2111390531" blue="0.43110176919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                            <inset key="titleEdgeInsets" minX="22" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="3.5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Cancel" image="Down">
+                                <color key="titleColor" red="0.87058823529411766" green="0.21176470588235294" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="jXp-ix-9bh" firstAttribute="top" secondItem="IIY-Hu-QFl" secondAttribute="bottom" id="07A-HS-iqI"/>
+                        <constraint firstItem="g9K-yo-Fan" firstAttribute="trailing" secondItem="jXp-ix-9bh" secondAttribute="trailing" constant="8" id="3OW-F8-MLc"/>
+                        <constraint firstAttribute="trailing" secondItem="IIY-Hu-QFl" secondAttribute="trailing" id="Ec8-RC-TBe"/>
+                        <constraint firstItem="g9K-yo-Fan" firstAttribute="bottom" secondItem="jXp-ix-9bh" secondAttribute="bottom" constant="-12" id="HY4-J8-PAe"/>
+                        <constraint firstAttribute="trailing" secondItem="LdB-dT-CPn" secondAttribute="trailing" id="NAO-UD-Zzb"/>
+                        <constraint firstItem="LdB-dT-CPn" firstAttribute="leading" secondItem="utz-Km-asr" secondAttribute="leading" id="VZl-4i-MtQ"/>
+                        <constraint firstItem="IIY-Hu-QFl" firstAttribute="leading" secondItem="utz-Km-asr" secondAttribute="leading" id="Y4A-fb-xqt"/>
+                        <constraint firstItem="7Hi-YQ-iKz" firstAttribute="leading" secondItem="utz-Km-asr" secondAttribute="leading" id="dGb-Cx-KGj"/>
+                        <constraint firstItem="IIY-Hu-QFl" firstAttribute="top" secondItem="LdB-dT-CPn" secondAttribute="bottom" id="dgj-G3-wJw"/>
+                        <constraint firstItem="YLX-JI-6tb" firstAttribute="top" secondItem="jXp-ix-9bh" secondAttribute="bottom" id="mnH-Ql-ajP"/>
+                        <constraint firstAttribute="trailing" secondItem="7Hi-YQ-iKz" secondAttribute="trailing" id="nab-bF-joy"/>
+                        <constraint firstItem="7Hi-YQ-iKz" firstAttribute="top" secondItem="utz-Km-asr" secondAttribute="top" id="qey-Df-tex"/>
+                        <constraint firstItem="g9K-yo-Fan" firstAttribute="leading" secondItem="jXp-ix-9bh" secondAttribute="leading" constant="64" id="rdF-kq-qZL"/>
+                        <constraint firstItem="LdB-dT-CPn" firstAttribute="top" secondItem="7Hi-YQ-iKz" secondAttribute="bottom" id="sds-QI-blH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qSf-BI-GsN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4B8-We-SOL"/>
+                <constraint firstAttribute="bottom" secondItem="YLX-JI-6tb" secondAttribute="bottom" id="7b2-aC-rrH"/>
+                <constraint firstAttribute="bottom" secondItem="utz-Km-asr" secondAttribute="bottom" id="AhB-6v-gPb"/>
+                <constraint firstAttribute="trailing" secondItem="YLX-JI-6tb" secondAttribute="trailing" id="Blm-as-aGF"/>
+                <constraint firstItem="jXp-ix-9bh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CHj-9L-lUX"/>
+                <constraint firstAttribute="trailing" secondItem="qSf-BI-GsN" secondAttribute="trailing" id="LXG-to-lGy"/>
+                <constraint firstItem="qSf-BI-GsN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QvJ-gA-6Th"/>
+                <constraint firstAttribute="trailing" secondItem="utz-Km-asr" secondAttribute="trailing" id="TGO-cD-c1P"/>
+                <constraint firstAttribute="bottom" secondItem="qSf-BI-GsN" secondAttribute="bottom" id="c8s-4V-w00"/>
+                <constraint firstAttribute="trailing" secondItem="jXp-ix-9bh" secondAttribute="trailing" id="ec0-sz-7A5"/>
+                <constraint firstItem="YLX-JI-6tb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="egA-9m-xWI"/>
+                <constraint firstItem="utz-Km-asr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gPz-Dw-mMD"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="AppleMusicBadge" width="110" height="40"/>
+        <image name="Down" width="25" height="25"/>
+        <image name="RemoveArtist" width="25" height="25"/>
+        <image name="RemoveSong" width="25" height="25"/>
+    </resources>
+</document>

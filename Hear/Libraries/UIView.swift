@@ -19,9 +19,9 @@ extension UIView {
         addSubview(view)
     }
     
-    func bounce(scale: CGFloat = 1.2, completion: ((Bool) -> Void)? = nil) {
-        UIView.animateWithDuration(0.15, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(scale, scale)
+    func bounce(peak: CGFloat = 1.2, duration: Double = 0.15, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(peak, peak)
             }) { (finished) -> Void in
                 UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
                     self.transform = CGAffineTransformMakeScale(1, 1)
@@ -29,12 +29,12 @@ extension UIView {
         }
     }
     
-    func appear(peak: CGFloat = 1.1, completion: ((Bool) -> Void)? = nil) {
+    func expand(peak: CGFloat = 1.1, duration: Double = 0.2, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
         hidden = false
         alpha = 0
         transform = CGAffineTransformMakeScale(0, 0)
         
-        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
             self.alpha = 1
             self.transform = CGAffineTransformMakeScale(peak, peak)
             }) { (finished) -> Void in
@@ -44,8 +44,8 @@ extension UIView {
         }
     }
     
-    func hide(delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
-        UIView.animateWithDuration(0.1, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+    func pinch(duration: Double = 0.2, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(0.001, 0.001)
             }) { (finished) -> Void in
                 self.hidden = true
@@ -53,8 +53,20 @@ extension UIView {
         }
     }
     
-    func disappear(delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
-        UIView.animateWithDuration(0.2, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+    func appear(duration: Double = 0.2, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
+        hidden = true
+        alpha = 0
+        
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
+            self.alpha = 1
+            }) { (finished) -> Void in
+                self.hidden = false
+                completion?(finished)
+        }
+    }
+    
+    func hide(duration: Double = 0.2, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
             self.alpha = 0
             }) { (finished) -> Void in
                 self.hidden = true
@@ -62,12 +74,12 @@ extension UIView {
         }
     }
     
-    func rise(from: CGFloat = 100, completion: ((Bool) -> Void)? = nil) {
+    func rise(from: CGFloat = 100, duration: Double = 0.4, delay: Double = 0, completion: ((Bool) -> Void)? = nil) {
         hidden = false
         alpha = 0
-        transform = CGAffineTransformMakeTranslation(0, 100)
+        transform = CGAffineTransformMakeTranslation(0, from)
         
-        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseInOut, animations: { () -> Void in
             self.alpha = 1
             self.transform = CGAffineTransformMakeTranslation(0, 0)
             }, completion: completion)

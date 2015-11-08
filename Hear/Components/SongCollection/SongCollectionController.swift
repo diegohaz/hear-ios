@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 import Bolts
 
-public let SongCollectionPullNotification = "SongCollectionPullNotification"
-public let SongCollectionBeginLoadingNotification = "SongCollectionBeginLoadingNotification"
-public let SongCollectionEndLoadingNotification = "SongCollectionEndLoadingNotification"
-public let SongCollectionDistanceDidChangeNotification = "SongCollectionDistanceDidChangeNotification"
-public let SongCollectionPlaceDidChangeNotification = "SongCollectionPlaceDidChangeNotification"
+let SongCollectionPullNotification = "SongCollectionPullNotification"
+let SongCollectionBeginLoadingNotification = "SongCollectionBeginLoadingNotification"
+let SongCollectionEndLoadingNotification = "SongCollectionEndLoadingNotification"
+let SongCollectionDistanceDidChangeNotification = "SongCollectionDistanceDidChangeNotification"
+let SongCollectionPlaceDidChangeNotification = "SongCollectionPlaceDidChangeNotification"
+let SongCollectionDidPlayNotification = "SongCollectionDidPlayNotification"
 
 class SongCollectionController: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     weak var view: SongCollectionView!
@@ -85,23 +86,31 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
                 self.longPressedCell?.stopTrembling()
                 
                 if let song = self.longPressedCell?.songButton.controller.song {
-                    if let songIndex = self.songs.indexOf(song) {
-                        self.songs.removeAtIndex(songIndex)
-                        self.view.reloadData()
-                    }
-                    
-                    API.removeSong(song)
-                    
-                    if AudioManager.sharedInstance.playing(song: song) {
-                        AudioManager.sharedInstance.playNext()
-                    }
-                    
-                    AudioManager.sharedInstance.remove(song)
+                    self.removeSong(song)
                 }
                 
                 self.longPressedCell = nil
             })
         }
+    }
+    
+    func removeSong(song: Song, removeArtist: Bool = false) {
+        if let songIndex = self.songs.indexOf(song) {
+            self.songs.removeAtIndex(songIndex)
+            self.view.reloadData()
+        }
+        
+        if removeArtist {
+            API.removeArtist(song.artist)
+        } else {
+            API.removeSong(song)
+        }
+        
+        if AudioManager.sharedInstance.playing(song: song) {
+            AudioManager.sharedInstance.playNext()
+        }
+        
+        AudioManager.sharedInstance.remove(song)
     }
     
     func didPlaceSong(notification: NSNotification) {

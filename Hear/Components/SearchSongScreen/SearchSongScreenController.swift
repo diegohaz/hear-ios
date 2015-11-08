@@ -11,7 +11,7 @@ import Bolts
 
 class SearchSongScreenController: UIViewController {
     
-    static let sharedInstance = SearchSongScreenController()
+    static let sharedInstance = SearchSongScreenController(nibName: "SearchSongScreen", bundle: nil)
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchSongTextField: SearchSongTextField!
 
@@ -21,8 +21,6 @@ class SearchSongScreenController: UIViewController {
         
         modalPresentationStyle = .OverCurrentContext
         modalTransitionStyle = .CoverVertical
-        
-        view = UINib(nibName: "SearchSongScreenView", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
         
         searchSongTextField.becomeFirstResponder()
         cancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "cancelButtonDidTouch"))

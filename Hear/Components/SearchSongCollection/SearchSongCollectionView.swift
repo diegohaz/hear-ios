@@ -31,8 +31,6 @@ class SearchSongCollectionView: UICollectionView {
         noResultsLabel.textAlignment = .Center
         noResultsLabel.hidden = true
         addSubview(noResultsLabel)
-        
-        backgroundColor = UIColor.whiteColor()
     }
     
     override func drawRect(rect: CGRect) {

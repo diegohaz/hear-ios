@@ -52,8 +52,8 @@ class SongButtonController: NSObject {
     
     func statusChanged() {
         guard let song = song where audio.current(song: song) else {
-            view?.timePercent = 0
             view?.pause()
+            view?.timePercent = 0
             return
         }
         
@@ -88,6 +88,10 @@ class SongButtonController: NSObject {
     func timeChanged() {
         if song != nil && audio.playing(song: song!) {
             view?.timePercent = CGFloat(audio.time/audio.duration)
+            
+            if audio.time > 0.3 && view?.status != .Playing {
+                view?.play()
+            }
         } else if view?.timePercent != 0 {
             view?.timePercent = 0
         }
