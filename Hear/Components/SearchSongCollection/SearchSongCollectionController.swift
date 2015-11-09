@@ -61,6 +61,7 @@ class SearchSongCollectionController: NSObject, UICollectionViewDataSource, UICo
     func locationChanged() {
         if let song = songWaitingForLocation {
             placeSong(song)
+            songWaitingForLocation = nil
         }
     }
     
