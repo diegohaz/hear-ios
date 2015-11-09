@@ -22,8 +22,8 @@ class TutorialScreenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view = UINib(nibName: "TutorialScreen", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? UIView
-        songButton = UINib(nibName: "SongCollectionCell", bundle: NSBundle(forClass: self.dynamicType)).instantiateWithOwner(self, options: nil)[0] as? SongCollectionCell
+        view = UINib(nibName: "TutorialScreen", bundle: nil).instantiateWithOwner(self, options: nil)[0] as? UIView
+        songButton = UINib(nibName: "SongCollectionCell", bundle: nil).instantiateWithOwner(self, options: nil)[0] as? SongCollectionCell
         
         songView.addSubview(songButton!)
         

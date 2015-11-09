@@ -46,6 +46,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if status == .NotDetermined || status == .Restricted || status == .Denied  {
             HomeScreenController.sharedInstance.presentViewController(TutorialScreenController(), animated: false, completion: nil)
         } else if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+            if !NotificationManager.sharedInstance.requested() {
+                HomeScreenController.sharedInstance.presentViewController(NotificationScreenController(), animated: false, completion: nil)
+            }
+            
             startUpdatingLocation()
         }
     }

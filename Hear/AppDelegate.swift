@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = HomeScreenController.sharedInstance;
         self.window?.makeKeyAndVisible()
         
+        application.setMinimumBackgroundFetchInterval(60 * 60)
+        
+        if launchOptions?[UIApplicationLaunchOptionsLocationKey] != nil {
+            let notification = NotificationManager.sharedInstance
+            
+            notification.openedBySystem = true
+        }
+        
         return true
     }
     

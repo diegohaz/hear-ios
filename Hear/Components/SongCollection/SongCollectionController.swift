@@ -160,6 +160,12 @@ class SongCollectionController: NSObject, UICollectionViewDataSource, UICollecti
             self.loading = false
             NSNotificationCenter.defaultCenter().postNotificationName(SongCollectionEndLoadingNotification, object: nil)
             
+            let notification = NotificationManager.sharedInstance
+            let place = self.place != nil ? "in \(self.place!.name)" : "nearby"
+            let message = "People \(place) are listening to \(self.songs[0].artist.name). Join them!"
+            
+            notification.send(message)
+            
             return task
         })
     }
