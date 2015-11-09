@@ -29,7 +29,6 @@
 		376998771BCB0EB100AEB2E0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998761BCB0EB100AEB2E0 /* CoreLocation.framework */; };
 		376998791BCB0EB800AEB2E0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998781BCB0EB800AEB2E0 /* QuartzCore.framework */; };
 		3769987B1BCB0EC000AEB2E0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769987A1BCB0EC000AEB2E0 /* Security.framework */; };
-		3769987D1BCB0EC700AEB2E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769987C1BCB0EC700AEB2E0 /* StoreKit.framework */; };
 		3769987F1BCB0ECF00AEB2E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769987E1BCB0ECF00AEB2E0 /* SystemConfiguration.framework */; };
 		376998811BCB0ED600AEB2E0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998801BCB0ED600AEB2E0 /* libz.tbd */; };
 		376998831BCB0EDD00AEB2E0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */; };
@@ -95,7 +94,6 @@
 		376998761BCB0EB100AEB2E0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		376998781BCB0EB800AEB2E0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3769987A1BCB0EC000AEB2E0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		3769987C1BCB0EC700AEB2E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3769987E1BCB0ECF00AEB2E0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		376998801BCB0ED600AEB2E0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -147,7 +145,6 @@
 				376998831BCB0EDD00AEB2E0 /* libsqlite3.tbd in Frameworks */,
 				376998811BCB0ED600AEB2E0 /* libz.tbd in Frameworks */,
 				3769987F1BCB0ECF00AEB2E0 /* SystemConfiguration.framework in Frameworks */,
-				3769987D1BCB0EC700AEB2E0 /* StoreKit.framework in Frameworks */,
 				3769987B1BCB0EC000AEB2E0 /* Security.framework in Frameworks */,
 				376998791BCB0EB800AEB2E0 /* QuartzCore.framework in Frameworks */,
 				376998771BCB0EB100AEB2E0 /* CoreLocation.framework in Frameworks */,
@@ -388,7 +385,6 @@
 				376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */,
 				376998801BCB0ED600AEB2E0 /* libz.tbd */,
 				3769987E1BCB0ECF00AEB2E0 /* SystemConfiguration.framework */,
-				3769987C1BCB0EC700AEB2E0 /* StoreKit.framework */,
 				3769987A1BCB0EC000AEB2E0 /* Security.framework */,
 				376998781BCB0EB800AEB2E0 /* QuartzCore.framework */,
 				376998761BCB0EB100AEB2E0 /* CoreLocation.framework */,
@@ -434,6 +430,11 @@
 					3731FB1A1BB5A04200294F70 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 427LPJP8S9;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
