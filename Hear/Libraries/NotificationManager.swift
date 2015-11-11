@@ -38,6 +38,8 @@ class NotificationManager: NSObject {
         let notification = UILocalNotification()
         
         notification.alertBody = message
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.applicationIconBadgeNumber = 1
         notification.fireDate = NSDate().dateByAddingTimeInterval(1)
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)

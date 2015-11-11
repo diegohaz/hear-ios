@@ -56,7 +56,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last
-        print("Location has changed!")
+        print("Location has changed! \(location!.speed)")
         
         if originalLocation == nil || location?.distanceFromLocation(originalLocation!) > 1000 {
             originalLocation = location

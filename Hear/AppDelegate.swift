@@ -19,6 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        application.setMinimumBackgroundFetchInterval(60 * 30)
+        
+        if launchOptions?[UIApplicationLaunchOptionsLocationKey] != nil {
+            let notification = NotificationManager.sharedInstance
+            let reachability = Reachability.reachabilityForInternetConnection()
+            
+            if reachability?.isReachableViaWiFi() == true {
+                notification.openedBySystem = true
+            } else {
+                abort()
+            }
+        }
+        
         // Initialize Parse.
         Parse.setApplicationId("aQTf0BbHW5o643oIjuBVht36Q5IPzKbsu62rmT7Q",
             clientKey: "FTm3d5cmxLM40vhYR8w9k3LCHRggyhCJAo2ZafkR")
@@ -26,14 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = HomeScreenController.sharedInstance;
         self.window?.makeKeyAndVisible()
-        
-        application.setMinimumBackgroundFetchInterval(60 * 60)
-        
-        if launchOptions?[UIApplicationLaunchOptionsLocationKey] != nil {
-            let notification = NotificationManager.sharedInstance
-            
-            notification.openedBySystem = true
-        }
         
         return true
     }
