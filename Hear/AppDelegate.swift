@@ -9,6 +9,8 @@
 import UIKit
 import Bolts
 import Parse
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+        
+        Fabric.with([Crashlytics.self])
         
         // Initialize Parse.
         Parse.setApplicationId("aQTf0BbHW5o643oIjuBVht36Q5IPzKbsu62rmT7Q",

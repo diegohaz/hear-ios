@@ -49,6 +49,8 @@
 		3783FEAB1BF09804000BAAD4 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3783FEAA1BF09804000BAAD4 /* NotificationManager.swift */; };
 		3783FEAF1BF0A149000BAAD4 /* NotificationScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3783FEAD1BF0A149000BAAD4 /* NotificationScreenController.swift */; };
 		3783FEB01BF0A149000BAAD4 /* NotificationScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3783FEAE1BF0A149000BAAD4 /* NotificationScreen.xib */; };
+		3783FEC21BF33A84000BAAD4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3783FEC01BF33A84000BAAD4 /* Fabric.framework */; };
+		3783FEC31BF33A84000BAAD4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3783FEC11BF33A84000BAAD4 /* Crashlytics.framework */; };
 		37A6E11C1BCB3EE0000C75C1 /* TitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6E11B1BCB3EE0000C75C1 /* TitleButton.swift */; };
 		37A6E1291BCC00CC000C75C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A6E1281BCC00CC000C75C1 /* AVFoundation.framework */; };
 		37A6E12B1BCC00D4000C75C1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */; };
@@ -119,6 +121,8 @@
 		3783FEAA1BF09804000BAAD4 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3783FEAD1BF0A149000BAAD4 /* NotificationScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScreenController.swift; sourceTree = "<group>"; };
 		3783FEAE1BF0A149000BAAD4 /* NotificationScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationScreen.xib; sourceTree = "<group>"; };
+		3783FEC01BF33A84000BAAD4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
+		3783FEC11BF33A84000BAAD4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		37A6E11B1BCB3EE0000C75C1 /* TitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButton.swift; sourceTree = "<group>"; };
 		37A6E1281BCC00CC000C75C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -147,12 +151,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A6E12B1BCC00D4000C75C1 /* MediaPlayer.framework in Frameworks */,
+				3783FEC31BF33A84000BAAD4 /* Crashlytics.framework in Frameworks */,
 				37A6E1291BCC00CC000C75C1 /* AVFoundation.framework in Frameworks */,
 				376998831BCB0EDD00AEB2E0 /* libsqlite3.tbd in Frameworks */,
 				376998811BCB0ED600AEB2E0 /* libz.tbd in Frameworks */,
 				3769987F1BCB0ECF00AEB2E0 /* SystemConfiguration.framework in Frameworks */,
 				3769987B1BCB0EC000AEB2E0 /* Security.framework in Frameworks */,
 				376998791BCB0EB800AEB2E0 /* QuartzCore.framework in Frameworks */,
+				3783FEC21BF33A84000BAAD4 /* Fabric.framework in Frameworks */,
 				376998771BCB0EB100AEB2E0 /* CoreLocation.framework in Frameworks */,
 				376998751BCB0EA200AEB2E0 /* CoreGraphics.framework in Frameworks */,
 				376998731BCB0E9B00AEB2E0 /* CFNetwork.framework in Frameworks */,
@@ -397,6 +403,8 @@
 		849F2F3F135A96E2F8B08A52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3783FEC01BF33A84000BAAD4 /* Fabric.framework */,
+				3783FEC11BF33A84000BAAD4 /* Crashlytics.framework */,
 				37A6E12A1BCC00D4000C75C1 /* MediaPlayer.framework */,
 				37A6E1281BCC00CC000C75C1 /* AVFoundation.framework */,
 				376998821BCB0EDD00AEB2E0 /* libsqlite3.tbd */,
@@ -424,6 +432,7 @@
 				3731FB171BB5A04200294F70 /* Sources */,
 				3731FB181BB5A04200294F70 /* Frameworks */,
 				3731FB191BB5A04200294F70 /* Resources */,
+				3783FEBF1BF339C5000BAAD4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -493,6 +502,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3783FEBF1BF339C5000BAAD4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Frameworks/Fabric.framework/run f261c66474c04635d105631d96ed785ab6588950 17ef488b1c46662fc922d58515f50d4d1f07e26c7ba3137f026d957b596e1f0d";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3731FB171BB5A04200294F70 /* Sources */ = {
