@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        application.setMinimumBackgroundFetchInterval(60 * 30)
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         if launchOptions?[UIApplicationLaunchOptionsLocationKey] != nil {
             let notification = NotificationManager.sharedInstance
